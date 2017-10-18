@@ -51,7 +51,7 @@ public class ScopeLayout extends Layout {
      * @return String
      */
     public String getTitle() {
-        return "SCOPE";
+        return "";
     }
 
     /**

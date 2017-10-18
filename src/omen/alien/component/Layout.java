@@ -32,6 +32,8 @@ public class Layout {
         return this;
     }
 
+    public void onDraw() {}
+    public void onFrame() {}
     public void onEnable() {}
     public void onDisable() {}
 
@@ -66,10 +68,13 @@ public class Layout {
      * to render, then draw each of the layout views.
      */
     public void draw() {
+        onFrame();
         if (enabled && changed) {
+            App.stage.draw();
             App.title.setText(getTitle()).draw();
             App.buttonRow.setLabels(getButtonLabels()).draw();
             changed = false;
+            onDraw();
         }
     }
 
@@ -78,6 +83,7 @@ public class Layout {
      */
     public void clear() {
         App.title.clear();
+        App.stage.clear();
         App.buttonRow.clear();
     }
 

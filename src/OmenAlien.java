@@ -27,7 +27,7 @@ public class OmenAlien extends PApplet {
         App.title = new Title();
         App.stage = new Stage();
         App.buttonRow = new ButtonRow();
-        App.font = this.loadFont("Krungthep-24-smooth.vlw");
+        App.font = this.loadFont("AnonymousPro-Bold-48.vlw");
 
         App.title.setColor(Const.PRIMARY);
         App.buttonRow.setColor(Const.PRIMARY);
@@ -65,8 +65,8 @@ public class OmenAlien extends PApplet {
             } else {
                 layouts.get(key).disable();
             }
-            layouts.get(App.layout).enable();
         }
+        layouts.get(App.layout).enable();
     }
 
     @Override

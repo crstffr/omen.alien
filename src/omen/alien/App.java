@@ -8,11 +8,16 @@ import processing.core.PFont;
 
 public class App {
 
+    // Processing Instances
     public static PApplet inst;
     public static PFont font;
-    public static String layout;
+
+    // Components
     public static Title title;
     public static Stage stage;
     public static ButtonRow buttonRow;
+
+    // State
+    public static String layout;
 
 }

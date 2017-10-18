@@ -7,10 +7,10 @@ public class View {
     public PGraphics layer;
     PApplet process;
 
-    int x;
-    int y;
-    int h;
-    int w;
+    public int x;
+    public int y;
+    public int h;
+    public int w;
 
     public View(int _x, int _y, int _w, int _h) {
 

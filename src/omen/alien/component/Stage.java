@@ -25,7 +25,6 @@ public class Stage {
     }
 
     public void draw() {
-        view.clear();
         view.draw();
     }
 }
