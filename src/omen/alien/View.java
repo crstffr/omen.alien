@@ -35,6 +35,14 @@ public class View {
         layer.beginDraw();
     }
 
+    public void fillWith(int color) {
+        layer.fill(color);
+        layer.rect(0, 0, w, h);
+        layer.endDraw();
+        process.image(layer, x, y, w, h);
+        layer.beginDraw();
+    }
+
     public void clear() {
         layer.clear();
         layer.fill(0x00000000);

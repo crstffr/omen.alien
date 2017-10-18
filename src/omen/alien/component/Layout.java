@@ -5,9 +5,9 @@ import java.util.Arrays;
 
 public class Layout {
 
-    Title title;
-    String titleText;
-    ButtonRow buttonRow;
+    public Title title;
+    public Stage stage;
+    public ButtonRow buttonRow;
 
     public boolean changed = false;
     public boolean enabled = false;
@@ -17,8 +17,9 @@ public class Layout {
      * @param _title
      * @param _buttonRow
      */
-    public Layout(Title _title, ButtonRow _buttonRow) {
+    public Layout(Title _title, Stage _stage, ButtonRow _buttonRow) {
         title = _title;
+        stage = _stage;
         buttonRow = _buttonRow;
     }
 
@@ -30,6 +31,7 @@ public class Layout {
         enabled = true;
         changed = true;
         draw();
+        onEnable();
         return this;
     }
 
@@ -39,8 +41,12 @@ public class Layout {
      */
     public Layout disable() {
         enabled = false;
+        onDisable();
         return this;
     }
+
+    public void onEnable() {}
+    public void onDisable() {}
 
     /**
      * Keypress handler for user interaction.
@@ -74,7 +80,7 @@ public class Layout {
      */
     public void draw() {
         if (enabled && changed) {
-            title.text(getTitle()).draw();
+            title.setText(getTitle()).draw();
             buttonRow.setLabels(getButtonLabels()).draw();
             changed = false;
         }

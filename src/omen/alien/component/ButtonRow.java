@@ -5,9 +5,9 @@ import java.util.*;
 
 public class ButtonRow {
 
-    View view;
     int color = 0;
-    public ArrayList<String> labels;
+    public View view;
+    ArrayList<String> labels;
 
     int x = Const.BUTTON_VIEW_X;
     int y = Const.BUTTON_VIEW_Y;
@@ -52,6 +52,10 @@ public class ButtonRow {
         view.layer.noFill();
         view.layer.stroke(color);
 
+        // Top border of button row
+        view.layer.line(0, 0, w, 0);
+
+        // Individual button dividers
         for(int i = 1; i < num; i++) {
             int ix = gap * i;
             view.layer.line(ix, 0, ix, h);

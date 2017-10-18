@@ -1,5 +1,6 @@
 package omen.alien.layout;
 
+import omen.alien.Const;
 import omen.alien.component.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,10 +11,12 @@ public class ScopeLayout extends Layout {
      * Oscilloscope layout
      *
      * @param _title
+     * @param _stage
      * @param _buttonRow
      */
-    public ScopeLayout(Title _title, ButtonRow _buttonRow) {
-        super(_title, _buttonRow);
+    public ScopeLayout(Title _title, Stage _stage, ButtonRow _buttonRow) {
+        super(_title, _stage, _buttonRow);
+
     }
 
     /**
@@ -24,17 +27,23 @@ public class ScopeLayout extends Layout {
     /**
      *
      */
-    public void toggleLock() {
-        locked = !locked;
-        changed = true;
+    public void onEnable() {
+        // stage.view.fillWith(Const.GREEN);
     }
 
     /**
      *
-     * @return String
      */
-    public String getTitle() {
-        return "SCOPE";
+    public void onDisable() {
+
+    }
+
+    /**
+     *
+     */
+    public void toggleLock() {
+        locked = !locked;
+        changed = true;
     }
 
     /**
@@ -47,6 +56,14 @@ public class ScopeLayout extends Layout {
                 toggleLock();
                 break;
         }
+    }
+
+    /**
+     *
+     * @return String
+     */
+    public String getTitle() {
+        return "SCOPE";
     }
 
     /**

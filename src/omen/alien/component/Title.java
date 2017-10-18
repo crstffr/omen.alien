@@ -4,9 +4,9 @@ import omen.alien.*;
 
 public class Title {
 
-    View view;
-    int _color = 0;
-    String _text = "";
+    int color = 0;
+    String text = "";
+    public View view;
 
     int x = Const.TITLE_VIEW_X;
     int y = Const.TITLE_VIEW_Y;
@@ -17,16 +17,16 @@ public class Title {
         view = new View(x, y, w, h);
     }
 
-    public Title text(String val) {
-        if (!val.equals(_text)) {
-            _text = val;
+    public Title setText(String val) {
+        if (!val.equals(text)) {
+            text = val;
         }
         return this;
     }
 
-    public Title color(int val) {
-        if (val != _color) {
-            _color = val;
+    public Title setColor(int val) {
+        if (val != color) {
+            color = val;
         }
         return this;
     }
@@ -37,11 +37,11 @@ public class Title {
 
     public void draw() {
         view.clear();
-        view.layer.fill(_color);
+        view.layer.fill(color);
         view.layer.textFont(App.font);
         view.layer.textSize(Const.TITLE_FONT_SIZE);
         view.layer.textAlign(Const.LEFT, Const.CENTER);
-        view.layer.text(_text, Const.TITLE_TEXT_X, Const.TITLE_TEXT_Y);
+        view.layer.text(text, Const.TITLE_TEXT_X, Const.TITLE_TEXT_Y);
         view.draw();
     }
 

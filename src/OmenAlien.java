@@ -4,15 +4,13 @@ import omen.alien.layout.RecordLayout;
 import omen.alien.layout.ScopeLayout;
 import processing.core.*;
 
-import java.util.Set;
-import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class OmenAlien extends PApplet {
 
     Title title;
     String mode;
+    Stage stage;
     ButtonRow buttonRow;
     ScopeLayout scopeLayout;
     RecordLayout recordLayout;
@@ -36,16 +34,18 @@ public class OmenAlien extends PApplet {
 
         App.font = this.loadFont("Krungthep-24-smooth.vlw");
 
+        stage = new Stage();
+
         title = new Title();
-        title.color(Const.PRIMARY);
+        title.setColor(Const.PRIMARY);
 
         buttonRow = new ButtonRow();
         buttonRow.setColor(Const.PRIMARY);
 
-        scopeLayout = new ScopeLayout(title, buttonRow);
+        scopeLayout = new ScopeLayout(title, stage, buttonRow);
         layouts.put("scope", scopeLayout);
 
-        recordLayout = new RecordLayout(title, buttonRow);
+        recordLayout = new RecordLayout(title, stage, buttonRow);
         layouts.put("record", recordLayout);
 
         switchMode("scope");
