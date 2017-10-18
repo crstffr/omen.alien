@@ -11,44 +11,38 @@ import java.util.ArrayList;
 
 public class RecordLayout extends Layout {
 
+    boolean recording = false;
     Counter counter;
     View header;
     View timer;
 
-    int headerX;
-    int headerY;
-    int headerW;
-    int headerH;
-    int timerX;
-    int timerY;
-    int timerW;
-    int timerH;
-
-    boolean recording = false;
 
     public RecordLayout() {
 
         counter = new Counter();
 
-        headerX = App.stage.view.x;
-        headerY = App.stage.view.h / 5;
-        headerW = App.stage.view.w;
-        headerH = headerY;
+        int headerW = 236;
+        int headerH = 36;
+        int headerY = 80;
+        int headerX = App.stage.view.centerX(headerW);
 
-        header = new View(headerX, headerY, headerW, headerH);
+        int timerW = 320;
+        int timerH = 26;
+        int timerY = 130;
+        int timerX = App.stage.view.centerX(timerW);
 
-        timerX = headerX;
-        timerY = headerY * 2;
-        timerW = headerW;
-        timerH = headerY;
+        timer = App.stage.view.createSubView(timerX, timerY, timerW, timerH);
+        header = App.stage.view.createSubView(headerX, headerY, headerW, headerH);
 
-        timer = new View(timerX, timerY, timerW, timerH);
     }
 
     /**
      *
      */
     public void onEnable() {
+        App.title.setColor(Const.RED).draw();
+        App.waveform.setColor(Const.RED).draw();
+        App.buttonRow.setColor(Const.RED).draw();
         counter.reset();
         drawHeader();
         drawTimer();
@@ -56,17 +50,19 @@ public class RecordLayout extends Layout {
     }
 
     public void onDisable() {
+        App.waveform.clear();
         counter.stop();
         header.clear();
         timer.clear();
     }
 
-    public void onFrame() {
+    public void beforeFrame() {
         if (recording) {
             counter.run();
-            drawHeader();
-            drawTimer();
+            App.waveform.draw();
         }
+        drawHeader();
+        drawTimer();
     }
 
     void start() {
@@ -75,6 +71,7 @@ public class RecordLayout extends Layout {
     }
 
     void stop() {
+        App.waveform.clear();
         recording = false;
         counter.stop();
     }
@@ -84,26 +81,21 @@ public class RecordLayout extends Layout {
     }
 
     void drawTimer() {
-        String time = counter.toString();
-        int x = timerW / 2;
-        int y = timerH / 2;
-        timer.clear();
-        timer.layer.fill(Const.WHITE);
+        timer.fillWith(Const.TRANSPARENT);
+        timer.layer.fill(Const.RED);
         timer.layer.textFont(App.font);
         timer.layer.textSize(34);
         timer.layer.textAlign(Const.CENTER, Const.CENTER);
-        timer.layer.text(time, x, y);
+        timer.layer.text(counter.toString(), timer.mid_x, timer.mid_y);
         timer.draw();
     }
 
     public void drawHeader() {
-        int x = headerW / 2;
-        int y = headerH / 2;
         header.layer.fill(Const.RED);
         header.layer.textFont(App.font);
         header.layer.textSize(48);
         header.layer.textAlign(Const.CENTER, Const.CENTER);
-        header.layer.text("RECORDING", x, y);
+        header.layer.text("RECORDING", header.mid_x, header.mid_y);
         header.draw();
     }
 
@@ -129,7 +121,7 @@ public class RecordLayout extends Layout {
      * @return String
      */
     public String getTitle() {
-        return "";
+        return "RECORD";
     }
 
     /**

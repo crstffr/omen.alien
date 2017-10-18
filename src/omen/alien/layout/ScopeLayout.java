@@ -1,5 +1,6 @@
 package omen.alien.layout;
 
+import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
 import java.util.ArrayList;
@@ -8,30 +9,26 @@ import java.util.Arrays;
 public class ScopeLayout extends Layout {
 
     /**
-     * Whether to psudo-lock the oscilloscope using zero-crossing
-     */
-    boolean locked = false;
-
-    /**
      *
      */
     public void onEnable() {
-
+        App.title.setColor(Const.PRIMARY).draw();
+        App.buttonRow.setColor(Const.PRIMARY).draw();
+        App.waveform.setColor(Const.PRIMARY).draw();
     }
 
     /**
      *
      */
     public void onDisable() {
-
+        App.waveform.clear();
     }
 
     /**
      *
      */
-    public void toggleLock() {
-        locked = !locked;
-        changed = true;
+    public void afterFrame() {
+        App.waveform.draw();
     }
 
     /**
@@ -41,7 +38,8 @@ public class ScopeLayout extends Layout {
     public void keyPressed(char key) {
         switch (key) {
             case 'a':
-                toggleLock();
+                App.waveform.toggleLock();
+                changed = true;
                 break;
         }
     }
@@ -51,7 +49,7 @@ public class ScopeLayout extends Layout {
      * @return String
      */
     public String getTitle() {
-        return "";
+        return "SCOPE";
     }
 
     /**
@@ -60,7 +58,7 @@ public class ScopeLayout extends Layout {
      */
     public ArrayList<String> getButtonLabels() {
         ArrayList<String> labels = new ArrayList<>();
-        labels.add((locked) ? "LOCKED" : "UNLOCKED");
+        labels.add((App.waveform.locked) ? "LOCKED" : "UNLOCKED");
         labels.add("-");
         labels.add("-");
         labels.add("-");

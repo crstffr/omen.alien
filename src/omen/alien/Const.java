@@ -14,6 +14,7 @@ public class Const implements PConstants {
     final public static int BLACK = 0xFF000000;
     final public static int WHITE = 0xFFFFFFFF;
     final public static int GREEN = 0xFF00FF00;
+    final public static int TRANSPARENT = 0x00FFFFFF;
     final public static int PRIMARY = GREEN;
     final public static int BACKGROUND = BLACK;
 
@@ -30,7 +31,6 @@ public class Const implements PConstants {
     final public static int TITLE_VIEW_H = TITLE_FONT_SIZE + 2;
     final public static int TITLE_TEXT_Y = TITLE_FONT_SIZE / 2;
     final public static int TITLE_TEXT_X = 0;
-
 
     final public static int BUTTON_FONT_SIZE = 32;
     final public static int BUTTON_VIEW_X = BODY_X;

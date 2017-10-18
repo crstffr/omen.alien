@@ -1,20 +1,21 @@
 package omen.alien;
 
-import omen.alien.component.ButtonRow;
-import omen.alien.component.Stage;
-import omen.alien.component.Title;
-import processing.core.PApplet;
-import processing.core.PFont;
+import ddf.minim.*;
+import processing.core.*;
+import omen.alien.component.*;
 
 public class App {
 
     // Processing Instances
     public static PApplet inst;
     public static PFont font;
+    public static Minim minim;
+    public static AudioInput audioInput;
 
     // Components
     public static Title title;
     public static Stage stage;
+    public static Waveform waveform;
     public static ButtonRow buttonRow;
 
     // State

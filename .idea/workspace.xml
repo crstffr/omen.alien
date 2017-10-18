@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e752a8c-6cb9-4ef9-9031-0329ce15fcb4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OmenAlien.java" afterPath="$PROJECT_DIR$/src/OmenAlien.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/App.java" afterPath="$PROJECT_DIR$/src/omen/alien/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/Const.java" afterPath="$PROJECT_DIR$/src/omen/alien/Const.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/View.java" afterPath="$PROJECT_DIR$/src/omen/alien/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/Layout.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/util/Counter.java" afterPath="$PROJECT_DIR$/src/omen/alien/util/Counter.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,52 +35,99 @@
       <file leaf-file-name="OmenAlien.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+            <state relative-caret-position="203">
+              <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
-                <element signature="e#1830#1831#0" expanded="true" />
-                <element signature="e#1876#1877#0" expanded="true" />
+                <element signature="e#2187#2188#0" expanded="true" />
+                <element signature="e#2233#2234#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScopeLayout.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ButtonRow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="67">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Waveform.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Waveform.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+              <folding>
+                <element signature="e#510#511#0" expanded="true" />
+                <element signature="e#538#539#0" expanded="true" />
+                <element signature="e#693#694#0" expanded="true" />
+                <element signature="e#725#726#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Layout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="505">
+              <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScopeLayout.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+            <state relative-caret-position="445">
+              <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
               <folding>
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#839#840#0" expanded="true" />
+                <element signature="e#471#472#0" expanded="true" />
+                <element signature="e#507#508#0" expanded="true" />
+                <element signature="e#562#563#0" expanded="true" />
+                <element signature="e#597#598#0" expanded="true" />
+                <element signature="e#935#936#0" expanded="true" />
+                <element signature="e#965#966#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecordLayout.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RecordLayout.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="412">
+              <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
               <folding>
-                <element signature="e#1502#1503#0" expanded="true" />
-                <element signature="e#1533#1534#0" expanded="true" />
-                <element signature="e#2637#2638#0" expanded="true" />
-                <element signature="e#2662#2663#0" expanded="true" />
+                <element signature="e#1660#1661#0" expanded="true" />
+                <element signature="e#1691#1692#0" expanded="true" />
+                <element signature="e#2713#2714#0" expanded="true" />
+                <element signature="e#2744#2745#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Counter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/omen/alien/util/Counter.java">
+      <file leaf-file-name="Stage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Stage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-              <folding>
-                <element signature="e#312#313#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alien.pde" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/alien.pde">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="66" column="27" lean-forward="true" selection-start-line="61" selection-start-column="2" selection-end-line="66" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,9 +135,16 @@
       <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="338">
+              <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
+              <folding>
+                <element signature="e#702#703#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#814#815#0" expanded="true" />
+                <element signature="e#1308#1309#0" expanded="true" />
+                <element signature="e#1358#1359#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,14 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Example</find>
-      <find>ExampleA</find>
-      <find>pro</find>
-      <find>proces</find>
-      <find>processing</find>
-      <find>processing-</find>
-      <find>processing-in</find>
-      <find>processing-int</find>
       <find>processing-inte</find>
       <find>processing-intel</find>
       <find>processing-intell</find>
@@ -121,14 +174,22 @@
       <find>BOTTOM</find>
       <find>HEIGHT</find>
       <find>APP</find>
-      <find>C</find>
       <find>Const</find>
-      <find>Const.</find>
       <find>Const.F</find>
       <find>Const.FONT</find>
       <find>_text</find>
       <find>_changed</find>
       <find>_labels</find>
+      <find>fill</find>
+      <find>C</find>
+      <find>Const.</find>
+      <find>Const.B</find>
+      <find>Const.BL</find>
+      <find>Const.BLAC</find>
+      <find>Const.BLACK</find>
+      <find>0</find>
+      <find>(0</find>
+      <find>(0)</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -139,8 +200,8 @@
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/.idea</dir>
-      <dir>$PROJECT_DIR$/src/omen/alien</dir>
       <dir>$PROJECT_DIR$/src/omen</dir>
+      <dir>$PROJECT_DIR$/src/omen/alien</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -171,18 +232,19 @@
         <option value="$PROJECT_DIR$/src/omen/alien/view/ScopeView.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Title.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/State.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/util/Counter.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/App.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/View.java" />
+        <option value="$PROJECT_DIR$/src/OmenAlien.java" />
+        <option value="$PROJECT_DIR$/src/OmenAlien.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/Const.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/component/Waveform.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Stage.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/util/Counter.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/Const.java" />
-        <option value="$PROJECT_DIR$/src/OmenAlien.java" />
-        <option value="$PROJECT_DIR$/src/OmenAlien.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/View.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java" />
       </list>
     </option>
   </component>
@@ -410,7 +472,67 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="omen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -470,7 +592,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ToolWindowTerminal.ShowToolbar" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -651,10 +773,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34288356" sideWeight="0.5018431" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14325324" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3546326" sideWeight="0.49815693" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15804067" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3109691" sideWeight="0.49815693" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17784877" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15601704" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994455" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21565495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -688,20 +810,19 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/alien.pde">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/MyApplet.java" />
     <entry file="file://$PROJECT_DIR$/src/omen/alien/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,8 +839,8 @@
         <state relative-caret-position="255">
           <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -736,8 +857,8 @@
         <state relative-caret-position="360">
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -746,7 +867,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -770,8 +898,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -780,7 +908,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="19" lean-forward="true" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -797,8 +932,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -808,8 +943,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -819,8 +954,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -830,8 +965,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -841,8 +976,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -852,8 +987,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -863,8 +998,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -874,8 +1009,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -885,8 +1020,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -931,25 +1066,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/WaveformRenderer.pde">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/alien.pde">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2484">
-          <caret line="138" column="2" lean-forward="false" selection-start-line="138" selection-start-column="2" selection-end-line="138" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,37 +1097,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
-          <folding>
-            <element signature="e#757#758#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/State.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/Const.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -1025,80 +1118,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/util/Counter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="69" column="24" lean-forward="true" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+        <state relative-caret-position="697">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+          <folding>
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#274#275#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/WaveformRenderer.pde">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-364">
+          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/alien.pde">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="66" column="27" lean-forward="true" selection-start-line="61" selection-start-column="2" selection-end-line="66" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Stage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding>
-            <element signature="e#280#281#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#499#500#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="252">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/util/Counter.java">
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="67">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/Const.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Waveform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
           <folding>
-            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#510#511#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+        <state relative-caret-position="338">
+          <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
           <folding>
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
             <element signature="e#814#815#0" expanded="true" />
-            <element signature="e#839#840#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
-          <folding>
-            <element signature="e#1830#1831#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="412">
+          <caret line="42" column="45" lean-forward="false" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
           <folding>
-            <element signature="e#1502#1503#0" expanded="true" />
-            <element signature="e#1533#1534#0" expanded="true" />
-            <element signature="e#2637#2638#0" expanded="true" />
-            <element signature="e#2662#2663#0" expanded="true" />
+            <element signature="e#1660#1661#0" expanded="true" />
+            <element signature="e#1691#1692#0" expanded="true" />
+            <element signature="e#2713#2714#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+          <folding>
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#597#598#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
           </folding>
         </state>
       </provider>

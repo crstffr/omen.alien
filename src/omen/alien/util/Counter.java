@@ -4,12 +4,9 @@ import omen.alien.App;
 
 public class Counter {
 
-    boolean run = false;
-
-    int start = 0;
-    int total = 0;
-    int last = 0;
     int now = 0;
+    int start = 0;
+    boolean run = false;
 
     public void start() {
         run = true;
@@ -27,11 +24,9 @@ public class Counter {
     }
 
     public void reset() {
-        run = false;
-        start = 0;
-        total = 0;
-        last = 0;
         now = 0;
+        start = 0;
+        run = false;
     }
 
     public String toString() {

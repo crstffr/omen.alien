@@ -1,55 +1,78 @@
 package omen.alien;
 
-import processing.core.*;
+import java.util.ArrayList;
+import processing.core.PGraphics;
 
 public class View {
 
     public PGraphics layer;
-    PApplet process;
+    ArrayList<View> views;
 
     public int x;
     public int y;
     public int h;
     public int w;
 
-    public View(int _x, int _y, int _w, int _h) {
+    public int mid_x;
+    public int mid_y;
 
-        process = App.inst;
+    public View(int _x, int _y, int _w, int _h) {
 
         x = _x;
         y = _y;
         w = _w;
         h = _h;
 
-        layer = process.createGraphics(w, h, Const.JAVA2D);
+        mid_x = w / 2;
+        mid_y = h / 2;
+
+        views = new ArrayList<>();
+
+        layer = App.inst.createGraphics(w, h, Const.JAVA2D);
         layer.beginDraw();
         layer.noStroke();
         layer.noFill();
         layer.smooth();
+        layer.clear();
 
+    }
+
+    public int centerX(int _w) {
+        return mid_x - (_w / 2);
+    }
+
+    public int centerY(int _h) {
+        return mid_y - (_h / 2);
     }
 
     public void draw() {
         layer.endDraw();
-        process.image(layer, x, y, w, h);
+        App.inst.image(layer, x, y, w, h);
         layer.beginDraw();
+        layer.clear();
     }
 
     public void fillWith(int color) {
         layer.fill(color);
         layer.rect(0, 0, w, h);
-        layer.endDraw();
-        process.image(layer, x, y, w, h);
-        layer.beginDraw();
+        draw();
     }
 
     public void clear() {
         layer.clear();
-        layer.fill(0x00000000);
-        layer.rect(0, 0, w, h);
-        layer.endDraw();
-        process.image(layer, x, y, w, h);
-        layer.beginDraw();
+        fillWith(0x00000000);
+        // clear out subviews as well.
+        for (View view : views) { view.clear(); }
+    }
+
+    public View createSubView(int _x, int _y) {
+        return createSubView(_x, _y, w, h);
+    }
+
+    public View createSubView(int _x, int _y, int _w, int _h) {
+        View view = new View(x + _x, y + _y, _w, _h);
+        views.add(view);
+        return view;
     }
 
 }

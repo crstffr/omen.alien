@@ -15,7 +15,6 @@ public class ButtonRow {
     int h = Const.BUTTON_VIEW_H;
 
     public ButtonRow() {
-
         view = new View(x, y, w, h);
         labels = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
     }
@@ -50,7 +49,7 @@ public class ButtonRow {
         int gap = Const.WIDTH / num;
 
         view.layer.noFill();
-        view.layer.stroke(color);
+        view.layer.stroke(color, (float)128);
 
         // Top border of button row
         view.layer.line(0, 0, w, 0);

@@ -1,3 +1,4 @@
+import ddf.minim.Minim;
 import processing.core.*;
 import java.util.LinkedHashMap;
 
@@ -21,16 +22,31 @@ public class OmenAlien extends PApplet {
     @Override
     public void setup() {
 
+        // Processing
+
+        this.noCursor();
         this.frameRate(60);
         this.background(Const.BLACK);
+        App.font = this.loadFont("AnonymousPro-Bold-48.vlw");
+
+        // Components
 
         App.title = new Title();
         App.stage = new Stage();
+        App.waveform = new Waveform();
         App.buttonRow = new ButtonRow();
-        App.font = this.loadFont("AnonymousPro-Bold-48.vlw");
 
         App.title.setColor(Const.PRIMARY);
         App.buttonRow.setColor(Const.PRIMARY);
+
+        // Audio
+
+        App.minim = new Minim(this);
+        App.audioInput = App.minim.getLineIn(Minim.MONO, 2048, 44100, 16);
+        // fft = new FFT(in.bufferSize(), in.sampleRate());
+        App.audioInput.addListener(App.waveform);
+
+        // Layouts
 
         layouts.put("scope", new ScopeLayout());
         layouts.put("record", new RecordLayout());
@@ -40,7 +56,6 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void keyPressed() {
-        System.out.println(this.key);
         switch (this.key) {
             case '1':
                 switchLayout("scope");
