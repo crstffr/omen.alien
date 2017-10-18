@@ -1,13 +1,11 @@
 package omen.alien;
 
 import processing.core.PFont;
-import processing.core.PApplet;
 import processing.core.PConstants;
 
 public class Const implements PConstants {
 
     public static PFont FONT;
-    public static PApplet APP;
 
     final public static int WIDTH = 800;
     final public static int HEIGHT = 480;

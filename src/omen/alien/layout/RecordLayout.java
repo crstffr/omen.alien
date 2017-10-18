@@ -4,29 +4,16 @@ import omen.alien.component.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ScopeLayout extends Layout {
+public class RecordLayout extends Layout {
 
     /**
-     * Oscilloscope layout
+     * Record mode layout
      *
      * @param _title
      * @param _buttonRow
      */
-    public ScopeLayout(Title _title, ButtonRow _buttonRow) {
+    public RecordLayout(Title _title, ButtonRow _buttonRow) {
         super(_title, _buttonRow);
-    }
-
-    /**
-     * Whether to psudo-lock the oscilloscope using zero-crossing
-     */
-    boolean locked = false;
-
-    /**
-     *
-     */
-    public void toggleLock() {
-        locked = !locked;
-        changed = true;
     }
 
     /**
@@ -34,7 +21,7 @@ public class ScopeLayout extends Layout {
      * @return String
      */
     public String getTitle() {
-        return "SCOPE";
+        return "RECORD";
     }
 
     /**
@@ -44,7 +31,7 @@ public class ScopeLayout extends Layout {
     public void keyPressed(char key) {
         switch (key) {
             case 'a':
-                toggleLock();
+
                 break;
         }
     }
@@ -55,8 +42,8 @@ public class ScopeLayout extends Layout {
      */
     public ArrayList<String> getButtonLabels() {
         ArrayList<String> labels = new ArrayList<>();
-        labels.add((locked) ? "LOCKED" : "UNLOCKED");
-        labels.add("-");
+        labels.add("STOP");
+        labels.add("RETAKE");
         labels.add("-");
         labels.add("-");
         return labels;

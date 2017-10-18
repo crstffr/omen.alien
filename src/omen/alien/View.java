@@ -1,7 +1,6 @@
 package omen.alien;
 
 import processing.core.*;
-import omen.alien.Const;
 
 public class View {
 
@@ -15,7 +14,7 @@ public class View {
 
     public View(int _x, int _y, int _w, int _h) {
 
-        process = Const.APP;
+        process = App.inst;
 
         x = _x;
         y = _y;

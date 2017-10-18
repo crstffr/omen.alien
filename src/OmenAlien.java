@@ -1,20 +1,22 @@
 import omen.alien.*;
 import omen.alien.component.*;
+import omen.alien.layout.RecordLayout;
 import omen.alien.layout.ScopeLayout;
 import processing.core.*;
 
+import java.util.Set;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class OmenAlien extends PApplet {
 
     Title title;
+    String mode;
     ButtonRow buttonRow;
     ScopeLayout scopeLayout;
-
-    LinkedHashMap<String, Object> layouts = new LinkedHashMap<>();
+    RecordLayout recordLayout;
+    LinkedHashMap<String, Layout> layouts = new LinkedHashMap<>();
 
     public static void main(String args[]) {
         PApplet.main("OmenAlien");
@@ -23,7 +25,7 @@ public class OmenAlien extends PApplet {
     @Override
     public void settings() {
         size(800, 480, PConstants.JAVA2D);
-        Const.APP = this;
+        App.inst = this;
     }
 
     @Override
@@ -32,20 +34,21 @@ public class OmenAlien extends PApplet {
         this.frameRate(60);
         this.background(Const.BLACK);
 
-        Const.FONT = this.loadFont("Krungthep-24-smooth.vlw");
+        App.font = this.loadFont("Krungthep-24-smooth.vlw");
 
         title = new Title();
-        title.color(Const.PRIMARY).text("SCOPERDOPER");
+        title.color(Const.PRIMARY);
 
         buttonRow = new ButtonRow();
-        buttonRow.color(Const.PRIMARY);
+        buttonRow.setColor(Const.PRIMARY);
 
         scopeLayout = new ScopeLayout(title, buttonRow);
         layouts.put("scope", scopeLayout);
 
+        recordLayout = new RecordLayout(title, buttonRow);
+        layouts.put("record", recordLayout);
 
         switchMode("scope");
-
     }
 
     @Override
@@ -58,60 +61,29 @@ public class OmenAlien extends PApplet {
                 switchMode("record");
                 break;
             case '3':
-                switchMode("sample");
+                // switchMode("sample");
                 break;
             case '4':
-                switchMode("files");
-                break;
-            case 'a':
-                break;
-            case 's':
-                break;
-            case 'd':
-                break;
-            case 'f':
+                // switchMode("files");
                 break;
         }
+
+        layouts.get(mode).keyPressed(this.key);
     }
 
-    public void switchMode(String mode) {
-
-        Set<String> keys = layouts
-    .keySet();
-
-        for(String key : keys) {
-
-            if (key.equals(mode)) {
-                layouts
-    .get(key);
+    public void switchMode(String _mode) {
+        for(String key : layouts.keySet()) {
+            if (key.equals(_mode)) {
+                layouts.get(key).enable();
+                mode = _mode;
+            } else {
+                layouts.get(key).disable();
             }
-
-            System.out.println(key);
-        }
-
-        switch (mode) {
-            case "scope":
-                title.text("SCOPE");
-                buttonRow.labels(new ArrayList<>(
-                    Arrays.asList("LOCK", "-", "-", "-")
-                ));
-                break;
-            case "record":
-                title.text("RECORD");
-                break;
-            case "sample":
-                title.text("SAMPLE");
-                break;
-            case "files":
-                title.text("FILES");
-                break;
         }
     }
 
     @Override
     public void draw() {
-
-        title.draw();
-        buttonRow.draw();
+        layouts.get(mode).draw();
     }
 }
