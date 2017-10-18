@@ -8,18 +8,6 @@ import java.util.Arrays;
 public class ScopeLayout extends Layout {
 
     /**
-     * Oscilloscope layout
-     *
-     * @param _title
-     * @param _stage
-     * @param _buttonRow
-     */
-    public ScopeLayout(Title _title, Stage _stage, ButtonRow _buttonRow) {
-        super(_title, _stage, _buttonRow);
-
-    }
-
-    /**
      * Whether to psudo-lock the oscilloscope using zero-crossing
      */
     boolean locked = false;

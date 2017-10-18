@@ -2,26 +2,12 @@ package omen.alien.component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import omen.alien.App;
 
 public class Layout {
 
-    public Title title;
-    public Stage stage;
-    public ButtonRow buttonRow;
-
     public boolean changed = false;
     public boolean enabled = false;
-
-    /**
-     *
-     * @param _title
-     * @param _buttonRow
-     */
-    public Layout(Title _title, Stage _stage, ButtonRow _buttonRow) {
-        title = _title;
-        stage = _stage;
-        buttonRow = _buttonRow;
-    }
 
     /**
      *
@@ -41,6 +27,7 @@ public class Layout {
      */
     public Layout disable() {
         enabled = false;
+        clear();
         onDisable();
         return this;
     }
@@ -80,8 +67,8 @@ public class Layout {
      */
     public void draw() {
         if (enabled && changed) {
-            title.setText(getTitle()).draw();
-            buttonRow.setLabels(getButtonLabels()).draw();
+            App.title.setText(getTitle()).draw();
+            App.buttonRow.setLabels(getButtonLabels()).draw();
             changed = false;
         }
     }
@@ -90,8 +77,8 @@ public class Layout {
      *
      */
     public void clear() {
-        title.clear();
-        buttonRow.clear();
+        App.title.clear();
+        App.buttonRow.clear();
     }
 
 }

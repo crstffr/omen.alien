@@ -1,21 +1,13 @@
-import omen.alien.*;
-import omen.alien.component.*;
-import omen.alien.layout.RecordLayout;
-import omen.alien.layout.ScopeLayout;
 import processing.core.*;
-
 import java.util.LinkedHashMap;
+
+import omen.alien.component.*;
+import omen.alien.layout.*;
+import omen.alien.*;
 
 public class OmenAlien extends PApplet {
 
-    Title title;
-    String mode;
-    Stage stage;
-    ButtonRow buttonRow;
-    ScopeLayout scopeLayout;
-    RecordLayout recordLayout;
     LinkedHashMap<String, Layout> layouts = new LinkedHashMap<>();
-
     public static void main(String args[]) {
         PApplet.main("OmenAlien");
     }
@@ -32,58 +24,53 @@ public class OmenAlien extends PApplet {
         this.frameRate(60);
         this.background(Const.BLACK);
 
+        App.title = new Title();
+        App.stage = new Stage();
+        App.buttonRow = new ButtonRow();
         App.font = this.loadFont("Krungthep-24-smooth.vlw");
 
-        stage = new Stage();
+        App.title.setColor(Const.PRIMARY);
+        App.buttonRow.setColor(Const.PRIMARY);
 
-        title = new Title();
-        title.setColor(Const.PRIMARY);
+        layouts.put("scope", new ScopeLayout());
+        layouts.put("record", new RecordLayout());
 
-        buttonRow = new ButtonRow();
-        buttonRow.setColor(Const.PRIMARY);
-
-        scopeLayout = new ScopeLayout(title, stage, buttonRow);
-        layouts.put("scope", scopeLayout);
-
-        recordLayout = new RecordLayout(title, stage, buttonRow);
-        layouts.put("record", recordLayout);
-
-        switchMode("scope");
+        switchLayout("scope");
     }
 
     @Override
     public void keyPressed() {
         switch (this.key) {
             case '1':
-                switchMode("scope");
+                switchLayout("scope");
                 break;
             case '2':
-                switchMode("record");
+                switchLayout("record");
                 break;
             case '3':
-                // switchMode("sample");
+                // switchLayout("sample");
                 break;
             case '4':
-                // switchMode("files");
+                // switchLayout("files");
                 break;
         }
 
-        layouts.get(mode).keyPressed(this.key);
+        layouts.get(App.layout).keyPressed(this.key);
     }
 
-    public void switchMode(String _mode) {
+    public void switchLayout(String layout) {
         for(String key : layouts.keySet()) {
-            if (key.equals(_mode)) {
-                layouts.get(key).enable();
-                mode = _mode;
+            if (key.equals(layout)) {
+                App.layout = layout;
             } else {
                 layouts.get(key).disable();
             }
+            layouts.get(App.layout).enable();
         }
     }
 
     @Override
     public void draw() {
-        layouts.get(mode).draw();
+        layouts.get(App.layout).draw();
     }
 }

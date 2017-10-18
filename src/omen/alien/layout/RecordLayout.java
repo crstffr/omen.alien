@@ -8,17 +8,6 @@ import java.util.Arrays;
 public class RecordLayout extends Layout {
 
     /**
-     * Record mode layout
-     *
-     * @param _title
-     * @param _stage
-     * @param _buttonRow
-     */
-    public RecordLayout(Title _title, Stage _stage, ButtonRow _buttonRow) {
-        super(_title, _stage, _buttonRow);
-    }
-
-    /**
      *
      */
     public void onEnable() {
