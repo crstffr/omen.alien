@@ -88,9 +88,9 @@ public class RecordLayout extends Layout {
         int x = timerW / 2;
         int y = timerH / 2;
         timer.clear();
-        timer.layer.textSize(34);
         timer.layer.fill(Const.WHITE);
         timer.layer.textFont(App.font);
+        timer.layer.textSize(34);
         timer.layer.textAlign(Const.CENTER, Const.CENTER);
         timer.layer.text(time, x, y);
         timer.draw();
@@ -99,9 +99,9 @@ public class RecordLayout extends Layout {
     public void drawHeader() {
         int x = headerW / 2;
         int y = headerH / 2;
-        header.layer.textSize(48);
         header.layer.fill(Const.RED);
         header.layer.textFont(App.font);
+        header.layer.textSize(48);
         header.layer.textAlign(Const.CENTER, Const.CENTER);
         header.layer.text("RECORDING", x, y);
         header.draw();

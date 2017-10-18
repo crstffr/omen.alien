@@ -16,7 +16,7 @@ public class ScopeLayout extends Layout {
      *
      */
     public void onEnable() {
-        // stage.view.fillWith(Const.GREEN);
+
     }
 
     /**

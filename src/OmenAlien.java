@@ -40,6 +40,7 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void keyPressed() {
+        System.out.println(this.key);
         switch (this.key) {
             case '1':
                 switchLayout("scope");
