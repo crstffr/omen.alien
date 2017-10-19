@@ -5,6 +5,7 @@ import ddf.minim.*;
 import omen.alien.*;
 import omen.alien.util.*;
 import omen.alien.component.*;
+import processing.core.PConstants;
 
 import java.io.File;
 import java.time.Instant;
@@ -17,6 +18,7 @@ public class RecordLayout extends Layout {
 
     String filename = "";
     String filepath = "";
+    String tmpname = "";
     String state = "";
 
     View headerV;
@@ -28,20 +30,20 @@ public class RecordLayout extends Layout {
 
         timeCounter = new TimeCounter();
 
-        int headerW = 236;
         int headerH = 36;
+        int headerW = 236;
         int headerX = App.stage.view.centerX(headerW);
-        int headerY = App.stage.view.centerY(headerH) - 75;
+        int headerY = App.stage.view.centerY(headerH) - 100;
 
-        int nameW = 320;
         int nameH = 26;
+        int nameW = App.stage.view.w;
         int nameX = App.stage.view.centerX(nameW);
-        int nameY = App.stage.view.centerY(nameH) - 25;
+        int nameY = App.stage.view.centerY(nameH) - 50;
 
-        int timerW = 320;
         int timerH = 26;
+        int timerW = 320;
         int timerX = App.stage.view.centerX(timerW);
-        int timerY = App.stage.view.centerY(timerH) + 25;
+        int timerY = App.stage.view.centerY(timerH) + 50;
 
         headerV = App.stage.view.createSubView(headerX, headerY, headerW, headerH);
         timerV = App.stage.view.createSubView(timerX, timerY, timerW, timerH);
@@ -77,13 +79,13 @@ public class RecordLayout extends Layout {
             recorder.endRecord();
             timeCounter.reset();
             recorder = null;
-            destroy();
         }
         App.ampliform.clear();
         App.waveform.clear();
         headerV.clear();
         timerV.clear();
         nameV.clear();
+        destroy();
     }
 
     public void beforeFrame() {
@@ -143,7 +145,26 @@ public class RecordLayout extends Layout {
         newRecording();
     }
 
-    void rename() {}
+    void rename() {
+        App.userInput = true;
+        setState("rename");
+    }
+
+    void renameCancel() {
+        tmpname = "";
+        setState("saved");
+        App.userInput = false;
+    }
+
+    void renameSubmit() {
+        File f = new File(Const.SAMPLE_USER_PATH + filename);
+        f.renameTo(new File(Const.SAMPLE_USER_PATH + tmpname + ".wav"));
+        filename = tmpname + ".wav";
+        App.userInput = false;
+        setState("saved");
+        tmpname = "";
+    }
+
     void edit() {}
     void play() {}
 
@@ -175,7 +196,10 @@ public class RecordLayout extends Layout {
         nameV.layer.fill(Const.RED);
         nameV.layer.textFont(App.font, 28);
         nameV.layer.textAlign(Const.CENTER, Const.CENTER);
-        nameV.layer.text(filename, nameV.mid_x, nameV.mid_y);
+
+        String name = is("rename") ? tmpname + ".wav" : filename;
+        nameV.layer.text(name, nameV.mid_x, nameV.mid_y);
+
         nameV.draw();
     }
 
@@ -184,22 +208,46 @@ public class RecordLayout extends Layout {
      * @param key what key was pressed
      */
     public void keyPressed(char key) {
-        switch (key) {
-            case 'a': buttonA(); break;
-            case 's': buttonB(); break;
-            case 'd': buttonC(); break;
-            case 'f': buttonD(); break;
+
+        if (App.userInput) {
+            switch (key) {
+                case Const.ESC_KEY:
+                    renameCancel();
+                    break;
+                case Const.RETURN:
+                case Const.ENTER:
+                    renameSubmit();
+                    break;
+                case Const.BACKSPACE:
+                    tmpname = tmpname.replaceFirst(".$","");
+                    break;
+                default:
+                    tmpname += key;
+                    break;
+            }
         }
+
+        if (!App.userInput) {
+            switch (key) {
+                case 'a':
+                    buttonA();
+                    break;
+                case 's':
+                    buttonB();
+                    break;
+                case 'd':
+                    buttonC();
+                    break;
+                case 'f':
+                    buttonD();
+                    break;
+            }
+        }
+
         changed = true;
     }
 
-    /**
-     *
-     * @return String
-     */
-    public String getTitle() {
-        return "";
-    }
+
 
     void buttonA() {
         switch(state) {
@@ -299,9 +347,24 @@ public class RecordLayout extends Layout {
                 labels.add("PLAY");
                 labels.add("EDIT");
                 break;
+
+            case "rename":
+                labels.add("-");
+                labels.add("-");
+                labels.add("-");
+                labels.add("-");
+                break;
         }
 
         return labels;
+    }
+
+    /**
+     *
+     * @return String
+     */
+    public String getTitle() {
+        return "";
     }
 
 }

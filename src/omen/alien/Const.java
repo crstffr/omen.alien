@@ -14,6 +14,7 @@ public class Const implements PConstants {
     final public static String SAMPLE_TEMP_PATH = SAMPLE_PATH + "tmp/";
     final public static String SAMPLE_USER_PATH = SAMPLE_PATH + "user/";
 
+    final public static int ESC_KEY = 10000;
     final public static int WIDTH = App.inst.width;
     final public static int HEIGHT = App.inst.height;
 

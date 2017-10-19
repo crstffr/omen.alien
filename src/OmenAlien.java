@@ -61,6 +61,11 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void keyPressed() {
+
+        if (key == Const.ESC) {
+            key = Const.ESC_KEY;
+        }
+
         if (!App.userInput) {
             switch (this.key) {
                 case '1':
@@ -95,4 +100,5 @@ public class OmenAlien extends PApplet {
     public void draw() {
         layouts.get(App.layout).draw();
     }
+
 }
