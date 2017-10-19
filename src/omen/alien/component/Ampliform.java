@@ -5,6 +5,11 @@ import omen.alien.App;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
 public class Ampliform implements AudioListener{
 
@@ -13,11 +18,11 @@ public class Ampliform implements AudioListener{
     boolean enabled;
     private float[] left;
     private float[] right;
+    private float maxLevel;
     ArrayList<Float> values;
 
     public Ampliform() {
-        left = null;
-        right = null;
+        maxLevel = 0;
         enabled = false;
         values = new ArrayList<>();
         view = App.stage.view.createSubView(App.stage.view.mid_x, 0);
@@ -35,12 +40,14 @@ public class Ampliform implements AudioListener{
 
     public synchronized void samples(float[] _left) {
         left = _left;
+        captureMax();
         captureSample();
     }
 
     public synchronized void samples(float[] _left, float[] _right) {
         left = _left;
         right = _right;
+        captureMax();
         captureSample();
     }
 
@@ -68,7 +75,20 @@ public class Ampliform implements AudioListener{
             }
 
             int x = App.stage.view.mid_x - (values.size() / 2);
+
             view.position(x, view.y);
+
+        }
+
+    }
+
+    void captureMax() {
+        float[] mixValues = App.audioInput.mix.toArray();
+        for (int i = 0; i < mixValues.length; i++) {
+            float currLevel = Math.abs(mixValues[i]) * 100;
+            if (currLevel > maxLevel) {
+                maxLevel = currLevel;
+            }
         }
     }
 
@@ -77,7 +97,12 @@ public class Ampliform implements AudioListener{
         return this;
     }
 
+    public float getMaxLevel() {
+        return maxLevel;
+    }
+
     public Ampliform clear() {
+        maxLevel = 0;
         view.clear();
         values.clear();
         view.position(App.stage.view.mid_x, 0);

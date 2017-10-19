@@ -63,6 +63,7 @@ public class OmenAlien extends PApplet {
     public void keyPressed() {
 
         if (key == Const.ESC) {
+            // this prevents processing from exiting
             key = Const.ESC_KEY;
         }
 

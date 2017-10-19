@@ -5,16 +5,17 @@ import ddf.minim.*;
 import omen.alien.*;
 import omen.alien.util.*;
 import omen.alien.component.*;
-import processing.core.PConstants;
 
 import java.io.File;
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class RecordLayout extends Layout {
 
     AudioRecorder recorder;
     TimeCounter timeCounter;
+
+    boolean clipped = false;
+    int clipThreshold = 98;
 
     String filename = "";
     String filepath = "";
@@ -89,6 +90,9 @@ public class RecordLayout extends Layout {
     }
 
     public void beforeFrame() {
+        if (is("recording")) {
+            checkClipping();
+        }
         App.waveform.draw();
         App.ampliform.draw();
         timeCounter.run();
@@ -98,6 +102,7 @@ public class RecordLayout extends Layout {
     }
 
     void newRecording() {
+        clipped = false;
         recorder = null;
         timeCounter.reset();
         App.ampliform.disable().clear();
@@ -139,6 +144,7 @@ public class RecordLayout extends Layout {
     }
 
     void reset() {
+        clipped = false;
         recorder.endRecord();
         App.ampliform.disable().clear();
         destroy();
@@ -165,6 +171,13 @@ public class RecordLayout extends Layout {
         tmpname = "";
     }
 
+    void checkClipping() {
+        if (App.ampliform.getMaxLevel() >= clipThreshold) {
+            clipped = true;
+            changed = true;
+        }
+    }
+
     void edit() {}
     void play() {}
 
@@ -176,10 +189,13 @@ public class RecordLayout extends Layout {
     }
 
     void drawHeader() {
+
+        String text = (clipped) ? "CLIPPED" : state.toUpperCase();
+
         headerV.layer.fill(Const.RED);
         headerV.layer.textFont(App.font, 48);
         headerV.layer.textAlign(Const.CENTER, Const.CENTER);
-        headerV.layer.text(state.toUpperCase(), headerV.mid_x, headerV.mid_y);
+        headerV.layer.text(text, headerV.mid_x, headerV.mid_y);
         headerV.draw();
     }
 
