@@ -8,13 +8,15 @@ import java.util.Arrays;
 
 public class ScopeLayout extends Layout {
 
+    int color = Const.PRIMARY;
+
     /**
      *
      */
     public void onEnable() {
-        App.title.setColor(Const.PRIMARY).draw();
-        App.buttonRow.setColor(Const.PRIMARY).draw();
-        App.waveform.setColor(Const.PRIMARY).draw();
+        App.title.setColor(color).draw();
+        App.waveform.setColor(color).draw();
+        App.buttonRow.setColor(color).draw();
     }
 
     /**

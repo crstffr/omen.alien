@@ -1,10 +1,11 @@
-import ddf.minim.Minim;
 import processing.core.*;
-import java.util.LinkedHashMap;
+import ddf.minim.Minim;
+import java.util.*;
 
-import omen.alien.component.*;
-import omen.alien.layout.*;
 import omen.alien.*;
+import omen.alien.util.*;
+import omen.alien.layout.*;
+import omen.alien.component.*;
 
 public class OmenAlien extends PApplet {
 
@@ -34,7 +35,9 @@ public class OmenAlien extends PApplet {
         App.title = new Title();
         App.stage = new Stage();
         App.waveform = new Waveform();
+        App.ampliform = new Ampliform();
         App.buttonRow = new ButtonRow();
+        App.fileCounter = new FileCounter();
 
         App.title.setColor(Const.PRIMARY);
         App.buttonRow.setColor(Const.PRIMARY);
@@ -44,6 +47,8 @@ public class OmenAlien extends PApplet {
         App.minim = new Minim(this);
         App.audioInput = App.minim.getLineIn(Minim.MONO, 2048, 44100, 16);
         // fft = new FFT(in.bufferSize(), in.sampleRate());
+        App.audioRecorder = App.minim.createRecorder(App.audioInput, "tmp.wav", true);
+        App.audioInput.addListener(App.ampliform);
         App.audioInput.addListener(App.waveform);
 
         // Layouts
@@ -56,21 +61,22 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void keyPressed() {
-        switch (this.key) {
-            case '1':
-                switchLayout("scope");
-                break;
-            case '2':
-                switchLayout("record");
-                break;
-            case '3':
-                // switchLayout("sample");
-                break;
-            case '4':
-                // switchLayout("files");
-                break;
+        if (!App.userInput) {
+            switch (this.key) {
+                case '1':
+                    switchLayout("scope");
+                    break;
+                case '2':
+                    switchLayout("record");
+                    break;
+                case '3':
+                    // switchLayout("sample");
+                    break;
+                case '4':
+                    // switchLayout("files");
+                    break;
+            }
         }
-
         layouts.get(App.layout).keyPressed(this.key);
     }
 

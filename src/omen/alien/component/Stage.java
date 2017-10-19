@@ -1,7 +1,6 @@
 package omen.alien.component;
 
 import omen.alien.*;
-import processing.core.PGraphics;
 
 public class Stage {
 
@@ -14,10 +13,6 @@ public class Stage {
 
     public Stage() {
         view = new View(x, y, w, h);
-    }
-
-    public PGraphics getLayer() {
-        return view.layer;
     }
 
     public void clear() {

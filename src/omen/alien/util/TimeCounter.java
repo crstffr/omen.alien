@@ -2,36 +2,47 @@ package omen.alien.util;
 
 import omen.alien.App;
 
-public class Counter {
+public class TimeCounter {
 
     int now = 0;
     int start = 0;
-    boolean run = false;
+    int total = 0;
+    int current = 0;
+    boolean enabled = false;
 
     public void start() {
-        run = true;
+        enabled = true;
         start = App.inst.millis();
     }
 
     public void stop() {
-        run = false;
-    }
-
-    public void run() {
-        if (run) {
-            now = App.inst.millis();
-        }
+        enabled = false;
+        total += current;
+        current = 0;
     }
 
     public void reset() {
         now = 0;
         start = 0;
-        run = false;
+        total = 0;
+        current = 0;
+        enabled = false;
+    }
+
+    public void run() {
+        if (enabled) {
+            now = App.inst.millis();
+            current = now - start;
+        }
+    }
+
+    public int getMillis() {
+        return total + current;
     }
 
     public String toString() {
 
-        int time = now - start;
+        int time = total + current;
 
         int H = 3600000;
         int M = H / 60;

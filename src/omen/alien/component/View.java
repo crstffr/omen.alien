@@ -1,6 +1,9 @@
-package omen.alien;
+package omen.alien.component;
 
 import java.util.ArrayList;
+
+import omen.alien.App;
+import omen.alien.Const;
 import processing.core.PGraphics;
 
 public class View {
@@ -18,23 +21,30 @@ public class View {
 
     public View(int _x, int _y, int _w, int _h) {
 
-        x = _x;
-        y = _y;
-        w = _w;
-        h = _h;
 
-        mid_x = w / 2;
-        mid_y = h / 2;
-
+        layer = App.inst.createGraphics(_w, _h, Const.JAVA2D);
         views = new ArrayList<>();
+        position(_x, _y, _w, _h);
 
-        layer = App.inst.createGraphics(w, h, Const.JAVA2D);
         layer.beginDraw();
         layer.noStroke();
         layer.noFill();
         layer.smooth();
         layer.clear();
 
+    }
+
+    public void position(int _x, int _y) {
+        position(_x, _y, w, h);
+    }
+
+    public void position(int _x, int _y, int _w, int _h) {
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
+        mid_x = w / 2;
+        mid_y = h / 2;
     }
 
     public int centerX(int _w) {
