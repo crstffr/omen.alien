@@ -8,14 +8,16 @@ import omen.alien.component.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RecordLayout extends Layout {
 
     AudioRecorder recorder;
     TimeCounter timeCounter;
 
-    boolean clipped = false;
     int clipThreshold = 98;
+    boolean clipped = false;
 
     String filename = "";
     String filepath = "";
@@ -96,6 +98,7 @@ public class RecordLayout extends Layout {
         App.waveform.draw();
         App.ampliform.draw();
         timeCounter.run();
+        drawClipped();
         drawFilename();
         drawHeader();
         drawTimer();
@@ -144,7 +147,6 @@ public class RecordLayout extends Layout {
     }
 
     void reset() {
-        clipped = false;
         recorder.endRecord();
         App.ampliform.disable().clear();
         destroy();
@@ -173,8 +175,7 @@ public class RecordLayout extends Layout {
 
     void checkClipping() {
         if (App.ampliform.getMaxLevel() >= clipThreshold) {
-            clipped = true;
-            changed = true;
+            setState("clipped");
         }
     }
 
@@ -188,11 +189,18 @@ public class RecordLayout extends Layout {
         }
     }
 
+    void drawClipped() {
+        if (is("clipped")) {
+            App.stage.view.fillWith(Const.TRANSRED_DARK);
+        }
+    }
+
     void drawHeader() {
 
-        String text = (clipped) ? "CLIPPED" : state.toUpperCase();
+        int color = is("clipped") ? Const.WHITE : Const.RED;
+        String text = (!is("clipped")) ? state.toUpperCase() : "CLIPPED";
 
-        headerV.layer.fill(Const.RED);
+        headerV.layer.fill(color);
         headerV.layer.textFont(App.font, 48);
         headerV.layer.textAlign(Const.CENTER, Const.CENTER);
         headerV.layer.text(text, headerV.mid_x, headerV.mid_y);
@@ -209,13 +217,14 @@ public class RecordLayout extends Layout {
     }
 
     void drawFilename() {
-        nameV.layer.fill(Const.RED);
+
+        int color = is("clipped") ? Const.WHITE : Const.RED;
+
+        nameV.layer.fill(color);
         nameV.layer.textFont(App.font, 28);
         nameV.layer.textAlign(Const.CENTER, Const.CENTER);
-
         String name = is("rename") ? tmpname + ".wav" : filename;
         nameV.layer.text(name, nameV.mid_x, nameV.mid_y);
-
         nameV.draw();
     }
 
@@ -238,7 +247,12 @@ public class RecordLayout extends Layout {
                     tmpname = tmpname.replaceFirst(".$","");
                     break;
                 default:
-                    tmpname += key;
+                    String string = "[a-zA-Z_0-9 -]";
+                    Pattern pattern = Pattern.compile(string);
+                    Matcher matcher = pattern.matcher(Character.toString(key));
+                    if (matcher.matches()) {
+                        tmpname += key;
+                    }
                     break;
             }
         }
@@ -263,13 +277,12 @@ public class RecordLayout extends Layout {
         changed = true;
     }
 
-
-
     void buttonA() {
         switch(state) {
             case "ready":
                 record();
                 break;
+            case "clipped":
             case "recording":
                 pause();
                 break;
@@ -286,6 +299,7 @@ public class RecordLayout extends Layout {
         switch(state) {
             case "ready":
                 break;
+            case "clipped":
             case "recording":
                 save();
                 break;
@@ -302,6 +316,7 @@ public class RecordLayout extends Layout {
         switch(state) {
             case "ready":
                 break;
+            case "clipped":
             case "recording":
                 break;
             case "paused":
@@ -316,6 +331,7 @@ public class RecordLayout extends Layout {
         switch(state) {
             case "ready":
                 break;
+            case "clipped":
             case "recording":
                 reset();
                 break;
@@ -343,6 +359,7 @@ public class RecordLayout extends Layout {
                 labels.add("-");
                 break;
 
+            case "clipped":
             case "recording":
                 labels.add("PAUSE");
                 labels.add("SAVE");

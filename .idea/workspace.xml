@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e752a8c-6cb9-4ef9-9031-0329ce15fcb4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vars/fileCount.idx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OmenAlien.java" afterPath="$PROJECT_DIR$/src/OmenAlien.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/Ampliform.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/Ampliform.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" />
     </list>
     <ignored path="project.iws" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="OmenAlien.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+            <state relative-caret-position="278">
+              <caret line="66" column="32" lean-forward="true" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -40,8 +36,8 @@
       <file leaf-file-name="Const.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/Const.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+            <state relative-caret-position="450">
+              <caret line="25" column="41" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -50,8 +46,18 @@
       <file leaf-file-name="RecordLayout.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="79" column="33" lean-forward="true" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+            <state relative-caret-position="421">
+              <caret line="248" column="24" lean-forward="false" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Layout.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -94,11 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>processing-intellij</find>
-      <find>text</find>
-      <find>CENTER</find>
-      <find>BOTTOM</find>
-      <find>HEIGHT</find>
       <find>APP</find>
       <find>Const</find>
       <find>Const.F</find>
@@ -124,6 +125,11 @@
       <find>.draw</find>
       <find>fillWit</find>
       <find>Syste</find>
+      <find>changed=</find>
+      <find>changed = true</find>
+      <find>RECORD</find>
+      <find>clipped =</find>
+      <find>TRA</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -170,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/omen/alien/View.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/ScopeLayout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Stage.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/util/DashedLine.java" />
         <option value="$PROJECT_DIR$/samples/tmp/.gitignore" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -183,11 +188,12 @@
         <option value="$PROJECT_DIR$/src/omen/alien/App.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Waveform.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/View.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/Const.java" />
         <option value="$PROJECT_DIR$/src/OmenAlien.java" />
         <option value="$PROJECT_DIR$/src/OmenAlien.java" />
         <option value="$PROJECT_DIR$/vars/.gitignore" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Ampliform.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/Const.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java" />
       </list>
     </option>
@@ -1002,14 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-202">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/util/TimeCounter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="563">
@@ -1033,26 +1031,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/Const.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vars/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1087,10 +1069,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/Const.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="41" lean-forward="false" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="66" column="32" lean-forward="true" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/RecordLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="79" column="33" lean-forward="true" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+        <state relative-caret-position="421">
+          <caret line="248" column="24" lean-forward="false" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
           <folding />
         </state>
       </provider>

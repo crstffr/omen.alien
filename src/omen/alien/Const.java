@@ -23,6 +23,7 @@ public class Const implements PConstants {
     final public static int WHITE = 0xFFFFFFFF;
     final public static int GREEN = 0xFF00FF00;
     final public static int TRANSRED = 0x88D20000;
+    final public static int TRANSRED_DARK = 0xAAD20000;
     final public static int TRANSGRAY = 0x88888888;
     final public static int TRANSBLACK = 0x88000000;
     final public static int TRANSWHITE = 0x88FFFFFF;
