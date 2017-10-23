@@ -21,12 +21,12 @@ public class View {
 
     public View(int _x, int _y, int _w, int _h) {
 
-
         layer = App.inst.createGraphics(_w, _h, Const.JAVA2D);
         views = new ArrayList<>();
         position(_x, _y, _w, _h);
 
         layer.beginDraw();
+        layer.background(0x00010101);
         layer.noStroke();
         layer.noFill();
         layer.smooth();
@@ -55,24 +55,31 @@ public class View {
         return mid_y - (_h / 2);
     }
 
-    public void draw() {
+    public View draw() {
         layer.endDraw();
         App.inst.image(layer, x, y, w, h);
         layer.beginDraw();
         layer.clear();
+        return this;
     }
 
-    public void fillWith(int color) {
+    public View fillWith(int color) {
         layer.fill(color);
         layer.rect(0, 0, w, h);
         draw();
+        return this;
     }
 
-    public void clear() {
+    public View clear() {
         layer.clear();
-        fillWith(0x00000000);
+        fillWith(0);
         // clear out subviews as well.
         for (View view : views) { view.clear(); }
+        return this;
+    }
+
+    public View createSubView() {
+        return createSubView(0, 0, w, h);
     }
 
     public View createSubView(int _x, int _y) {

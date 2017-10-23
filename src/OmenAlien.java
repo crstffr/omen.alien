@@ -1,3 +1,4 @@
+import omen.alien.layout.record.RecordLayout;
 import processing.core.*;
 import ddf.minim.Minim;
 import java.util.*;
@@ -25,34 +26,24 @@ public class OmenAlien extends PApplet {
 
         // Processing
 
+        this.smooth();
+        this.noFill();
         this.noCursor();
         this.frameRate(60);
         this.background(Const.BLACK);
-        App.font = this.loadFont("AnonymousPro-Bold-48.vlw");
+        App.font = this.loadFont(Const.FONT_FILE);
 
         // Components
 
-        App.title = new Title();
         App.stage = new Stage();
-        App.waveform = new Waveform();
-        App.ampliform = new Ampliform();
-        App.buttonRow = new ButtonRow();
         App.fileCounter = new FileCounter();
 
-        App.title.setColor(Const.PRIMARY);
-        App.buttonRow.setColor(Const.PRIMARY);
-
         // Audio
-
         App.minim = new Minim(this);
         App.audioInput = App.minim.getLineIn(Minim.MONO, 2048, 44100, 16);
-        // fft = new FFT(in.bufferSize(), in.sampleRate());
         App.audioRecorder = App.minim.createRecorder(App.audioInput, "tmp.wav", true);
-        App.audioInput.addListener(App.ampliform);
-        App.audioInput.addListener(App.waveform);
 
         // Layouts
-
         layouts.put("scope", new ScopeLayout());
         layouts.put("record", new RecordLayout());
 
@@ -67,8 +58,16 @@ public class OmenAlien extends PApplet {
             key = Const.ESC_KEY;
         }
 
-        if (!App.userInput) {
+        if (App.userInput != null) {
+
+            App.userInput.keyPress(key);
+
+        } else {
+
             switch (this.key) {
+                case 'q':
+                    exit();
+                    break;
                 case '1':
                     switchLayout("scope");
                     break;
@@ -82,8 +81,10 @@ public class OmenAlien extends PApplet {
                     // switchLayout("files");
                     break;
             }
+
+            layouts.get(App.layout).keyPressed(this.key);
         }
-        layouts.get(App.layout).keyPressed(this.key);
+
     }
 
     public void switchLayout(String layout) {

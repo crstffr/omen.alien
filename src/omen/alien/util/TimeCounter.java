@@ -10,12 +10,12 @@ public class TimeCounter {
     int current = 0;
     boolean enabled = false;
 
-    public void start() {
+    public void enable() {
         enabled = true;
         start = App.inst.millis();
     }
 
-    public void stop() {
+    public void disable() {
         enabled = false;
         total += current;
         current = 0;

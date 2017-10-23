@@ -15,15 +15,11 @@ public class App {
     public static AudioRecorder audioRecorder;
 
     // Components
-    public static Title title;
     public static Stage stage;
-    public static Waveform waveform;
-    public static Ampliform ampliform;
-    public static ButtonRow buttonRow;
     public static FileCounter fileCounter;
 
     // State
     public static String layout = "";
-    public static boolean userInput = false;
+    public static UserInput userInput;
 
 }

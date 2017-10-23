@@ -1,84 +1,51 @@
 package omen.alien.component;
 
-import ddf.minim.AudioListener;
-import omen.alien.App;
 import processing.core.PApplet;
+import omen.alien.App;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
 
-public class Ampliform implements AudioListener{
+public class Ampliform extends Visualizer {
 
-    View view;
-    int color;
-    boolean enabled;
-    private float[] left;
-    private float[] right;
-    private float maxLevel;
+    int i = 0;
+    float maxLevel = 0;
     ArrayList<Float> values;
 
-    public Ampliform() {
-        maxLevel = 0;
-        enabled = false;
+    public Ampliform(View _view) {
+        super(_view);
         values = new ArrayList<>();
-        view = App.stage.view.createSubView(App.stage.view.mid_x, 0);
     }
 
-    public Ampliform enable() {
-        enabled = true;
-        return this;
-    }
-
-    public Ampliform disable() {
-        enabled = false;
-        return this;
-    }
-
-    public synchronized void samples(float[] _left) {
-        left = _left;
-        captureMax();
-        captureSample();
-    }
-
-    public synchronized void samples(float[] _left, float[] _right) {
-        left = _left;
-        right = _right;
+    public void onSampled() {
         captureMax();
         captureSample();
     }
 
     void captureSample() {
-        if (enabled) {
 
-            float lerpN = 3; // how many extra values to fill out the graph?
+        float lerpN = 3; // how many extra values to fill out the graph?
 
-            float currValue = App.audioInput.mix.level();
+        float currValue = App.audioInput.mix.level();
 
-            if (values.size() > 0) {
-                float prevValue = values.get(values.size() - 1);
-                for (float i = 1; i <= lerpN; i++) {
-                    float fauxValue = PApplet.lerp(prevValue, currValue, i / lerpN);
-                    values.add(fauxValue);
-                }
+        if (values.size() > 0) {
+            float prevValue = values.get(values.size() - 1);
+            for (float i = 1; i <= lerpN; i++) {
+                float fauxValue = PApplet.lerp(prevValue, currValue, i / lerpN);
+                values.add(fauxValue);
             }
-
-            values.add(currValue);
-
-            if (values.size() > view.w) {
-                for (int i = 0; i <= lerpN; i++) {
-                    values.remove(0);
-                }
-            }
-
-            int x = App.stage.view.mid_x - (values.size() / 2);
-
-            view.position(x, view.y);
-
         }
+
+        values.add(currValue);
+
+        if (values.size() > view.w) {
+            for (int i = 0; i <= lerpN; i++) {
+                values.remove(0);
+            }
+        }
+
+        int x = App.stage.view.mid_x - (values.size() / 2);
+
+        view.position(x, view.y);
 
     }
 
@@ -92,16 +59,11 @@ public class Ampliform implements AudioListener{
         }
     }
 
-    public Ampliform setColor(int _color) {
-        color = _color;
-        return this;
-    }
-
     public float getMaxLevel() {
         return maxLevel;
     }
 
-    public Ampliform clear() {
+    public Visualizer clear() {
         maxLevel = 0;
         view.clear();
         values.clear();
@@ -111,10 +73,12 @@ public class Ampliform implements AudioListener{
 
     public synchronized void draw() {
 
+        view.layer.noFill();
         view.layer.stroke(color);
         view.layer.strokeWeight(1);
+        view.layer.background(0x00010101);
 
-        float multiplier = view.h;
+        float multiplier = view.h / (float) 1.28;
         float centerLine = view.mid_y;
 
         int i = 0;
@@ -133,8 +97,8 @@ public class Ampliform implements AudioListener{
         }
 
         view.layer.noStroke();
+        view.layer.noFill();
         view.draw();
 
     }
-
 }

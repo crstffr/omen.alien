@@ -6,65 +6,43 @@ import omen.alien.component.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ScopeLayout extends Layout {
+public class ScopeLayout extends MajorLayout {
 
-    int color = Const.PRIMARY;
+    Waveform waveform;
 
-    /**
-     *
-     */
-    public void onEnable() {
-        App.title.setColor(color).draw();
-        App.waveform.setColor(color).draw();
-        App.buttonRow.setColor(color).draw();
+    public ScopeLayout() {
+        super();
+        color = Const.GREEN;
+
+        setupButtons();
+        setupWaveform();
+
+        onDraw(() -> waveform.draw());
+        onEnable(() -> waveform.enable());
+        onDisable(() -> waveform.disable().clear());
     }
 
     /**
      *
      */
-    public void onDisable() {
-        App.waveform.clear();
+    void setupButtons() {
+        buttonRow.addButton(new Button(Const.UI_BUTTON_1, () -> {
+            return waveform.locked ? "LOCKED" : "UNLOCKED";
+        }, () -> {
+            waveform.toggleLock();
+        }));
+        buttonRow.addButton(); // blank
+        buttonRow.addButton(); // blank
+        buttonRow.addButton(); // blank
     }
 
     /**
      *
      */
-    public void afterFrame() {
-        App.waveform.draw();
-    }
-
-    /**
-     *
-     * @param key what key was pressed
-     */
-    public void keyPressed(char key) {
-        switch (key) {
-            case 'a':
-                App.waveform.toggleLock();
-                changed = true;
-                break;
-        }
-    }
-
-    /**
-     *
-     * @return String
-     */
-    public String getTitle() {
-        return "SCOPE";
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<String> getButtonLabels() {
-        ArrayList<String> labels = new ArrayList<>();
-        labels.add((App.waveform.locked) ? "LOCKED" : "UNLOCKED");
-        labels.add("-");
-        labels.add("-");
-        labels.add("-");
-        return labels;
+    void setupWaveform() {
+        waveform = new Waveform(stage.view.createSubView());
+        App.audioInput.addListener(waveform);
+        waveform.setColor(color);
     }
 
 }

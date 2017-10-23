@@ -2,12 +2,23 @@ package omen.alien.component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import omen.alien.App;
 
 public class Layout {
 
-    public boolean changed = false;
     public boolean enabled = false;
+
+    ArrayList<Runnable> onDrawHandlers = new ArrayList<>();
+    ArrayList<Runnable> onEnableHandlers = new ArrayList<>();
+    ArrayList<Runnable> onDisableHandlers = new ArrayList<>();
+    ArrayList<Runnable> onEveryFrameHandlers = new ArrayList<>();
+
+    public boolean beforeDraw() { return true; }
+    public void afterDraw() {}
+    public void render() {}
+    public void clear() {}
+
+    public boolean beforeEveryFrame() { return true; }
+    public void afterEveryFrame() {}
 
     /**
      *
@@ -15,10 +26,17 @@ public class Layout {
      */
     public Layout enable() {
         enabled = true;
-        changed = true;
         draw();
-        onEnable();
+        enabled();
         return this;
+    }
+
+    void enabled() {
+        for (Runnable fn : onEnableHandlers) fn.run();
+    }
+
+    public void onEnable(Runnable fn) {
+        onEnableHandlers.add(fn);
     }
 
     /**
@@ -28,19 +46,17 @@ public class Layout {
     public Layout disable() {
         enabled = false;
         clear();
-        onDisable();
+        disabled();
         return this;
     }
 
+    void disabled() {
+        for (Runnable fn : onDisableHandlers) fn.run();
+    }
 
-    public void beforeDraw() {}
-    public void afterDraw() {}
-
-    public void beforeFrame() {}
-    public void afterFrame() {}
-
-    public void onEnable() {}
-    public void onDisable() {}
+    public void onDisable(Runnable fn) {
+        onDisableHandlers.add(fn);
+    }
 
     /**
      * Keypress handler for user interaction.
@@ -50,48 +66,23 @@ public class Layout {
      */
     public void keyPressed(char key) {}
 
-    /**
-     * Return a String to be rendered as the title.
-     * Meant to be overridden by extending class.
-     *
-     * @return String
-     */
-    public String getTitle() { return "-"; }
+    public void onDraw(Runnable fn) { onDrawHandlers.add(fn); }
 
-    /**
-     * Return an ArrayList of button labels.
-     * Meant to be overridden by extending class.
-     *
-     * @return ArrayList<String>
-     */
-    public ArrayList<String> getButtonLabels() {
-        return new ArrayList<>(Arrays.asList("-", "-", "-", "-"));
-    }
 
     /**
      * If the layout is enabled and there are changes
      * to render, then draw each of the layout views.
      */
     public void draw() {
-        beforeFrame();
-        if (enabled && changed) {
-            beforeDraw();
-            App.title.setText(getTitle()).draw();
-            App.buttonRow.setLabels(getButtonLabels()).draw();
-            App.stage.draw();
-            changed = false;
-            afterDraw();
+        if (beforeEveryFrame()) {
+            if (enabled) {
+                if (beforeDraw()) {
+                    for (Runnable fn : onDrawHandlers) fn.run();
+                    afterDraw();
+                }
+            }
+            afterEveryFrame();
         }
-        afterFrame();
-    }
-
-    /**
-     *
-     */
-    public void clear() {
-        App.title.clear();
-        App.stage.clear();
-        App.buttonRow.clear();
     }
 
 }

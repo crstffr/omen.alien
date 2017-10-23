@@ -4,9 +4,12 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PConstants;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Const implements PConstants {
 
-    public static PFont FONT;
+    final public static String FONT_FILE = "AnonymousPro-Bold-48.vlw";
 
     final public static String ROOT_PATH = System.getProperty("user.dir") + "/";
     final public static String VARS_PATH = ROOT_PATH + "vars/";
@@ -17,6 +20,12 @@ public class Const implements PConstants {
     final public static int ESC_KEY = 10000;
     final public static int WIDTH = App.inst.width;
     final public static int HEIGHT = App.inst.height;
+
+    final public static char UI_BUTTON_1 = 'a';
+    final public static char UI_BUTTON_2 = 's';
+    final public static char UI_BUTTON_3 = 'd';
+    final public static char UI_BUTTON_4 = 'f';
+    final public static char[] UI_BUTTONS = {UI_BUTTON_1, UI_BUTTON_2, UI_BUTTON_3, UI_BUTTON_4};
 
     final public static int RED = 0xFFD20000;
     final public static int BLACK = 0xFF000000;

@@ -7,7 +7,8 @@ public class ButtonRow {
 
     int color = 0;
     public View view;
-    ArrayList<String> labels;
+    ArrayList<Button> buttons;
+    HashMap<Character, Button> buttonKeyMap;
 
     int x = Const.BUTTON_VIEW_X;
     int y = Const.BUTTON_VIEW_Y;
@@ -16,25 +17,39 @@ public class ButtonRow {
 
     public ButtonRow() {
         view = new View(x, y, w, h);
-        labels = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+        buttons = new ArrayList<>();
+        buttonKeyMap = new HashMap<>();
     }
 
-    public ButtonRow setLabels(ArrayList<String> vals) {
-        if (!vals.equals(labels)) {
-            labels = vals;
+    public void addButton() {
+        addButton(new Button());
+    }
+
+    public void addButton(Button _button) {
+        buttons.add(_button);
+        buttonKeyMap.put(_button.key, _button);
+    }
+
+    public Button getButton(int _index) {
+        return buttons.get(_index);
+    }
+
+    public ArrayList getButtons() {
+        return buttons;
+    }
+
+    public ButtonRow setColor(int _color) {
+        if (_color != color) {
+            color = _color;
         }
         return this;
     }
 
-    public ButtonRow setColor(int val) {
-        if (val != color) {
-            color = val;
+    public void keyPress(char key) {
+        Button btn = buttonKeyMap.get(key);
+        if (btn != null) {
+            btn.trigger();
         }
-        return this;
-    }
-
-    public void clear() {
-        view.clear();
     }
 
     public void draw() {
@@ -44,9 +59,11 @@ public class ButtonRow {
         view.draw();
     }
 
+    public void clear() {
+        view.clear();
+    }
+
     void drawDividers() {
-        int num = labels.size();
-        int gap = Const.WIDTH / num;
 
         view.layer.noFill();
         view.layer.stroke(color, (float)128);
@@ -54,27 +71,34 @@ public class ButtonRow {
         // Top border of button row
         view.layer.line(0, 0, w, 0);
 
-        // Individual button dividers
-        for(int i = 1; i < num; i++) {
-            int ix = gap * i;
-            view.layer.line(ix, 0, ix, h);
+        if (buttons.size() > 0) {
+            int num = buttons.size();
+            int gap = Const.WIDTH / num;
+
+            // Individual button dividers
+            for (int i = 1; i < num; i++) {
+                int ix = gap * i;
+                view.layer.line(ix, 0, ix, h);
+            }
         }
     }
 
     void drawLabels() {
-        int num = labels.size();
-        int gap = Const.WIDTH / num;
-        int offset = gap / 2;
+        if (buttons.size() > 0) {
+            int num = buttons.size();
+            int gap = Const.WIDTH / num;
+            int offset = gap / 2;
 
-        view.layer.noStroke();
-        view.layer.fill(color);
-        view.layer.textFont(App.font);
-        view.layer.textSize(Const.BUTTON_FONT_SIZE);
-        view.layer.textAlign(Const.CENTER, Const.CENTER);
+            view.layer.noStroke();
+            view.layer.fill(color);
+            view.layer.textFont(App.font);
+            view.layer.textSize(Const.BUTTON_FONT_SIZE);
+            view.layer.textAlign(Const.CENTER, Const.CENTER);
 
-        for(int i = 0; i < num; i++) {
-            String label = labels.get(i);
-            view.layer.text(label, offset + gap * i, Const.BUTTON_TEXT_Y);
+            for (int i = 0; i < num; i++) {
+                String label = buttons.get(i).getLabel();
+                view.layer.text(label, offset + gap * i, Const.BUTTON_TEXT_Y);
+            }
         }
     }
 
