@@ -17,7 +17,8 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void settings() {
-        size(800, 480, PConstants.JAVA2D);
+        //size(800, 480, PConstants.JAVA2D);
+        fullScreen(PConstants.JAVA2D);
         App.inst = this;
     }
 
