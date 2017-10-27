@@ -84,22 +84,19 @@ public class RecordLayout extends MajorLayout {
         fileWidget = new RecordFileWidget(this);
         clipWidget = new RecordClipWidget(this);
 
-        widgets.add(waveformWidget);
         widgets.add(ampliformWidget);
+        widgets.add(waveformWidget);
         widgets.add(clipWidget);
         widgets.add(timerWidget);
         widgets.add(fileWidget);
         widgets.add(headerWidget);
 
-        ampliformWidget.setColor(Const.TRANSGRAY);
-        waveformWidget.setColor(Const.TRANSRED);
+        ampliformWidget.setColor(Const.MIDGRAY);
+        waveformWidget.setColor(Const.MIDRED);
         timerWidget.setColor(Const.WHITE);
         headerWidget.setColor(Const.WHITE);
         clipWidget.setColor(Const.WHITE);
         fileWidget.setColor(Const.WHITE);
-
-        App.audioInput.addListener(waveformWidget.waveform);
-        App.audioInput.addListener(ampliformWidget.ampliform);
     }
 
     void setupStateLayouts() {

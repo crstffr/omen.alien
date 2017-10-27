@@ -42,36 +42,35 @@ public class AudioTest extends PApplet {
         AudioRecorder recorder;
 
         minim = new Minim(this);
-        minim.debugOn();
+        //minim.debugOn();
 
         input = minim.getLineIn();
         output = minim.getLineOut();
 
+        System.out.println("Input Gain: " + input.getGain());
+        System.out.println("Input Volume: " + input.getVolume());
+
         recorder = minim.createRecorder(input, "test.wav", false);
+
         recorder.beginRecord();
 
 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
-                try {
-
-                } catch(Exception e) {
-                    System.out.println(">>" + e);
-                }
-
                 recorder.endRecord();
                 recorder.save();
                 exit();
             }
-        }, 5000);
+        }, 3000);
 
+        /*
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 System.out.println("FrameRate: " + frameRate);
             }
         }, 0, 1000);
+        */
 
     }
 

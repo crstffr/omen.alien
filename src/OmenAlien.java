@@ -1,4 +1,3 @@
-import omen.alien.layout.record.RecordLayout;
 import processing.core.*;
 import ddf.minim.Minim;
 import java.util.*;
@@ -6,9 +5,12 @@ import java.util.*;
 import omen.alien.*;
 import omen.alien.util.*;
 import omen.alien.layout.*;
+import omen.alien.layout.record.*;
 import omen.alien.component.*;
 
 public class OmenAlien extends PApplet {
+
+    Timer timer = new Timer();
 
     LinkedHashMap<String, Layout> layouts = new LinkedHashMap<>();
     public static void main(String args[]) {
@@ -17,21 +19,20 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void settings() {
-        //size(800, 480, PConstants.JAVA2D);
-        fullScreen(PConstants.JAVA2D);
+        if (displayWidth > 800) {
+            size(800, 480, PConstants.P3D);
+        } else {
+            fullScreen(PConstants.P2D);
+        }
         App.inst = this;
     }
 
     @Override
     public void setup() {
 
-        // Processing
+        this.background(0);
 
-        this.smooth();
-        this.noFill();
-        this.noCursor();
-        this.frameRate(60);
-        this.background(Const.BLACK);
+        // Processing
         App.font = this.loadFont(Const.FONT_FILE);
 
         // Components
@@ -41,14 +42,20 @@ public class OmenAlien extends PApplet {
 
         // Audio
         App.minim = new Minim(this);
-        App.audioInput = App.minim.getLineIn(Minim.MONO, 2048, 44100, 16);
+        App.audioInput = App.minim.getLineIn(2, 2048);
         App.audioRecorder = App.minim.createRecorder(App.audioInput, "tmp.wav", true);
 
         // Layouts
         layouts.put("scope", new ScopeLayout());
-        layouts.put("record", new RecordLayout());
-
+        // layouts.put("record", new RecordLayout());
         switchLayout("scope");
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                System.out.println("FrameRate: " + frameRate);
+            }
+        }, 0, 1000);
+
     }
 
     @Override

@@ -53,10 +53,14 @@ public class ButtonRow {
     }
 
     public void draw() {
+        /*
         view.clear();
+        view.layer.beginDraw();
         drawDividers();
         drawLabels();
+        view.layer.endDraw();
         view.draw();
+        */
     }
 
     public void clear() {
@@ -99,6 +103,7 @@ public class ButtonRow {
                 String label = buttons.get(i).getLabel();
                 view.layer.text(label, offset + gap * i, Const.BUTTON_TEXT_Y);
             }
+
         }
     }
 

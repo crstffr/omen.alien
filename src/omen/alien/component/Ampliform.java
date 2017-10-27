@@ -23,7 +23,7 @@ public class Ampliform extends Visualizer {
 
     void captureSample() {
 
-        float lerpN = 3; // how many extra values to fill out the graph?
+        float lerpN = 0; // how many extra values to fill out the graph?
 
         float currValue = App.audioInput.mix.level();
 

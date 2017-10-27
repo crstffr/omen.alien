@@ -1,5 +1,8 @@
 package omen.alien.component;
 
+import omen.alien.Const;
+import processing.core.PConstants;
+
 public class Waveform extends Visualizer {
 
     public boolean locked = false;
@@ -37,7 +40,7 @@ public class Waveform extends Visualizer {
             view.layer.noFill();
             view.layer.stroke(color);
             view.layer.strokeWeight(2);
-            view.layer.background(0x00010101);
+            view.layer.beginShape();
 
             for (int i = 0; i < left.length - 1 && i < view.w + zc; i++) {
 
@@ -54,11 +57,13 @@ public class Waveform extends Visualizer {
                 float y2 = centerLine + nextSamp * sampleMult;
 
                 if (!locked || (locked && zc != 0)) {
-                    view.layer.line(x1, y1, x2, y2);
+                    // view.layer.line(x1, y1, x2, y2);
+                    view.layer.vertex(x1, y1);
                 }
 
             }
 
+            view.layer.endShape();
             view.layer.noStroke();
             view.draw();
         }

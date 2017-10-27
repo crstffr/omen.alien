@@ -3,8 +3,6 @@ package omen.alien.layout;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ScopeLayout extends MajorLayout {
 
@@ -14,12 +12,25 @@ public class ScopeLayout extends MajorLayout {
         super();
         color = Const.GREEN;
 
-        setupButtons();
-        setupWaveform();
+        waveform = new Waveform(stage.view.createSubView());
+        waveform.setColor(color);
 
-        onDraw(() -> waveform.draw());
-        onEnable(() -> waveform.enable());
-        onDisable(() -> waveform.disable().clear());
+        setupButtons();
+
+        onDraw(() -> {
+            waveform.draw();
+        });
+
+        onEnable(() -> {
+            waveform.enable();
+            waveform.attachToInput(App.audioInput);
+        });
+
+        onDisable(() -> {
+            waveform.disable().clear();
+            waveform.removeFromInput(App.audioInput);
+        });
+
     }
 
     /**
@@ -34,15 +45,6 @@ public class ScopeLayout extends MajorLayout {
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
-    }
-
-    /**
-     *
-     */
-    void setupWaveform() {
-        waveform = new Waveform(stage.view.createSubView());
-        App.audioInput.addListener(waveform);
-        waveform.setColor(color);
     }
 
 }

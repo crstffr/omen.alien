@@ -1,8 +1,6 @@
 package omen.alien.layout.record.widget;
 
 import omen.alien.App;
-import omen.alien.Const;
-import omen.alien.component.Ampliform;
 import omen.alien.component.Waveform;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.record.RecordWidget;
@@ -28,10 +26,12 @@ public class RecordWaveformWidget extends RecordWidget {
 
         onEnable(() -> {
             waveform.enable();
+            waveform.attachToInput(App.audioInput);
         });
 
         onDisable(() -> {
             waveform.disable();
+            waveform.removeFromInput(App.audioInput);
         });
 
         onReset(() -> {

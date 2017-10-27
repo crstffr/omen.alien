@@ -31,11 +31,9 @@ public class Const implements PConstants {
     final public static int BLACK = 0xFF000000;
     final public static int WHITE = 0xFFFFFFFF;
     final public static int GREEN = 0xFF00FF00;
-    final public static int TRANSRED = 0x88D20000;
+    final public static int MIDRED = 0xFF6F0000;
+    final public static int MIDGRAY = 0xFF484848;
     final public static int TRANSRED_DARK = 0xAAD20000;
-    final public static int TRANSGRAY = 0x88888888;
-    final public static int TRANSBLACK = 0x88000000;
-    final public static int TRANSWHITE = 0x88FFFFFF;
     final public static int TRANSPARENT = 0x00FFFFFF;
     final public static int BACKGROUND = BLACK;
     final public static int PRIMARY = GREEN;

@@ -16,17 +16,17 @@ public class MajorLayout extends Layout {
     public MajorLayout() {
 
         onEnable(() -> {
-            buttonRow.setColor(color);
+            // buttonRow.setColor(color);
         });
 
         onDisable(() -> {
-            stage.clear();
-            buttonRow.clear();
+            // stage.clear();
+            // buttonRow.clear();
         });
 
         onDraw(() -> {
-            stage.draw();
-            buttonRow.draw();
+            // stage.draw();
+            // buttonRow.draw();
         });
     }
 

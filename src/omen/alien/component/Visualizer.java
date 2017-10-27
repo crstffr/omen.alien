@@ -1,5 +1,6 @@
 package omen.alien.component;
 
+import ddf.minim.AudioInput;
 import ddf.minim.AudioListener;
 
 import java.util.ArrayList;
@@ -31,6 +32,14 @@ public class Visualizer implements AudioListener {
             right = _right;
             onSampled();
         }
+    }
+
+    public void attachToInput(AudioInput _input) {
+        _input.addListener(this);
+    }
+
+    public void removeFromInput(AudioInput _input) {
+        _input.removeListener(this);
     }
 
     public Visualizer setColor(int _color) {
