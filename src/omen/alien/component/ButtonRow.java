@@ -1,12 +1,14 @@
 package omen.alien.component;
 
 import omen.alien.*;
+
 import java.util.*;
 
 public class ButtonRow {
 
-    int color = 0;
-    public View view;
+    int color = 255;
+    public Layer layer1;
+    public Layer layer2;
     ArrayList<Button> buttons;
     HashMap<Character, Button> buttonKeyMap;
 
@@ -16,7 +18,8 @@ public class ButtonRow {
     int h = Const.BUTTON_VIEW_H;
 
     public ButtonRow() {
-        view = new View(x, y, w, h);
+        layer1 = new Layer(x, y, w, h, Const.RENDERER);
+        layer2 = new Layer(x, y, w, h, Const.RENDERER);
         buttons = new ArrayList<>();
         buttonKeyMap = new HashMap<>();
     }
@@ -53,58 +56,42 @@ public class ButtonRow {
     }
 
     public void draw() {
-        /*
-        view.clear();
-        view.layer.beginDraw();
-        drawDividers();
-        drawLabels();
-        view.layer.endDraw();
-        view.draw();
-        */
-    }
-
-    public void clear() {
-        view.clear();
-    }
-
-    void drawDividers() {
-
-        view.layer.noFill();
-        view.layer.stroke(color, (float)128);
-
-        // Top border of button row
-        view.layer.line(0, 0, w, 0);
 
         if (buttons.size() > 0) {
-            int num = buttons.size();
-            int gap = Const.WIDTH / num;
 
-            // Individual button dividers
-            for (int i = 1; i < num; i++) {
-                int ix = gap * i;
-                view.layer.line(ix, 0, ix, h);
-            }
-        }
-    }
+        // Button Dividers
 
-    void drawLabels() {
-        if (buttons.size() > 0) {
+            layer1.init();
+            layer1.canvas.stroke(color);
+
+            // Button Row Top Line
+            layer1.canvas.line(0, 0, layer1.canvas.width, 0);
+
             int num = buttons.size();
             int gap = Const.WIDTH / num;
             int offset = gap / 2;
 
-            view.layer.noStroke();
-            view.layer.fill(color);
-            view.layer.textFont(App.font);
-            view.layer.textSize(Const.BUTTON_FONT_SIZE);
-            view.layer.textAlign(Const.CENTER, Const.CENTER);
-
-            for (int i = 0; i < num; i++) {
-                String label = buttons.get(i).getLabel();
-                view.layer.text(label, offset + gap * i, Const.BUTTON_TEXT_Y);
+            // Button Dividers
+            for (int i = 1; i < num; i++) {
+                int ix = gap * i;
+                layer1.canvas.line(ix, 0, ix, h);
             }
 
+            layer1.draw();
+
+        // Button Labels
+
+            layer2.init();
+            for (int i = 0; i < num; i++) {
+                layer2.canvas.fill(color);
+                layer2.canvas.textFont(App.font);
+                layer2.canvas.textSize(Const.BUTTON_FONT_SIZE);
+                layer2.canvas.textAlign(Const.CENTER, Const.CENTER);
+                layer2.canvas.text(buttons.get(i).getLabel(), offset + gap * i, Const.BUTTON_TEXT_Y);
+            }
+            layer2.draw();
         }
+
     }
 
 }

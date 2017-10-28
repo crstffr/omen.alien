@@ -6,9 +6,12 @@ import processing.core.PConstants;
 public class Waveform extends Visualizer {
 
     public boolean locked = false;
+    public boolean falling = false;
 
-    public Waveform(View _view) {
-        super(_view);
+    float weight = (float)2;
+
+    public Waveform() {
+        super(new StageLayer(Const.P3D));
     }
 
     public boolean toggleLock() {
@@ -16,11 +19,20 @@ public class Waveform extends Visualizer {
         return locked;
     }
 
+    public boolean toggleFalling() {
+        falling = !falling;
+        return falling;
+    }
+
     public synchronized void draw() {
 
         if (enabled) {
 
-            view.clear();
+            if (left == null) {
+                return;
+            }
+
+            layer.init();
 
             // Sample values
             float currSamp;
@@ -30,42 +42,43 @@ public class Waveform extends Visualizer {
             int zc = 0;
 
             // Position and scale
-            int centerLine = view.mid_y;
-            int sampleMult = view.mid_y;
+            int centerLine = layer.mid_y;
+            int sampleMult = layer.mid_y;
 
-            if (left == null) {
-                return;
-            }
+            layer.canvas.stroke(color);
+            layer.canvas.strokeWeight(weight);
+            layer.canvas.beginShape();
 
-            view.layer.noFill();
-            view.layer.stroke(color);
-            view.layer.strokeWeight(2);
-            view.layer.beginShape();
-
-            for (int i = 0; i < left.length - 1 && i < view.w + zc; i++) {
+            for (int i = 0; i < left.length - 1 && i < layer.w + zc; i++) {
 
                 currSamp = left[i];
                 nextSamp = left[i + 1];
 
-                if (zc == 0 && currSamp < 0 && nextSamp > 0) {
-                    zc = i;
+                if (falling) {
+                    // Falling Trigger
+                    if (zc == 0 && currSamp > 0 && nextSamp < 0) {
+                        zc = i;
+                    }
+                } else {
+                    // Rising Trigger
+                    if (zc == 0 && currSamp < 0 && nextSamp > 0) {
+                        zc = i;
+                    }
                 }
 
                 float x1 = (locked) ? i - zc : i;
-                float x2 = (locked) ? i + 1 - zc : i + 1;
                 float y1 = centerLine + currSamp * sampleMult;
-                float y2 = centerLine + nextSamp * sampleMult;
 
                 if (!locked || (locked && zc != 0)) {
-                    // view.layer.line(x1, y1, x2, y2);
-                    view.layer.vertex(x1, y1);
+                    layer.canvas.vertex(x1, y1);
                 }
 
             }
 
-            view.layer.endShape();
-            view.layer.noStroke();
-            view.draw();
+            layer.canvas.endShape();
+            layer.canvas.noStroke();
+            layer.draw();
+
         }
     }
 }

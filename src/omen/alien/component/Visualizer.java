@@ -11,22 +11,22 @@ import java.util.ArrayList;
 public class Visualizer implements AudioListener {
 
     public int color;
-    public View view;
+    public Layer layer;
     public float[] left;
     public float[] right;
     public boolean enabled;
 
-    public Visualizer(View _view) {
-        view = _view;
+    public Visualizer(Layer _layer) {
+        layer = _layer;
     }
 
     public void onSampled() {}
 
-    public synchronized void samples(float[] _left) {
+    public void samples(float[] _left) {
         samples(_left, null);
     }
 
-    public synchronized void samples(float[] _left, float[] _right) {
+    public void samples(float[] _left, float[] _right) {
         if (enabled) {
             left = _left;
             right = _right;
@@ -57,11 +57,6 @@ public class Visualizer implements AudioListener {
         return this;
     }
 
-    public Visualizer clear() {
-        view.clear();
-        return this;
-    }
-
-    public synchronized void draw() {}
+    public void draw() {}
 
 }

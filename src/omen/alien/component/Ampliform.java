@@ -7,12 +7,17 @@ import java.util.ArrayList;
 
 public class Ampliform extends Visualizer {
 
+    public Ampliform(Layer _layer) {
+        super(_layer);
+    }
+
+    /*
     int i = 0;
     float maxLevel = 0;
     ArrayList<Float> values;
 
-    public Ampliform(View _view) {
-        super(_view);
+    public Ampliform(Layer _layer) {
+        super(_layer);
         values = new ArrayList<>();
     }
 
@@ -98,7 +103,8 @@ public class Ampliform extends Visualizer {
 
         view.layer.noStroke();
         view.layer.noFill();
-        view.draw();
+        view.push();
 
     }
+    */
 }

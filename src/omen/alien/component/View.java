@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import omen.alien.App;
 import omen.alien.Const;
-import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class View {
@@ -22,17 +21,22 @@ public class View {
 
     public View(int _x, int _y, int _w, int _h) {
 
-        layer = App.inst.createGraphics(_w, _h, Const.P3D);
+        layer = App.inst.createGraphics(_w, _h, Const.P2D);
         views = new ArrayList<>();
         position(_x, _y, _w, _h);
 
-        layer.beginDraw();
+        System.out.println("New View: " + x + " " + y + " " + w + " " + h);
 
         //layer.background(0);
         //layer.noStroke();
         //layer.noFill();
         //layer.clear();
 
+    }
+
+    public void init() {
+        layer.beginDraw();
+        layer.clear();
     }
 
     public void position(int _x, int _y) {
@@ -56,27 +60,12 @@ public class View {
         return mid_y - (_h / 2);
     }
 
-    public View draw() {
-        layer.endDraw();
-        App.inst.image(layer, x, y);
-        layer.beginDraw();
-        layer.clear();
-        return this;
-    }
-
-    public View fillWith(int color) {
-        layer.fill(color);
-        layer.rect(0, 0, w, h);
-        draw();
+    public View push() {
         return this;
     }
 
     public View clear() {
-        //layer.clear();
-        //fillWith(0);
-        layer.background(0);
-        // clear out subviews as well.
-        for (View view : views) { view.clear(); }
+        layer.clear();
         return this;
     }
 

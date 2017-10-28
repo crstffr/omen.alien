@@ -20,6 +20,6 @@ public class Stage {
     }
 
     public void draw() {
-        view.draw();
+        view.push();
     }
 }

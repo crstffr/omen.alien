@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Const implements PConstants {
 
+    final public static String RENDERER = P2D;
     final public static String FONT_FILE = "AnonymousPro-Bold-48.vlw";
 
     final public static String ROOT_PATH = System.getProperty("user.dir") + "/";
@@ -43,6 +44,11 @@ public class Const implements PConstants {
     final public static int BODY_Y = BODY_PADDING;
     final public static int BODY_W = WIDTH - (BODY_PADDING * 2);
     final public static int BODY_H = HEIGHT - (BODY_PADDING * 2);
+
+    final public static int FPS_Y = 0;
+    final public static int FPS_H = 20;
+    final public static int FPS_W = 40;
+    final public static int FPS_X = WIDTH - FPS_W;
 
     final public static int TITLE_FONT_SIZE = 28;
     final public static int TITLE_VIEW_X = BODY_X;

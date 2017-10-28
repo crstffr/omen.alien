@@ -1,24 +1,22 @@
 package omen.alien.component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Layout {
 
     public boolean enabled = false;
 
-    ArrayList<Runnable> onDrawHandlers = new ArrayList<>();
-    ArrayList<Runnable> onEnableHandlers = new ArrayList<>();
-    ArrayList<Runnable> onDisableHandlers = new ArrayList<>();
-    ArrayList<Runnable> onEveryFrameHandlers = new ArrayList<>();
+    ArrayList<Runnable> onDrawHandlers;
+    ArrayList<Runnable> onEnableHandlers;
+    ArrayList<Runnable> onDisableHandlers;
+    ArrayList<Runnable> onEveryFrameHandlers;
 
-    public boolean beforeDraw() { return true; }
-    public void afterDraw() {}
-    public void render() {}
-    public void clear() {}
-
-    public boolean beforeEveryFrame() { return true; }
-    public void afterEveryFrame() {}
+    public Layout() {
+        onDrawHandlers = new ArrayList<>();
+        onEnableHandlers = new ArrayList<>();
+        onDisableHandlers = new ArrayList<>();
+        onEveryFrameHandlers = new ArrayList<>();
+    }
 
     /**
      *
@@ -26,7 +24,6 @@ public class Layout {
      */
     public Layout enable() {
         enabled = true;
-        draw();
         enabled();
         return this;
     }
@@ -45,7 +42,6 @@ public class Layout {
      */
     public Layout disable() {
         enabled = false;
-        clear();
         disabled();
         return this;
     }
@@ -68,21 +64,12 @@ public class Layout {
 
     public void onDraw(Runnable fn) { onDrawHandlers.add(fn); }
 
-
     /**
      * If the layout is enabled and there are changes
-     * to render, then draw each of the layout views.
+     * to draw, then push each of the layout views.
      */
-    public void draw() {
-        if (beforeEveryFrame()) {
-            if (enabled) {
-                if (beforeDraw()) {
-                    for (Runnable fn : onDrawHandlers) fn.run();
-                    afterDraw();
-                }
-            }
-            afterEveryFrame();
-        }
+    public synchronized void draw() {
+        for (Runnable fn : onDrawHandlers) fn.run();
     }
 
 }

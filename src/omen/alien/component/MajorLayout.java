@@ -3,30 +3,24 @@ package omen.alien.component;
 import omen.alien.App;
 import omen.alien.Const;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.ArrayList;
 
 public class MajorLayout extends Layout {
 
     public int color = Const.WHITE;
-    public Stage stage = new Stage();
-    public ButtonRow buttonRow = new ButtonRow();
+    public ButtonRow buttonRow;
 
     public MajorLayout() {
 
-        onEnable(() -> {
-            // buttonRow.setColor(color);
-        });
+        buttonRow = new ButtonRow();
 
-        onDisable(() -> {
-            // stage.clear();
-            // buttonRow.clear();
+        onEnable(() -> {
+            buttonRow.setColor(color);
         });
 
         onDraw(() -> {
-            // stage.draw();
-            // buttonRow.draw();
+            buttonRow.draw();
         });
     }
 

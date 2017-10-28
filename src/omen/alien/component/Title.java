@@ -42,7 +42,7 @@ public class Title {
         view.layer.textSize(Const.TITLE_FONT_SIZE);
         view.layer.textAlign(Const.LEFT, Const.CENTER);
         view.layer.text(text, Const.TITLE_TEXT_X, Const.TITLE_TEXT_Y);
-        view.draw();
+        view.push();
     }
 
 }
