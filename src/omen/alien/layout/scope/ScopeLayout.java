@@ -3,7 +3,6 @@ package omen.alien.layout.scope;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
-import processing.core.PGraphics;
 
 /**
  * Created by crstffr on 10/28/17.
@@ -31,6 +30,10 @@ public class ScopeLayout extends MajorLayout {
             waveform.removeFromInput(App.audioInput);
         });
 
+        onClear(() -> {
+            waveform.clear();
+        });
+
         onDraw(() -> {
             waveform.draw();
         });
@@ -44,13 +47,26 @@ public class ScopeLayout extends MajorLayout {
             waveform.toggleLock();
         }));
         buttonRow.addButton(new Button(Const.UI_BUTTON_2, () -> {
-            return waveform.locked ? (waveform.falling ? "FALLING" : "RISING") : "-";
+            int m = waveform.trigger;
+            return waveform.locked ? (waveform.falling ? "FALL +" + m : "RISE +" + m) : "-";
         }, () -> {
             if (waveform.locked) {
                 waveform.toggleFalling();
             }
         }));
-        buttonRow.addButton(); // blank
-        buttonRow.addButton(); // blank
+        buttonRow.addButton(new Button(Const.UI_BUTTON_3, () -> {
+            return waveform.locked ? "\\/" : "-";
+        }, () -> {
+            if (waveform.locked) {
+                waveform.decreaseTrigger();
+            }
+        }));
+        buttonRow.addButton(new Button(Const.UI_BUTTON_4, () -> {
+            return waveform.locked ? "/\\" : "-";
+        }, () -> {
+            if (waveform.locked) {
+                waveform.increaseTrigger();
+            }
+        }));
     }
 }

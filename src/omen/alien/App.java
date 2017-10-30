@@ -4,6 +4,7 @@ import ddf.minim.*;
 import omen.alien.util.FileCounter;
 import processing.core.*;
 import omen.alien.component.*;
+import omen.alien.component.layer.*;
 
 public class App {
 
@@ -15,8 +16,7 @@ public class App {
     public static AudioRecorder audioRecorder;
 
     // Components
-    public static Stage stage;
-    public static FileCounter fileCounter;
+    public static StageLayer stage;
 
     // State
     public static String layout = "";

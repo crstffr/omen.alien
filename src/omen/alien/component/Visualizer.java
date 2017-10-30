@@ -2,8 +2,7 @@ package omen.alien.component;
 
 import ddf.minim.AudioInput;
 import ddf.minim.AudioListener;
-
-import java.util.ArrayList;
+import omen.alien.component.layer.BaseLayer;
 
 /**
  * Created by crstffr on 10/22/17.
@@ -11,12 +10,12 @@ import java.util.ArrayList;
 public class Visualizer implements AudioListener {
 
     public int color;
-    public Layer layer;
+    public BaseLayer layer;
     public float[] left;
     public float[] right;
     public boolean enabled;
 
-    public Visualizer(Layer _layer) {
+    public Visualizer(BaseLayer _layer) {
         layer = _layer;
     }
 
@@ -54,6 +53,11 @@ public class Visualizer implements AudioListener {
 
     public Visualizer disable() {
         enabled = false;
+        return this;
+    }
+
+    public Visualizer clear() {
+        layer.clear();
         return this;
     }
 

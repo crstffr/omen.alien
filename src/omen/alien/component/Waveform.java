@@ -1,10 +1,11 @@
 package omen.alien.component;
 
 import omen.alien.Const;
-import processing.core.PConstants;
+import omen.alien.component.layer.StageLayer;
 
 public class Waveform extends Visualizer {
 
+    public int trigger = 2;
     public boolean locked = false;
     public boolean falling = false;
 
@@ -22,6 +23,18 @@ public class Waveform extends Visualizer {
     public boolean toggleFalling() {
         falling = !falling;
         return falling;
+    }
+
+    public void decreaseTrigger() {
+        if (trigger > 2) {
+            trigger = trigger - 2;
+        }
+    }
+
+    public void increaseTrigger() {
+        if (trigger < 64) {
+            trigger = trigger + 2;
+        }
     }
 
     public synchronized void draw() {
@@ -52,7 +65,7 @@ public class Waveform extends Visualizer {
             for (int i = 0; i < left.length - 1 && i < layer.w + zc; i++) {
 
                 currSamp = left[i];
-                nextSamp = left[i + 1];
+                nextSamp = left[i + trigger];
 
                 if (falling) {
                     // Falling Trigger

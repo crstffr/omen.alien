@@ -1,5 +1,7 @@
 package omen.alien.component;
 
+import omen.alien.Const;
+import omen.alien.component.layer.StageLayer;
 import processing.core.PApplet;
 import omen.alien.App;
 
@@ -7,17 +9,12 @@ import java.util.ArrayList;
 
 public class Ampliform extends Visualizer {
 
-    public Ampliform(Layer _layer) {
-        super(_layer);
-    }
-
-    /*
     int i = 0;
     float maxLevel = 0;
     ArrayList<Float> values;
 
-    public Ampliform(Layer _layer) {
-        super(_layer);
+    public Ampliform() {
+        super(new StageLayer(Const.P3D));
         values = new ArrayList<>();
     }
 
@@ -42,15 +39,15 @@ public class Ampliform extends Visualizer {
 
         values.add(currValue);
 
-        if (values.size() > view.w) {
+        if (values.size() > layer.w) {
             for (int i = 0; i <= lerpN; i++) {
                 values.remove(0);
             }
         }
 
-        int x = App.stage.view.mid_x - (values.size() / 2);
+        int x = layer.mid_x - (values.size() / 2);
 
-        view.position(x, view.y);
+        layer.position(x, layer.y);
 
     }
 
@@ -70,41 +67,41 @@ public class Ampliform extends Visualizer {
 
     public Visualizer clear() {
         maxLevel = 0;
-        view.clear();
+        layer.clear();
         values.clear();
-        view.position(App.stage.view.mid_x, 0);
+        layer.position(layer.mid_x, 0);
         return this;
     }
 
     public synchronized void draw() {
 
-        view.layer.noFill();
-        view.layer.stroke(color);
-        view.layer.strokeWeight(1);
-        view.layer.background(0x00010101);
+        layer.init();
+        layer.canvas.stroke(color);
+        layer.canvas.strokeWeight(1);
+        layer.canvas.background(0x00010101);
 
-        float multiplier = view.h / (float) 1.28;
-        float centerLine = view.mid_y;
+        float trigger = layer.h / (float) 1.28;
+        float centerLine = layer.mid_y;
 
         int i = 0;
 
         for (Float value : values) {
 
-            float val = value * multiplier;
+            float val = value * trigger;
             float x1 = i;
             float y1 = centerLine - val;
             float x2 = i;
             float y2 = centerLine + val;
 
-            view.layer.line(x1, y1, x2, y2);
+            layer.canvas.line(x1, y1, x2, y2);
 
             i++;
         }
 
-        view.layer.noStroke();
-        view.layer.noFill();
-        view.push();
+        layer.canvas.noStroke();
+        layer.canvas.noFill();
+        layer.draw();
 
     }
-    */
+
 }

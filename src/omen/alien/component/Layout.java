@@ -7,16 +7,26 @@ public class Layout {
     public boolean enabled = false;
 
     ArrayList<Runnable> onDrawHandlers;
+    ArrayList<Runnable> onClearHandlers;
     ArrayList<Runnable> onEnableHandlers;
     ArrayList<Runnable> onDisableHandlers;
     ArrayList<Runnable> onEveryFrameHandlers;
 
     public Layout() {
         onDrawHandlers = new ArrayList<>();
+        onClearHandlers = new ArrayList<>();
         onEnableHandlers = new ArrayList<>();
         onDisableHandlers = new ArrayList<>();
         onEveryFrameHandlers = new ArrayList<>();
     }
+
+    /**
+     * Keypress handler for user interaction.
+     * Meant to be overridden by extending class.
+     *
+     * @param key what key was pressed
+     */
+    public void keyPressed(char key) {}
 
     /**
      *
@@ -55,14 +65,25 @@ public class Layout {
     }
 
     /**
-     * Keypress handler for user interaction.
-     * Meant to be overridden by extending class.
      *
-     * @param key what key was pressed
+     * @return
      */
-    public void keyPressed(char key) {}
+    public synchronized Layout clear() {
+        for (Runnable fn : onDrawHandlers) fn.run();
+        return this;
+    }
 
-    public void onDraw(Runnable fn) { onDrawHandlers.add(fn); }
+    public void onClear(Runnable fn) {
+        onClearHandlers.add(fn);
+    }
+
+    /**
+     *
+     * @param fn
+     */
+    public void onDraw(Runnable fn) {
+        onDrawHandlers.add(fn);
+    }
 
     /**
      * If the layout is enabled and there are changes

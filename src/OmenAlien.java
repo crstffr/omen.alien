@@ -2,6 +2,8 @@ import ddf.minim.Minim;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
+import omen.alien.component.layer.StageLayer;
+import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.scope.ScopeLayout;
 import processing.core.PApplet;
 
@@ -19,9 +21,9 @@ public class OmenAlien extends PApplet {
     @Override
     public void settings() {
         if (displayWidth > 800) {
-            size(800, 480, P2D);
+            size(800, 480, Const.RENDERER);
         } else {
-            fullScreen(P2D);
+            fullScreen(Const.RENDERER);
         }
         App.inst = this;
     }
@@ -37,10 +39,14 @@ public class OmenAlien extends PApplet {
 
         App.minim = new Minim(this);
         App.font = loadFont(Const.FONT_FILE);
+        App.stage = new StageLayer(Const.RENDERER);
         App.audioInput = App.minim.getLineIn(2, 2048);
+
+        App.audioInput.setGain(20);
 
         fps = new FPS();
         layouts.put("scope", new ScopeLayout());
+        layouts.put("record", new RecordLayout());
 
         switchLayout("scope");
 
@@ -66,6 +72,15 @@ public class OmenAlien extends PApplet {
 
         if (key == 'q') {
             exit();
+        }
+
+        switch(key) {
+            case '1':
+                switchLayout("scope");
+                break;
+            case '2':
+                switchLayout("record");
+                break;
         }
 
         currentLayout().keyPressed(key);

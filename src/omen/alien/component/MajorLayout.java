@@ -19,6 +19,10 @@ public class MajorLayout extends Layout {
             buttonRow.setColor(color);
         });
 
+        onClear(() -> {
+            buttonRow.clear();
+        });
+
         onDraw(() -> {
             buttonRow.draw();
         });
