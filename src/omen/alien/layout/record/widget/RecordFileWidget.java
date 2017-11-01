@@ -3,6 +3,7 @@ package omen.alien.layout.record.widget;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.UserInput;
+import omen.alien.component.layer.Layer;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.record.RecordWidget;
 import omen.alien.util.FileCounter;
@@ -16,6 +17,7 @@ public class RecordFileWidget extends RecordWidget {
     int x = App.stage.centerX(w);
     int y = App.stage.centerY(h) - 50;
 
+    Layer tmpLayer;
     String tmpname = "";
     String filename = "";
     String filepath = "";
@@ -28,8 +30,18 @@ public class RecordFileWidget extends RecordWidget {
 
         init(x, y, w, h);
 
+        tmpLayer = layer.copy();
+
         onEnable(() -> {
             buildTempFilepath();
+        });
+
+        onSetColor(() -> {
+            redrawFilename();
+        });
+
+        onSetText(() -> {
+            redrawFilename();
         });
 
         onDisable(() -> {
@@ -37,14 +49,9 @@ public class RecordFileWidget extends RecordWidget {
         });
 
         onDraw(() -> {
-            /*
             layer.init();
-            layer.canvas.fill(color);
-            layer.canvas.textFont(App.font, 28);
-            layer.canvas.textAlign(Const.CENTER, Const.CENTER);
-            layer.canvas.text(text, layer.mid_x, layer.mid_y);
+            layer.fillFrom(tmpLayer);
             layer.draw();
-            */
         });
 
         userInput.onEnter(() -> {
@@ -61,6 +68,15 @@ public class RecordFileWidget extends RecordWidget {
             setFilename(userInput.value);
         });
 
+    }
+
+    void redrawFilename() {
+        tmpLayer.init();
+        tmpLayer.canvas.fill(color);
+        tmpLayer.canvas.textFont(App.font, 28);
+        tmpLayer.canvas.textAlign(Const.CENTER, Const.CENTER);
+        tmpLayer.canvas.text(text, tmpLayer.mid_x, tmpLayer.mid_y);
+        tmpLayer.canvas.endDraw();
     }
 
     public void startRenaming() {

@@ -2,21 +2,21 @@ package omen.alien.component;
 
 import omen.alien.App;
 import omen.alien.Const;
-import omen.alien.component.layer.BaseLayer;
+import omen.alien.component.layer.Layer;
 
 /**
  * Created by crstffr on 10/28/17.
  */
 public class FPS {
 
-    BaseLayer layer;
+    Layer layer;
     int x = Const.FPS_X;
     int y = Const.FPS_Y;
     int w = Const.FPS_W;
     int h = Const.FPS_H;
 
     public FPS() {
-        layer = new BaseLayer(x, y, w, h, Const.P2D);
+        layer = new Layer(x, y, w, h, Const.P2D);
     }
 
     public synchronized void draw() {

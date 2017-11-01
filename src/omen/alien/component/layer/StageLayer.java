@@ -5,7 +5,7 @@ import omen.alien.Const;
 /**
  * Created by crstffr on 10/28/17.
  */
-public class StageLayer extends BaseLayer {
+public class StageLayer extends Layer {
     public StageLayer() {
         super(Const.STAGE_VIEW_X,
               Const.STAGE_VIEW_Y,

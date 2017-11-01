@@ -2,7 +2,7 @@ package omen.alien.component;
 
 import ddf.minim.AudioInput;
 import ddf.minim.AudioListener;
-import omen.alien.component.layer.BaseLayer;
+import omen.alien.component.layer.Layer;
 
 /**
  * Created by crstffr on 10/22/17.
@@ -10,35 +10,47 @@ import omen.alien.component.layer.BaseLayer;
 public class Visualizer implements AudioListener {
 
     public int color;
-    public BaseLayer layer;
+    public Layer layer;
     public float[] left;
     public float[] right;
-    public boolean enabled;
 
-    public Visualizer(BaseLayer _layer) {
+    public boolean showing;
+    public boolean capturing;
+    public AudioInput attachedTo;
+
+    public Visualizer(Layer _layer) {
         layer = _layer;
+        showing = false;
+        capturing = false;
     }
 
-    public void onSampled() {}
+    public synchronized void onSampled() {}
 
-    public void samples(float[] _left) {
+    public synchronized void samples(float[] _left) {
         samples(_left, null);
     }
 
-    public void samples(float[] _left, float[] _right) {
-        if (enabled) {
+    public synchronized void samples(float[] _left, float[] _right) {
+        if (capturing) {
             left = _left;
             right = _right;
             onSampled();
         }
     }
 
-    public void attachToInput(AudioInput _input) {
+    public Visualizer attachToInput(AudioInput _input) {
+        detachInput();
         _input.addListener(this);
+        attachedTo = _input;
+        return this;
     }
 
-    public void removeFromInput(AudioInput _input) {
-        _input.removeListener(this);
+    public Visualizer detachInput() {
+        if (attachedTo != null) {
+            attachedTo.removeListener(this);
+            attachedTo = null;
+        }
+        return this;
     }
 
     public Visualizer setColor(int _color) {
@@ -46,13 +58,23 @@ public class Visualizer implements AudioListener {
         return this;
     }
 
-    public Visualizer enable() {
-        enabled = true;
+    public Visualizer startCapture() {
+        capturing = true;
         return this;
     }
 
-    public Visualizer disable() {
-        enabled = false;
+    public Visualizer stopCapture() {
+        capturing = false;
+        return this;
+    }
+
+    public Visualizer show() {
+        showing = true;
+        return this;
+    }
+
+    public Visualizer hide() {
+        showing = false;
         return this;
     }
 
@@ -61,6 +83,6 @@ public class Visualizer implements AudioListener {
         return this;
     }
 
-    public void draw() {}
+    public synchronized void draw() {}
 
 }

@@ -86,7 +86,7 @@ public class Layout {
     }
 
     /**
-     * If the layout is enabled and there are changes
+     * If the layout is showing and there are changes
      * to draw, then push each of the layout views.
      */
     public synchronized void draw() {

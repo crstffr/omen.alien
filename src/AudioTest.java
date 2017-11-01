@@ -19,6 +19,11 @@ public class AudioTest extends PApplet {
 
     Timer timer = new Timer();
 
+    Minim minim;
+    AudioInput input;
+    AudioOutput output;
+    AudioRecorder recorder;
+
     public static void main(String args[]) {
         PApplet.main("AudioTest");
     }
@@ -36,33 +41,15 @@ public class AudioTest extends PApplet {
             System.out.println(i + ": " + info[i].toString());
         }
 
-        Minim minim;
-        AudioInput input;
-        AudioOutput output;
-        AudioRecorder recorder;
-
         minim = new Minim(this);
         //minim.debugOn();
 
-        input = minim.getLineIn();
-        output = minim.getLineOut();
-
-        System.out.println("Input Gain: " + input.getGain());
-        System.out.println("Input Volume: " + input.getVolume());
+        input = minim.getLineIn(2, 2048);
+        // output = minim.getLineOut();
 
         recorder = minim.createRecorder(input, "test.wav", false);
-
         recorder.beginRecord();
 
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                recorder.endRecord();
-                recorder.save();
-                exit();
-            }
-        }, 3000);
 
         /*
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -72,6 +59,17 @@ public class AudioTest extends PApplet {
         }, 0, 1000);
         */
 
+    }
+
+    @Override
+    public void keyPressed() {
+        if (key == 's') {
+            recorder.endRecord();
+            recorder.save();
+        }
+        if (key == 'q') {
+            exit();
+        }
     }
 
     @Override

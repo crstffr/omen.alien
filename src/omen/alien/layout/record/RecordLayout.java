@@ -42,7 +42,7 @@ public class RecordLayout extends MajorLayout {
 
         onEnable(() -> {
             stateObj.enable();
-            waveformWidget.enable();
+            //waveformWidget.show();
             startNewRecording();
             for (RecordWidget widget : widgets) {
                 widget.enable().draw();
@@ -51,9 +51,9 @@ public class RecordLayout extends MajorLayout {
 
         onDisable(() -> {
             stateObj.disable();
-            //timerWidget.reset();
-            waveformWidget.reset();
-            //ampliformWidget.reset();
+            timerWidget.reset();
+            //waveformWidget.reset();
+            ampliformWidget.reset();
             if (is("recording")) {
                 recorder.endRecord();
                 recorder = null;
@@ -66,7 +66,7 @@ public class RecordLayout extends MajorLayout {
 
         onDraw(() -> {
             stateObj.draw();
-            //timerWidget.run();
+            timerWidget.run();
             for (RecordWidget widget : widgets) widget.draw();
             /*
             if (ampliformWidget.clipped) {
@@ -78,34 +78,34 @@ public class RecordLayout extends MajorLayout {
     }
 
     void setupWidgets() {
-        //ampliformWidget = new RecordAmpliformWidget(this);
-        waveformWidget = new RecordWaveformWidget(this);
+        ampliformWidget = new RecordAmpliformWidget(this);
+        //waveformWidget = new RecordWaveformWidget(this);
         headerWidget = new RecordHeaderWidget(this);
-        //timerWidget = new RecordTimerWidget(this);
+        timerWidget = new RecordTimerWidget(this);
         fileWidget = new RecordFileWidget(this);
         //clipWidget = new RecordClipWidget(this);
 
-        //widgets.add(ampliformWidget);
-        widgets.add(waveformWidget);
+        widgets.add(ampliformWidget);
+        //widgets.add(waveformWidget);
         //widgets.add(clipWidget);
-        //widgets.add(timerWidget);
+        widgets.add(timerWidget);
         widgets.add(fileWidget);
         widgets.add(headerWidget);
 
-        //ampliformWidget.setColor(Const.MIDGRAY);
-        waveformWidget.setColor(Const.MIDRED);
+        ampliformWidget.setColor(Const.RED);
+        //waveformWidget.setColor(Const.MIDRED);
         headerWidget.setColor(Const.WHITE);
-        //timerWidget.setColor(Const.WHITE);
+        timerWidget.setColor(Const.WHITE);
         //clipWidget.setColor(Const.WHITE);
         fileWidget.setColor(Const.WHITE);
     }
 
     void setupStateLayouts() {
         states.put("ready", new RecordStateReadyLayout(this));
-        //states.put("saved", new RecordStateSavedLayout(this));
-        //states.put("paused", new RecordStatePausedLayout(this));
-        //states.put("rename", new RecordStateRenameLayout(this));
-        //states.put("recording", new RecordStateRecordingLayout(this));
+        states.put("saved", new RecordStateSavedLayout(this));
+        states.put("paused", new RecordStatePausedLayout(this));
+        states.put("rename", new RecordStateRenameLayout(this));
+        states.put("recording", new RecordStateRecordingLayout(this));
     }
 
     public void keyPressed(char key) {
@@ -139,10 +139,10 @@ public class RecordLayout extends MajorLayout {
 
     public void startNewRecording() {
         recorder = null;
+        recorder = App.minim.createRecorder(App.audioInput, fileWidget.buildTempFilepath(), false);
+        ampliformWidget.reset();
+        timerWidget.reset();
         //clipWidget.reset();
-        //timerWidget.reset();
-        //ampliformWidget.reset();
-        recorder = App.minim.createRecorder(App.audioInput, fileWidget.buildTempFilepath());
         setState("ready");
     }
 
@@ -168,10 +168,18 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void save() {
+        if (recorder.isRecording()) {
+            recorder.endRecord();
+        }
+        /*
+        try {
+
+        } catch (Exception e) {}
+        */
         recorder.save();
+        fileWidget.save();
         timerWidget.stop();
         ampliformWidget.stop();
-        fileWidget.save();
         setState("saved");
     }
 

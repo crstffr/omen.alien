@@ -1,15 +1,15 @@
 package omen.alien.component;
 
 import omen.alien.*;
-import omen.alien.component.layer.BaseLayer;
+import omen.alien.component.layer.Layer;
 
 import java.util.*;
 
 public class ButtonRow {
 
     int color = 255;
-    public BaseLayer layer1;
-    public BaseLayer layer2;
+    public Layer layer1;
+    public Layer layer2;
     ArrayList<Button> buttons;
     HashMap<Character, Button> buttonKeyMap;
 
@@ -19,8 +19,8 @@ public class ButtonRow {
     int h = Const.BUTTON_VIEW_H;
 
     public ButtonRow() {
-        layer1 = new BaseLayer(x, y, w, h, Const.RENDERER);
-        layer2 = new BaseLayer(x, y, w, h, Const.RENDERER);
+        layer1 = new Layer(x, y, w, h, Const.RENDERER);
+        layer2 = new Layer(x, y, w, h, Const.RENDERER);
         buttons = new ArrayList<>();
         buttonKeyMap = new HashMap<>();
     }

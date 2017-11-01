@@ -54,11 +54,10 @@ public class TimeCounter {
         int modS = modM % S;
         int modF = modS % F;
 
-        String h = String.format("%02d", time / H);
         String m = String.format("%02d", modH / M);
         String s = String.format("%02d", modM / S);
         String f = String.format("%02d", modS / F);
 
-        return h + " : " + m + " : " + s + " : " + f;
+        return m + " : " + s + " : " + f;
     }
 }

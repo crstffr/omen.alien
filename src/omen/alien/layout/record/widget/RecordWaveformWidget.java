@@ -25,17 +25,15 @@ public class RecordWaveformWidget extends RecordWidget {
         });
 
         onEnable(() -> {
-            waveform.enable();
-            waveform.attachToInput(App.audioInput);
+            waveform.attachToInput(App.audioInput).show();
         });
 
         onDisable(() -> {
-            waveform.disable();
-            waveform.removeFromInput(App.audioInput);
+            waveform.detachInput().hide();
         });
 
         onReset(() -> {
-            waveform.disable();
+            waveform.hide();
         });
 
         onDraw(() -> {

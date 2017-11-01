@@ -2,9 +2,7 @@ package omen.alien.layout.record.widget;
 
 import omen.alien.App;
 import omen.alien.Const;
-import omen.alien.component.View;
-import omen.alien.component.layer.BaseLayer;
-import omen.alien.component.layer.ChildLayer;
+import omen.alien.component.layer.Layer;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.record.RecordWidget;
 
@@ -15,14 +13,15 @@ public class RecordHeaderWidget extends RecordWidget {
     int x = App.stage.centerX(w);
     int y = App.stage.centerY(h) - 100;
 
-    BaseLayer tmpLayer;
+    Layer tmpLayer;
 
     public RecordHeaderWidget(RecordLayout _parent) {
 
         parent = _parent;
-        tmpLayer = new ChildLayer(App.stage, x, y, w, h);
 
         init(x, y, w, h);
+
+        tmpLayer = layer.copy();
 
         onEnable(() -> {
             redrawHeader();
@@ -34,7 +33,7 @@ public class RecordHeaderWidget extends RecordWidget {
 
         onDraw(() -> {
             layer.init();
-            layer.copy(tmpLayer);
+            layer.fillFrom(tmpLayer);
             layer.draw();
         });
     }

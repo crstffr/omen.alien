@@ -1,18 +1,18 @@
 package omen.alien.layout.record;
 
 import omen.alien.App;
-import omen.alien.component.View;
-import omen.alien.component.layer.BaseLayer;
+import omen.alien.component.layer.Layer;
 import omen.alien.component.layer.ChildLayer;
 
 import java.util.ArrayList;
 
 public class RecordWidget {
 
+    public Layer layer;
     public int color = 0;
     public String text = "";
-    public BaseLayer layer;
     public RecordLayout parent;
+    public boolean enabled = false;
 
     ArrayList<Runnable> onDrawHandlers = new ArrayList<>();
     ArrayList<Runnable> onClearHandlers = new ArrayList<>();
@@ -108,7 +108,10 @@ public class RecordWidget {
     }
 
     public RecordWidget enable() {
-        for (Runnable fn : onEnableHandlers) fn.run();
+        if (enabled == false) {
+            for (Runnable fn : onEnableHandlers) fn.run();
+            enabled = true;
+        }
         return this;
     }
 
@@ -123,7 +126,10 @@ public class RecordWidget {
     }
 
     public RecordWidget disable() {
-        for (Runnable fn : onDisableHandlers) fn.run();
+        if (enabled == true) {
+            for (Runnable fn : onDisableHandlers) fn.run();
+            enabled = false;
+        }
         return this;
     }
 

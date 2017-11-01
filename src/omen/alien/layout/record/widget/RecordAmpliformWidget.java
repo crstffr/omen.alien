@@ -27,12 +27,16 @@ public class RecordAmpliformWidget extends RecordWidget {
             ampliform.setColor(color);
         });
 
+        onEnable(() -> {
+            ampliform.attachToInput(App.audioInput).show();
+        });
+
         onDisable(() -> {
-            ampliform.disable();
+            ampliform.detachInput().stopCapture().hide().clear();
         });
 
         onReset(() -> {
-            ampliform.disable().clear();
+            ampliform.stopCapture().clear();
             clipped = false;
         });
 
@@ -49,11 +53,11 @@ public class RecordAmpliformWidget extends RecordWidget {
     }
 
     public void start() {
-        ampliform.enable();
+        ampliform.startCapture();
     }
 
     public void stop() {
-        ampliform.disable();
+        ampliform.stopCapture();
     }
 
 }

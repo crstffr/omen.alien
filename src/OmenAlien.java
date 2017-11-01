@@ -23,6 +23,7 @@ public class OmenAlien extends PApplet {
         if (displayWidth > 800) {
             size(800, 480, Const.RENDERER);
         } else {
+            // size(400, 240, Const.RENDERER);
             fullScreen(Const.RENDERER);
         }
         App.inst = this;
@@ -41,8 +42,7 @@ public class OmenAlien extends PApplet {
         App.font = loadFont(Const.FONT_FILE);
         App.stage = new StageLayer(Const.RENDERER);
         App.audioInput = App.minim.getLineIn(2, 2048);
-
-        App.audioInput.setGain(20);
+        // App.audioOutput = App.minim.getLineOut();
 
         fps = new FPS();
         layouts.put("scope", new ScopeLayout());
@@ -69,6 +69,16 @@ public class OmenAlien extends PApplet {
 
     @Override
     public void keyPressed() {
+
+        if (key == Const.ESC) {
+            // override esc so it doesn't quit out.
+            key = Const.ESC_KEY;
+        }
+
+        if (App.userInput != null) {
+            App.userInput.keyPress(key);
+            return;
+        }
 
         if (key == 'q') {
             exit();

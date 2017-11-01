@@ -21,13 +21,13 @@ public class ScopeLayout extends MajorLayout {
         setupButtons();
 
         onEnable(() -> {
-            waveform.enable();
+            waveform.startCapture().show();
             waveform.attachToInput(App.audioInput);
         });
 
         onDisable(() -> {
-            waveform.disable();
-            waveform.removeFromInput(App.audioInput);
+            waveform.stopCapture().hide();
+            waveform.detachInput();
         });
 
         onClear(() -> {

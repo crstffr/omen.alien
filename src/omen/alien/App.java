@@ -1,6 +1,7 @@
 package omen.alien;
 
 import ddf.minim.*;
+import ddf.minim.spi.AudioOut;
 import omen.alien.util.FileCounter;
 import processing.core.*;
 import omen.alien.component.*;
@@ -13,6 +14,7 @@ public class App {
     public static PFont font;
     public static Minim minim;
     public static AudioInput audioInput;
+    public static AudioOutput audioOutput;
     public static AudioRecorder audioRecorder;
 
     // Components
