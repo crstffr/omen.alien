@@ -1,6 +1,7 @@
 package omen.alien.component;
 
 import omen.alien.Const;
+import omen.alien.component.layer.Layer;
 import omen.alien.component.layer.StageLayer;
 import omen.alien.App;
 import processing.core.PConstants;
@@ -9,49 +10,32 @@ import java.util.ArrayList;
 
 public class Ampliform extends Visualizer {
 
-    float maxLevel = 0;
     float trigger;
     float centerLine;
     ArrayList<Float> values;
 
-    public Ampliform() {
-        super(new StageLayer(Const.P3D));
+    public Ampliform(int _x, int _y, int _w, int _h) {
+        super(new Layer(_x, _y, _w, _h, Const.P3D));
         values = new ArrayList<>();
         centerLine = layer.mid_y;
         trigger = (float) (layer.h / 1.28);
     }
 
-    public synchronized void onSampled() {
-        //captureMax();
+    public void onSampled() {
         captureSample();
     }
 
     void captureSample() {
-        values.add(App.audioInput.mix.level());
-    }
-
-    void captureMax() {
-        float[] mixValues = App.audioInput.mix.toArray();
-        for (int i = 0; i < mixValues.length; i++) {
-            float currLevel = Math.abs(mixValues[i]) * 100;
-            if (currLevel > maxLevel) {
-                maxLevel = currLevel;
-            }
-        }
-    }
-
-    public float getMaxLevel() {
-        return maxLevel;
+        values.add(attachedTo.mix.level());
     }
 
     public Visualizer clear() {
-        maxLevel = 0;
         layer.clear();
         values.clear();
         return this;
     }
 
-    public synchronized void draw() {
+    public void draw() {
 
         if (showing) {
 
@@ -64,10 +48,9 @@ public class Ampliform extends Visualizer {
 
                 float space = (float) layer.w / (size - 1);
 
-                if (size < 100) {
+                if (size < 200) {
                     layer.canvas.beginShape();
                 } else {
-                    layer.canvas.strokeWeight(space / (float) 1.25);
                     layer.canvas.beginShape(PConstants.LINES);
                 }
 
@@ -79,6 +62,11 @@ public class Ampliform extends Visualizer {
                     float x2 = (i + 1) * space;
                     float y1 = centerLine - val;
                     float y2 = centerLine + val;
+
+                    if (Math.abs(y2 - y1) < 1) {
+                        y1 -= 0.5;
+                        y2 += 0.5;
+                    }
 
                     layer.canvas.vertex(x1, y1);
                     layer.canvas.vertex(x1, y2);

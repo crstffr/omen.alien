@@ -1,15 +1,15 @@
 package omen.alien.component;
 
+import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.layer.StageLayer;
 
 public class Waveform extends Visualizer {
 
     public int trigger = 2;
+    float weight = (float)2;
     public boolean locked = false;
     public boolean falling = false;
-
-    float weight = (float)2;
 
     public Waveform() {
         super(new StageLayer(Const.P3D));
@@ -37,12 +37,19 @@ public class Waveform extends Visualizer {
         }
     }
 
-    public synchronized void draw() {
+    public void draw() {
 
         if (showing) {
 
             if (left == null) {
                 return;
+            }
+
+            float[] set;
+            if (attachedTo.left.level() < attachedTo.right.level()) {
+                set = right;
+            } else {
+                set = left;
             }
 
             layer.init();
@@ -62,10 +69,10 @@ public class Waveform extends Visualizer {
             layer.canvas.strokeWeight(weight);
             layer.canvas.beginShape();
 
-            for (int i = 0; i < left.length - 1 && i < layer.w + zc; i++) {
+            for (int i = 0; i < set.length - 1 && i < layer.w + zc; i++) {
 
-                currSamp = left[i];
-                nextSamp = left[i + trigger];
+                currSamp = set[i];
+                nextSamp = set[i + trigger];
 
                 if (falling) {
                     // Falling Trigger

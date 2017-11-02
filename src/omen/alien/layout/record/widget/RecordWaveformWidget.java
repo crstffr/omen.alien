@@ -1,5 +1,6 @@
 package omen.alien.layout.record.widget;
 
+import ddf.minim.AudioInput;
 import omen.alien.App;
 import omen.alien.component.Waveform;
 import omen.alien.layout.record.RecordLayout;
@@ -13,10 +14,12 @@ public class RecordWaveformWidget extends RecordWidget {
     int h = App.stage.h;
 
     public Waveform waveform;
+    AudioInput input = App.audioInput;
 
     public RecordWaveformWidget(RecordLayout _parent) {
 
         parent = _parent;
+
         init(x, y, w, h);
         waveform = new Waveform();
 
@@ -25,11 +28,12 @@ public class RecordWaveformWidget extends RecordWidget {
         });
 
         onEnable(() -> {
-            waveform.attachToInput(App.audioInput).show();
+            waveform.attachToInput(input).startCapture().show();
         });
 
         onDisable(() -> {
-            waveform.detachInput().hide();
+            waveform.stopCapture().hide();
+            waveform.detachInput().clear();
         });
 
         onReset(() -> {

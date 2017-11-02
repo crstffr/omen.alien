@@ -1,5 +1,6 @@
 package omen.alien.layout.scope;
 
+import ddf.minim.AudioInput;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
@@ -10,24 +11,24 @@ import omen.alien.component.*;
 public class ScopeLayout extends MajorLayout {
 
     Waveform waveform;
+    AudioInput input = App.audioInput;
 
     public ScopeLayout() {
         super();
         color = Const.GREEN;
-
         waveform = new Waveform();
         waveform.setColor(color);
 
         setupButtons();
 
         onEnable(() -> {
+            waveform.attachToInput(input);
             waveform.startCapture().show();
-            waveform.attachToInput(App.audioInput);
         });
 
         onDisable(() -> {
             waveform.stopCapture().hide();
-            waveform.detachInput();
+            waveform.detachInput().clear();
         });
 
         onClear(() -> {

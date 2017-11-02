@@ -1,6 +1,7 @@
 package omen.alien.component.layer;
 
 import omen.alien.App;
+import omen.alien.Const;
 import processing.core.PGraphics;
 
 /**
@@ -45,31 +46,31 @@ public class Layer {
         return mid_y - (_h / 2);
     }
 
-    public synchronized void init() {
+    public void init() {
         canvas.beginDraw();
         canvas.clear();
         canvas.noStroke();
         canvas.noFill();
     }
 
-    public synchronized Layer copy() {
+    public Layer copy() {
         return new Layer(x, y, w, h, r);
     }
 
-    public synchronized void fillFrom(Layer _layer) {
+    public void fillFrom(Layer _layer) {
         canvas.image(_layer.canvas, 0, 0);
     }
 
-    public synchronized void fillFrom(Layer _layer, int _x, int _y) {
+    public void fillFrom(Layer _layer, int _x, int _y) {
         canvas.image(_layer.canvas, _x, _y);
     }
 
-    public synchronized void clear() {
+    public void clear() {
         init();
         draw();
     }
 
-    public synchronized void draw() {
+    public void draw() {
         canvas.endDraw();
         App.inst.image(canvas, x, y, w, h);
     }

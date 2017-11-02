@@ -8,8 +8,8 @@ import omen.alien.layout.record.RecordWidget;
 
 public class RecordHeaderWidget extends RecordWidget {
 
-    int h = 36;
-    int w = 236;
+    int h = 50;
+    int w = App.stage.w;
     int x = App.stage.centerX(w);
     int y = App.stage.centerY(h) - 100;
 
@@ -42,7 +42,7 @@ public class RecordHeaderWidget extends RecordWidget {
         if (text.length() > 0) {
             tmpLayer.init();
             tmpLayer.canvas.fill(color);
-            tmpLayer.canvas.textFont(App.font, 48);
+            tmpLayer.canvas.textFont(App.font, 60);
             tmpLayer.canvas.textAlign(Const.CENTER, Const.CENTER);
             tmpLayer.canvas.text(text, tmpLayer.mid_x, tmpLayer.mid_y);
             tmpLayer.canvas.endDraw();

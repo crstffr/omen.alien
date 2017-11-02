@@ -24,13 +24,13 @@ public class Visualizer implements AudioListener {
         capturing = false;
     }
 
-    public synchronized void onSampled() {}
+    public void onSampled() {}
 
-    public synchronized void samples(float[] _left) {
+    public void samples(float[] _left) {
         samples(_left, null);
     }
 
-    public synchronized void samples(float[] _left, float[] _right) {
+    public void samples(float[] _left, float[] _right) {
         if (capturing) {
             left = _left;
             right = _right;
@@ -83,6 +83,6 @@ public class Visualizer implements AudioListener {
         return this;
     }
 
-    public synchronized void draw() {}
+    public void draw() {}
 
 }

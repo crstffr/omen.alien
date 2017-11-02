@@ -13,7 +13,10 @@ public class RecordWidget {
     public String text = "";
     public RecordLayout parent;
     public boolean enabled = false;
+    public boolean showing = false;
 
+    ArrayList<Runnable> onShowHandlers = new ArrayList<>();
+    ArrayList<Runnable> onHideHandlers = new ArrayList<>();
     ArrayList<Runnable> onDrawHandlers = new ArrayList<>();
     ArrayList<Runnable> onClearHandlers = new ArrayList<>();
     ArrayList<Runnable> onResetHandlers = new ArrayList<>();
@@ -87,13 +90,47 @@ public class RecordWidget {
      * @param fn
      * @return
      */
+    public RecordWidget onShow(Runnable fn) {
+        onShowHandlers.add(fn);
+        return this;
+    }
+
+    final public RecordWidget show() {
+        showing = true;
+        for (Runnable fn : onShowHandlers) fn.run();
+        return this;
+    }
+
+    /**
+     *
+     * @param fn
+     * @return
+     */
+    public RecordWidget onHide(Runnable fn) {
+        onHideHandlers.add(fn);
+        return this;
+    }
+
+    final public RecordWidget hide() {
+        showing = false;
+        for (Runnable fn : onHideHandlers) fn.run();
+        return this;
+    }
+
+    /**
+     *
+     * @param fn
+     * @return
+     */
     public RecordWidget onDraw(Runnable fn) {
         onDrawHandlers.add(fn);
         return this;
     }
 
     final public RecordWidget draw() {
-        for (Runnable fn : onDrawHandlers) fn.run();
+        if (showing) {
+            for (Runnable fn : onDrawHandlers) fn.run();
+        }
         return this;
     }
 

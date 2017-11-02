@@ -68,7 +68,7 @@ public class Layout {
      *
      * @return
      */
-    public synchronized Layout clear() {
+    public Layout clear() {
         for (Runnable fn : onDrawHandlers) fn.run();
         return this;
     }
@@ -89,7 +89,7 @@ public class Layout {
      * If the layout is showing and there are changes
      * to draw, then push each of the layout views.
      */
-    public synchronized void draw() {
+    public void draw() {
         for (Runnable fn : onDrawHandlers) fn.run();
     }
 

@@ -18,7 +18,7 @@ public class ScopeLayout extends MajorLayout {
         /*
 
         waveform = new Waveform(stage.view1.createSubView());
-        waveform.setColor(color);
+        waveform.setColor(fgColor);
 
         setupButtons();
 

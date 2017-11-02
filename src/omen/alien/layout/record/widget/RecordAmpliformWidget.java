@@ -1,5 +1,6 @@
 package omen.alien.layout.record.widget;
 
+import ddf.minim.AudioInput;
 import omen.alien.App;
 import omen.alien.component.Ampliform;
 import omen.alien.layout.record.RecordLayout;
@@ -7,37 +8,44 @@ import omen.alien.layout.record.RecordWidget;
 
 public class RecordAmpliformWidget extends RecordWidget {
 
-    public int y = 0;
+    public int x = 0;
+    public int y = App.stage.mid_y;
     public int w = App.stage.w;
-    public int h = App.stage.h;
-    public int x = App.stage.mid_x;
+    public int h = App.stage.h / 2;
 
     public Ampliform ampliform;
-    public boolean clipped = false;
-    public int clipThreshold = 98;
+    AudioInput input = App.audioInput;
 
     public RecordAmpliformWidget(RecordLayout _parent) {
 
         parent = _parent;
-
         init(x, y, w, h);
-        ampliform = new Ampliform();
+
+        ampliform = new Ampliform(x, y, w, h);
 
         onSetColor(() -> {
             ampliform.setColor(color);
         });
 
         onEnable(() -> {
-            ampliform.attachToInput(App.audioInput).show();
+            ampliform.attachToInput(input);
         });
 
         onDisable(() -> {
-            ampliform.detachInput().stopCapture().hide().clear();
+            ampliform.stopCapture().hide();
+            ampliform.detachInput().clear();
+        });
+
+        onShow(() -> {
+            ampliform.show();
+        });
+
+        onHide(() -> {
+            ampliform.hide();
         });
 
         onReset(() -> {
-            ampliform.stopCapture().clear();
-            clipped = false;
+            ampliform.stopCapture().clear().hide();
         });
 
         onClear(() -> {
@@ -46,9 +54,6 @@ public class RecordAmpliformWidget extends RecordWidget {
 
         onDraw(() -> {
             ampliform.draw();
-            if (ampliform.getMaxLevel() > clipThreshold) {
-                clipped = true;
-            }
         });
     }
 

@@ -1,7 +1,5 @@
 package omen.alien.layout.record;
 
-import ddf.minim.*;
-
 import omen.alien.*;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
@@ -15,19 +13,14 @@ public class RecordLayout extends MajorLayout {
     Layout stateObj;
     String stateStr;
 
-    AudioRecorder recorder;
+    public Recorder recorder;
     HashMap<String, Layout> states;
     ArrayList<RecordWidget> widgets;
 
-    String filename = "";
-    String filepath = "";
-    String tmpname = "";
-
-    RecordClipWidget clipWidget;
     RecordFileWidget fileWidget;
+    RecordMeterWidget meterWidget;
     RecordTimerWidget timerWidget;
     RecordHeaderWidget headerWidget;
-    RecordWaveformWidget waveformWidget;
     RecordAmpliformWidget ampliformWidget;
 
     public RecordLayout() {
@@ -42,7 +35,6 @@ public class RecordLayout extends MajorLayout {
 
         onEnable(() -> {
             stateObj.enable();
-            //waveformWidget.show();
             startNewRecording();
             for (RecordWidget widget : widgets) {
                 widget.enable().draw();
@@ -52,11 +44,8 @@ public class RecordLayout extends MajorLayout {
         onDisable(() -> {
             stateObj.disable();
             timerWidget.reset();
-            //waveformWidget.reset();
-            ampliformWidget.reset();
             if (is("recording")) {
-                recorder.endRecord();
-                recorder = null;
+                recorder.destroy();
             }
             for (RecordWidget widget : widgets) {
                 widget.disable().clear();
@@ -68,36 +57,26 @@ public class RecordLayout extends MajorLayout {
             stateObj.draw();
             timerWidget.run();
             for (RecordWidget widget : widgets) widget.draw();
-            /*
-            if (ampliformWidget.clipped) {
-                headerWidget.setText("CLIPPED");
-                clipWidget.show();
-            }
-            */
         });
     }
 
     void setupWidgets() {
         ampliformWidget = new RecordAmpliformWidget(this);
-        //waveformWidget = new RecordWaveformWidget(this);
         headerWidget = new RecordHeaderWidget(this);
         timerWidget = new RecordTimerWidget(this);
+        meterWidget = new RecordMeterWidget(this);
         fileWidget = new RecordFileWidget(this);
-        //clipWidget = new RecordClipWidget(this);
 
-        widgets.add(ampliformWidget);
-        //widgets.add(waveformWidget);
-        //widgets.add(clipWidget);
-        widgets.add(timerWidget);
         widgets.add(fileWidget);
+        widgets.add(timerWidget);
+        widgets.add(meterWidget);
         widgets.add(headerWidget);
+        widgets.add(ampliformWidget);
 
-        ampliformWidget.setColor(Const.RED);
-        //waveformWidget.setColor(Const.MIDRED);
-        headerWidget.setColor(Const.WHITE);
-        timerWidget.setColor(Const.WHITE);
-        //clipWidget.setColor(Const.WHITE);
-        fileWidget.setColor(Const.WHITE);
+        headerWidget.setColor(Const.RED).show();
+        fileWidget.setColor(Const.WHITE).show();
+        timerWidget.setColor(Const.WHITE).show();
+        ampliformWidget.setColor(Const.YELLOW).hide();
     }
 
     void setupStateLayouts() {
@@ -137,64 +116,81 @@ public class RecordLayout extends MajorLayout {
         headerWidget.setText(_text);
     }
 
+    public void setRecordingStyle() {
+        headerWidget.setColor(Const.RED).show();
+        fileWidget.setColor(Const.WHITE).show();
+        timerWidget.setColor(Const.WHITE).show();
+        buttonRow.setColor(Const.WHITE).draw();
+    }
+
+    public void setDefaultStyle() {
+        headerWidget.setColor(Const.RED).show();
+        fileWidget.setColor(Const.WHITE).show();
+        timerWidget.setColor(Const.WHITE).show();
+        buttonRow.setColor(Const.RED).draw();
+    }
+
     public void startNewRecording() {
-        recorder = null;
-        recorder = App.minim.createRecorder(App.audioInput, fileWidget.buildTempFilepath(), false);
-        ampliformWidget.reset();
-        timerWidget.reset();
-        //clipWidget.reset();
+        recorder = new Recorder(fileWidget.buildTempFilepath());
+        ampliformWidget.reset().hide();
+        meterWidget.reset().show();
+        timerWidget.reset().show();
+        setDefaultStyle();
         setState("ready");
     }
 
     public void record() {
-        recorder.beginRecord();
-        ampliformWidget.start();
+        recorder.start();
         timerWidget.start();
+        meterWidget.holdClip();
+        ampliformWidget.start();
+        setRecordingStyle();
         setState("recording");
     }
 
     public void pause() {
-        ampliformWidget.stop();
         timerWidget.stop();
-        recorder.endRecord();
+        recorder.pause();
+        ampliformWidget.stop();
+        setDefaultStyle();
         setState("paused");
     }
 
     public void resume() {
+        recorder.resume();
         timerWidget.start();
-        recorder.beginRecord();
         ampliformWidget.start();
+        setRecordingStyle();
         setState("recording");
     }
 
     public void save() {
-        if (recorder.isRecording()) {
-            recorder.endRecord();
-        }
-        /*
-        try {
-
-        } catch (Exception e) {}
-        */
         recorder.save();
         fileWidget.save();
         timerWidget.stop();
         ampliformWidget.stop();
+        ampliformWidget.show();
+        setDefaultStyle();
+        meterWidget.hide();
         setState("saved");
     }
 
     public void reset() {
-        recorder.endRecord();
+        recorder.destroy();
         fileWidget.destroy();
         startNewRecording();
     }
 
     public void rename() {
         fileWidget.startRenaming();
+        ampliformWidget.hide();
+        timerWidget.hide();
         setState("rename");
     }
 
     public void renameDone() {
+        ampliformWidget.show();
+        timerWidget.show();
         setState("saved");
     }
 

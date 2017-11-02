@@ -23,7 +23,7 @@ public class OmenAlien extends PApplet {
         if (displayWidth > 800) {
             size(800, 480, Const.RENDERER);
         } else {
-            // size(400, 240, Const.RENDERER);
+            //size(700, 380, Const.RENDERER);
             fullScreen(Const.RENDERER);
         }
         App.inst = this;
@@ -33,8 +33,8 @@ public class OmenAlien extends PApplet {
     public void setup() {
 
         noCursor();
-        background(0);
         frameRate(100);
+        background(Const.BACKGROUND);
 
         layouts = new LinkedHashMap<>();
 
@@ -42,13 +42,13 @@ public class OmenAlien extends PApplet {
         App.font = loadFont(Const.FONT_FILE);
         App.stage = new StageLayer(Const.RENDERER);
         App.audioInput = App.minim.getLineIn(2, 2048);
-        // App.audioOutput = App.minim.getLineOut();
 
         fps = new FPS();
         layouts.put("scope", new ScopeLayout());
         layouts.put("record", new RecordLayout());
 
         switchLayout("scope");
+        //switchLayout("record");
 
     }
 
@@ -97,16 +97,10 @@ public class OmenAlien extends PApplet {
 
     }
 
-    int i = 0;
-
-    public synchronized void draw() {
-
-        background(0);
-
-        fps.draw();
+    public void draw() {
+        background(Const.BACKGROUND);
         currentLayout().draw();
-
-        i = (i < width) ? i + 1 : 0;
+        fps.draw();
     }
 
 }

@@ -1,10 +1,7 @@
 package omen.alien.component;
 
-import omen.alien.App;
 import omen.alien.Const;
-
-import java.util.Arrays;
-import java.util.ArrayList;
+import omen.alien.component.layer.Layer;
 
 public class MajorLayout extends Layout {
 

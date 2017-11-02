@@ -19,7 +19,7 @@ public class FPS {
         layer = new Layer(x, y, w, h, Const.P2D);
     }
 
-    public synchronized void draw() {
+    public void draw() {
         layer.init();
         layer.canvas.stroke(255);
         layer.canvas.textFont(App.font, 18);
