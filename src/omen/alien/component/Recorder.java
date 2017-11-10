@@ -10,10 +10,11 @@ import omen.alien.App;
 public class Recorder {
 
     String filepath;
+    AudioInput input;
     AudioRecorder recorder;
-    AudioInput input = App.audioInput;
 
     public Recorder(String _filepath) {
+        input = App.minim.getLineIn(2, 4096, 96000, 16);
         filepath = _filepath;
     }
 

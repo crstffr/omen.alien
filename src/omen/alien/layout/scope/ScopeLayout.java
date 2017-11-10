@@ -11,13 +11,14 @@ import omen.alien.component.*;
 public class ScopeLayout extends MajorLayout {
 
     Waveform waveform;
-    AudioInput input = App.audioInput;
+    AudioInput input;
 
     public ScopeLayout() {
         super();
         color = Const.GREEN;
         waveform = new Waveform();
         waveform.setColor(color);
+        input = App.minim.getLineIn(2, 2048, 96000, 8);
 
         setupButtons();
 

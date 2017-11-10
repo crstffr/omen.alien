@@ -16,7 +16,7 @@ public class FPS {
     int h = Const.FPS_H;
 
     public FPS() {
-        layer = new Layer(x, y, w, h, Const.P2D);
+        layer = new Layer(x, y, w, h, Const.RENDERER2D);
     }
 
     public void draw() {

@@ -20,7 +20,7 @@ public class VUMeter extends Visualizer {
     public boolean clipHold;
 
     public VUMeter(int _channel, int _x, int _y, int _w, int _h) {
-        super(new Layer(_x, _y, _w, _h, Const.P3D));
+        super(new Layer(_x, _y, _w, _h, Const.RENDERER3D));
         channel = _channel;
         clipHold = false;
         clipped = false;
@@ -86,10 +86,10 @@ public class VUMeter extends Visualizer {
             if (curLevel > 0.99) {
                 color = Const.RED;
                 triggerClip();
-            } else if (curLevel > 0.7) {
-                color = Const.YELLOW;
-            } else {
+            } else if (curLevel > 0.92) {
                 color = Const.GREEN;
+            } else {
+                color = 128;
             }
 
             layer.canvas.fill(color);

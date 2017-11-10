@@ -11,7 +11,7 @@ public class StageLayer extends Layer {
               Const.STAGE_VIEW_Y,
               Const.STAGE_VIEW_W,
               Const.STAGE_VIEW_H,
-              Const.RENDERER
+              Const.RENDERER2D
         );
     }
     public StageLayer(String renderer) {

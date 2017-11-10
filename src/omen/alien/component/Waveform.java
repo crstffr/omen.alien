@@ -12,7 +12,7 @@ public class Waveform extends Visualizer {
     public boolean falling = false;
 
     public Waveform() {
-        super(new StageLayer(Const.P3D));
+        super(new StageLayer(Const.RENDERER3D));
     }
 
     public boolean toggleLock() {

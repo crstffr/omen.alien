@@ -13,8 +13,8 @@ public class RecordWaveformWidget extends RecordWidget {
     int w = App.stage.w;
     int h = App.stage.h;
 
+    AudioInput input;
     public Waveform waveform;
-    AudioInput input = App.audioInput;
 
     public RecordWaveformWidget(RecordLayout _parent) {
 
@@ -28,12 +28,15 @@ public class RecordWaveformWidget extends RecordWidget {
         });
 
         onEnable(() -> {
+            input = App.minim.getLineIn(2, 2048, 96000, 16);
             waveform.attachToInput(input).startCapture().show();
         });
 
         onDisable(() -> {
             waveform.stopCapture().hide();
             waveform.detachInput().clear();
+            input.close();
+            input = null;
         });
 
         onReset(() -> {

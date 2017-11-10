@@ -19,8 +19,8 @@ public class ButtonRow {
     int h = Const.BUTTON_VIEW_H;
 
     public ButtonRow() {
-        layer1 = new Layer(x, y, w, h, Const.RENDERER);
-        layer2 = new Layer(x, y, w, h, Const.RENDERER);
+        layer1 = new Layer(x, y, w, h, Const.RENDERER2D);
+        layer2 = new Layer(x, y, w, h, Const.RENDERER2D);
         buttons = new ArrayList<>();
         buttonKeyMap = new HashMap<>();
     }

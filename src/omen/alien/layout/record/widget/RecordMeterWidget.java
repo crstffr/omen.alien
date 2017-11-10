@@ -20,7 +20,7 @@ public class RecordMeterWidget extends RecordWidget {
 
     VUMeter meterL;
     VUMeter meterR;
-    AudioInput input = App.audioInput;
+    AudioInput input;
 
     public RecordMeterWidget(RecordLayout _parent) {
         parent = _parent;
@@ -29,6 +29,7 @@ public class RecordMeterWidget extends RecordWidget {
         int meterH = (h / 2) - p;
         meterL = new VUMeter(1, x, y, w, meterH);
         meterR = new VUMeter(2, x, y + meterH + p, w, meterH);
+        input = App.minim.getLineIn(2, 512, 16000, 8);
 
         onEnable(() -> {
             meterL.attachToInput(input).startCapture().show();

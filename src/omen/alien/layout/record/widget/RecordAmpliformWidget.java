@@ -22,6 +22,7 @@ public class RecordAmpliformWidget extends RecordWidget {
         init(x, y, w, h);
 
         ampliform = new Ampliform(x, y, w, h);
+        input = App.minim.getLineIn(2, 2048, 16000, 8);
 
         onSetColor(() -> {
             ampliform.setColor(color);

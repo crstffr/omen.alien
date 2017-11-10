@@ -3,7 +3,6 @@ package omen.alien.component;
 import omen.alien.App;
 import omen.alien.Const;
 import processing.core.PGraphics;
-import processing.core.PImage;
 
 import java.util.ArrayList;
 
@@ -16,12 +15,10 @@ public class Frame {
     ArrayList<PGraphics> layers;
 
     public Frame() {
-        String r = Const.P2D;
+        String r = Const.RENDERER2D;
         int w = App.inst.width;
         int h = App.inst.height;
         frame = App.inst.createGraphics(w, h, r);
-        //frame.beginDraw();
-        //frame.clear();
     }
 
     public void init() {
@@ -34,7 +31,6 @@ public class Frame {
     }
 
     public void push(PGraphics _layer, int _x, int _y) {
-        // frame.image(_layer, _x, _y, _layer.width, _layer.height);
         App.inst.image(_layer.get(), _x, _y);
     }
 

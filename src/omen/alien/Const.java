@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class Const implements PConstants {
 
-    final public static String RENDERER = P2D;
+    final public static String RENDERER2D = JAVA2D;
+    final public static String RENDERER3D = JAVA2D;
     final public static String FONT_FILE = "AnonymousPro-Bold-48.vlw";
 
     final public static String ROOT_PATH = System.getProperty("user.dir") + "/";

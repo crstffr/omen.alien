@@ -15,7 +15,7 @@ public class Ampliform extends Visualizer {
     ArrayList<Float> values;
 
     public Ampliform(int _x, int _y, int _w, int _h) {
-        super(new Layer(_x, _y, _w, _h, Const.P3D));
+        super(new Layer(_x, _y, _w, _h, Const.RENDERER3D));
         values = new ArrayList<>();
         centerLine = layer.mid_y;
         trigger = (float) (layer.h / 1.28);
