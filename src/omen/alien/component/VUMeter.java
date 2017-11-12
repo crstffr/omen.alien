@@ -79,9 +79,8 @@ public class VUMeter extends Visualizer {
             layer.canvas.text(channel == 1 ? "L" : "R", 0, h / 2);
 
             layer.canvas.fill(32);
-            layer.canvas.stroke(128);
-            layer.canvas.rect(o, 0, w, h);
             layer.canvas.noStroke();
+            layer.canvas.rect(o, 0, w, h);
 
             if (curLevel > 0.99) {
                 color = Const.RED;

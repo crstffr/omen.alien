@@ -177,6 +177,7 @@ public class RecordLayout extends MajorLayout {
 
     public void reset() {
         recorder.destroy();
+        recorder = null;
         fileWidget.destroy();
         startNewRecording();
     }
