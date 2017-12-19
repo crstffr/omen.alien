@@ -40,6 +40,10 @@ public class RecordTimerWidget extends RecordWidget {
 
     }
 
+    public void set(int millis) {
+        timeCounter.set(millis);
+    }
+
     public void start() {
         timeCounter.enable();
     }

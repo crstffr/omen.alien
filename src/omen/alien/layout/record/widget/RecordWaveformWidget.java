@@ -28,7 +28,7 @@ public class RecordWaveformWidget extends RecordWidget {
         });
 
         onEnable(() -> {
-            input = App.minim.getLineIn(2, 2048, 96000, 16);
+            input = App.audio.input;
             waveform.attachToInput(input).startCapture().show();
         });
 

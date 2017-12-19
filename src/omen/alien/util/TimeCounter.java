@@ -29,6 +29,11 @@ public class TimeCounter {
         enabled = false;
     }
 
+    public void set(int millis) {
+        current = 0;
+        total = millis;
+    }
+
     public void run() {
         if (enabled) {
             now = App.inst.millis();

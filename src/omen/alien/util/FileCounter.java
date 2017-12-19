@@ -14,7 +14,7 @@ public class FileCounter {
     Path path;
 
     public FileCounter() {
-        path = Paths.get(Const.VARS_PATH, "fileCount.idx");
+        path = Paths.get(Const.FILE_COUNTER);
         init();
     }
 

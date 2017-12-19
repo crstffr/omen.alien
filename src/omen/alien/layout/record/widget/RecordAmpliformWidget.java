@@ -13,16 +13,17 @@ public class RecordAmpliformWidget extends RecordWidget {
     public int w = App.stage.w;
     public int h = App.stage.h / 2;
 
+    AudioInput input;
     public Ampliform ampliform;
-    AudioInput input = App.audioInput;
 
     public RecordAmpliformWidget(RecordLayout _parent) {
 
+        /*
         parent = _parent;
         init(x, y, w, h);
 
         ampliform = new Ampliform(x, y, w, h);
-        input = App.minim.getLineIn(2, 2048, 16000, 8);
+        input = App.audio.getInputForVisualizing("low");
 
         onSetColor(() -> {
             ampliform.setColor(color);
@@ -56,14 +57,15 @@ public class RecordAmpliformWidget extends RecordWidget {
         onDraw(() -> {
             ampliform.draw();
         });
+        */
     }
 
     public void start() {
-        ampliform.startCapture();
+        //ampliform.startCapture();
     }
 
     public void stop() {
-        ampliform.stopCapture();
+        //ampliform.stopCapture();
     }
 
 }

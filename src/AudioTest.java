@@ -36,16 +36,23 @@ public class AudioTest extends PApplet {
     @Override
     public void setup() {
 
-        Mixer.Info[] info = AudioSystem.getMixerInfo();
-        for(int i = 0; i < info.length; i++) {
-            System.out.println(i + ": " + info[i].toString());
-        }
-
         minim = new Minim(this);
         //minim.debugOn();
 
-        input = minim.getLineIn(2, 2048);
-        // output = minim.getLineOut();
+        Mixer.Info[] info = AudioSystem.getMixerInfo();
+        for(int i = 0; i < info.length; i++) {
+            if (i == 1) {
+                Mixer mixer = AudioSystem.getMixer(info[i]);
+                minim.setInputMixer(mixer);
+                minim.setOutputMixer(mixer);
+            }
+
+            System.out.println(i + ": " + info[i].toString());
+
+        }
+
+        input = minim.getLineIn(2, 2048, 96000, 16);
+        output = minim.getLineOut(2, 2048, 96000, 16);
 
         recorder = minim.createRecorder(input, "test.wav", false);
         recorder.beginRecord();
@@ -65,7 +72,9 @@ public class AudioTest extends PApplet {
     public void keyPressed() {
         if (key == 's') {
             recorder.endRecord();
-            recorder.save();
+            FilePlayer player = new FilePlayer(recorder.save());
+            player.patch(output);
+            player.play();
         }
         if (key == 'q') {
             exit();

@@ -12,8 +12,8 @@ public class RecordStateRecordingLayout extends RecordStateLayout {
         super(_parent);
         onDisable(() -> parent.setHeader(""));
         onEnable(() -> parent.setHeader("RECORDING"));
-        buttonRow.addButton(new Button(Const.UI_BUTTON_1, "PAUSE", () -> parent.pause()));
-        buttonRow.addButton(new Button(Const.UI_BUTTON_2, "SAVE", () -> parent.save()));
+        buttonRow.addButton(new Button(Const.UI_BUTTON_1, "SAVE", () -> parent.save()));
+        buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
         buttonRow.addButton(new Button(Const.UI_BUTTON_4, "RESET", () -> parent.reset()));
     }

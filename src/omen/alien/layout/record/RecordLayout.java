@@ -1,6 +1,8 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
+import omen.alien.audio.Player;
+import omen.alien.audio.Recorder;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
 import omen.alien.component.*;
@@ -12,16 +14,18 @@ public class RecordLayout extends MajorLayout {
 
     Layout stateObj;
     String stateStr;
+    boolean saving;
 
-    public Recorder recorder;
     HashMap<String, Layout> states;
     ArrayList<RecordWidget> widgets;
+
+    public Player player;
+    public Recorder recorder = new Recorder();
 
     RecordFileWidget fileWidget;
     RecordMeterWidget meterWidget;
     RecordTimerWidget timerWidget;
     RecordHeaderWidget headerWidget;
-    RecordAmpliformWidget ampliformWidget;
 
     public RecordLayout() {
         super();
@@ -35,22 +39,22 @@ public class RecordLayout extends MajorLayout {
 
         onEnable(() -> {
             stateObj.enable();
-            startNewRecording();
             for (RecordWidget widget : widgets) {
-                widget.enable().draw();
+                widget.enable();
             }
+            startNewRecording();
         });
 
         onDisable(() -> {
             stateObj.disable();
             timerWidget.reset();
-            if (is("recording")) {
-                recorder.destroy();
+            fileWidget.destroy();
+            if (recorder != null) {
+                recorder.discard();
             }
             for (RecordWidget widget : widgets) {
                 widget.disable().clear();
             }
-            fileWidget.destroy();
         });
 
         onDraw(() -> {
@@ -58,10 +62,21 @@ public class RecordLayout extends MajorLayout {
             timerWidget.run();
             for (RecordWidget widget : widgets) widget.draw();
         });
+
+        recorder.onStart(() -> {
+            recordStarted();
+        });
+
+        recorder.onStop(() -> {
+            recordStopped();
+        });
+
+        recorder.onSave(() -> {
+            recordSaved();
+        });
     }
 
     void setupWidgets() {
-        ampliformWidget = new RecordAmpliformWidget(this);
         headerWidget = new RecordHeaderWidget(this);
         timerWidget = new RecordTimerWidget(this);
         meterWidget = new RecordMeterWidget(this);
@@ -71,19 +86,19 @@ public class RecordLayout extends MajorLayout {
         widgets.add(timerWidget);
         widgets.add(meterWidget);
         widgets.add(headerWidget);
-        widgets.add(ampliformWidget);
 
         headerWidget.setColor(Const.RED).show();
-        fileWidget.setColor(Const.WHITE).show();
-        timerWidget.setColor(Const.WHITE).show();
-        ampliformWidget.setColor(Const.YELLOW).hide();
+        fileWidget.setColor(Const.WHITE).hide();
+        timerWidget.setColor(Const.WHITE).hide();
     }
 
     void setupStateLayouts() {
         states.put("ready", new RecordStateReadyLayout(this));
         states.put("saved", new RecordStateSavedLayout(this));
-        states.put("paused", new RecordStatePausedLayout(this));
         states.put("rename", new RecordStateRenameLayout(this));
+        states.put("saving", new RecordStateSavingLayout(this));
+        states.put("waiting", new RecordStateWaitingLayout(this));
+        states.put("playing", new RecordStatePlayingLayout(this));
         states.put("recording", new RecordStateRecordingLayout(this));
     }
 
@@ -116,87 +131,72 @@ public class RecordLayout extends MajorLayout {
         headerWidget.setText(_text);
     }
 
-    public void setRecordingStyle() {
-        headerWidget.setColor(Const.RED).show();
-        fileWidget.setColor(Const.WHITE).show();
-        timerWidget.setColor(Const.WHITE).show();
-        buttonRow.setColor(Const.WHITE).draw();
-    }
-
-    public void setDefaultStyle() {
-        headerWidget.setColor(Const.RED).show();
-        fileWidget.setColor(Const.WHITE).show();
-        timerWidget.setColor(Const.WHITE).show();
-        buttonRow.setColor(Const.RED).draw();
-    }
-
     public void startNewRecording() {
-        recorder = new Recorder(fileWidget.buildTempFilepath());
-        ampliformWidget.reset().hide();
+        fileWidget.reset().hide();
         meterWidget.reset().show();
-        timerWidget.reset().show();
-        setDefaultStyle();
+        timerWidget.reset().hide();
         setState("ready");
+    }
+
+    public void toggleRecord() {
+        if (is("recording") || is("waiting")) {
+            save();
+        } else {
+            startNewRecording();
+            record();
+        }
     }
 
     public void record() {
         recorder.start();
-        timerWidget.start();
-        meterWidget.holdClip();
-        ampliformWidget.start();
-        setRecordingStyle();
-        setState("recording");
-    }
-
-    public void pause() {
-        timerWidget.stop();
-        recorder.pause();
-        ampliformWidget.stop();
-        setDefaultStyle();
-        setState("paused");
-    }
-
-    public void resume() {
-        recorder.resume();
-        timerWidget.start();
-        ampliformWidget.start();
-        setRecordingStyle();
-        setState("recording");
+        setState("waiting");
     }
 
     public void save() {
-        recorder.save();
-        fileWidget.save();
-        timerWidget.stop();
-        ampliformWidget.stop();
-        ampliformWidget.show();
-        setDefaultStyle();
+        recorder.save(fileWidget.text);
         meterWidget.hide();
+        timerWidget.hide();
+        setState("saving");
+    }
+
+    public void recordStarted() {
+        timerWidget.show();
+        timerWidget.start();
+        meterWidget.holdClip();
+        setState("recording");
+    }
+
+    public void recordStopped() {
+        timerWidget.stop();
+    }
+
+    public void recordSaved() {
+        fileWidget.save();
+        fileWidget.show();
         setState("saved");
     }
 
     public void reset() {
-        recorder.destroy();
-        recorder = null;
+        recorder.discard();
         fileWidget.destroy();
         startNewRecording();
     }
 
     public void rename() {
-        fileWidget.startRenaming();
-        ampliformWidget.hide();
-        timerWidget.hide();
+        fileWidget.input.startCapture();
         setState("rename");
     }
 
     public void renameDone() {
-        ampliformWidget.show();
-        timerWidget.show();
         setState("saved");
     }
 
     public void open() {}
 
     public void play() {}
+
+    public void stopPlaying() {}
+
+    public void monitor() {}
 
 }

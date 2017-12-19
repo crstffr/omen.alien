@@ -37,7 +37,7 @@ public class Waveform extends Visualizer {
         }
     }
 
-    public void draw() {
+    public synchronized void draw() {
 
         if (showing) {
 

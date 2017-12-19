@@ -1,7 +1,6 @@
 package omen.alien.component;
 
 import omen.alien.Const;
-import omen.alien.component.layer.Layer;
 
 public class MajorLayout extends Layout {
 
@@ -26,7 +25,7 @@ public class MajorLayout extends Layout {
     }
 
     public void keyPressed(char key) {
-        if (enabled) {
+        if (isEnabled) {
             for (int i = 0; i < Const.UI_BUTTONS.length; i++) {
                 if (Const.UI_BUTTONS[i] == key) {
                     buttonRow.buttons.get(i).trigger();

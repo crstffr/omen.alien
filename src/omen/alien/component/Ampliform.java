@@ -35,7 +35,7 @@ public class Ampliform extends Visualizer {
         return this;
     }
 
-    public void draw() {
+    public synchronized void draw() {
 
         if (showing) {
 

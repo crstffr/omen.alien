@@ -1,10 +1,13 @@
 import ddf.minim.Minim;
 import omen.alien.App;
 import omen.alien.Const;
+import omen.alien.audio.AudioDriver;
+import omen.alien.clients.RecordingClient;
 import omen.alien.component.*;
 import omen.alien.component.layer.StageLayer;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.scope.ScopeLayout;
+import omen.alien.util.FileCounter;
 import processing.core.PApplet;
 
 import java.util.LinkedHashMap;
@@ -12,6 +15,9 @@ import java.util.LinkedHashMap;
 public class OmenAlien extends PApplet {
 
     FPS fps;
+    ScopeLayout scopeLayout;
+    RecordLayout recordLayout;
+
     LinkedHashMap<String, Layout> layouts;
 
     public static void main(String args[]) {
@@ -23,7 +29,6 @@ public class OmenAlien extends PApplet {
         if (displayWidth > 800) {
             size(800, 480, Const.RENDERER2D);
         } else {
-            // size(500, 340, Const.RENDERER2D);
             fullScreen(Const.RENDERER2D);
         }
         App.inst = this;
@@ -38,17 +43,23 @@ public class OmenAlien extends PApplet {
 
         layouts = new LinkedHashMap<>();
 
-        App.minim = new Minim(this);
+        App.audio = new AudioDriver(this);
         App.font = loadFont(Const.FONT_FILE);
         App.stage = new StageLayer(Const.RENDERER2D);
-        //App.audioInput = App.minim.getLineIn(2, 2048);
+        App.fileCounter = new FileCounter();
+
+        App.recordingClient = new RecordingClient();
+        App.recordingClient.connect();
 
         fps = new FPS();
-        layouts.put("scope", new ScopeLayout());
-        layouts.put("record", new RecordLayout());
+        scopeLayout = new ScopeLayout();
+        recordLayout = new RecordLayout();
+        
+        layouts.put("scope", scopeLayout);
+        layouts.put("record", recordLayout);
 
-        switchLayout("scope");
-        //switchLayout("record");
+        //switchLayout("scope");
+        switchLayout("record");
 
     }
 
@@ -57,6 +68,7 @@ public class OmenAlien extends PApplet {
     }
 
     public void switchLayout(String layout) {
+        if (App.layout.equals(layout)) { return; }
         for(String key : layouts.keySet()) {
             if (key.equals(layout)) {
                 App.layout = layout;
@@ -90,6 +102,10 @@ public class OmenAlien extends PApplet {
                 break;
             case '2':
                 switchLayout("record");
+                break;
+            case 'w':
+                switchLayout("record");
+                recordLayout.toggleRecord();
                 break;
         }
 

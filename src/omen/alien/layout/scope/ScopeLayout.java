@@ -18,7 +18,7 @@ public class ScopeLayout extends MajorLayout {
         color = Const.GREEN;
         waveform = new Waveform();
         waveform.setColor(color);
-        input = App.minim.getLineIn(2, 2048, 96000, 8);
+        input = App.audio.input;
 
         setupButtons();
 
@@ -50,7 +50,7 @@ public class ScopeLayout extends MajorLayout {
         }));
         buttonRow.addButton(new Button(Const.UI_BUTTON_2, () -> {
             int m = waveform.trigger;
-            return waveform.locked ? (waveform.falling ? "FALL +" + m : "RISE +" + m) : "-";
+            return waveform.locked ? (waveform.falling ? "RISE +" + m : "FALL +" + m) : "-";
         }, () -> {
             if (waveform.locked) {
                 waveform.toggleFalling();

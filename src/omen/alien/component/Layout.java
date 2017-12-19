@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Layout {
 
-    public boolean enabled = false;
+    public boolean isEnabled = false;
 
     ArrayList<Runnable> onDrawHandlers;
     ArrayList<Runnable> onClearHandlers;
@@ -33,7 +33,7 @@ public class Layout {
      * @return Layout
      */
     public Layout enable() {
-        enabled = true;
+        isEnabled = true;
         enabled();
         return this;
     }
@@ -51,7 +51,7 @@ public class Layout {
      * @return Layout
      */
     public Layout disable() {
-        enabled = false;
+        isEnabled = false;
         disabled();
         return this;
     }

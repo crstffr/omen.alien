@@ -12,16 +12,26 @@ public class Const implements PConstants {
     final public static String RENDERER2D = JAVA2D;
     final public static String RENDERER3D = JAVA2D;
     final public static String FONT_FILE = "AnonymousPro-Bold-48.vlw";
+    final public static String ROOT_DIR = System.getProperty("user.dir") + "/";
 
-    final public static String ROOT_PATH = System.getProperty("user.dir") + "/";
-    final public static String VARS_PATH = ROOT_PATH + "vars/";
-    final public static String SAMPLE_PATH = ROOT_PATH + "samples/";
+    final public static String VARS_PATH = ROOT_DIR + "vars/";
+    final public static String SAMPLE_PATH = ROOT_DIR + "samples/";
     final public static String SAMPLE_TEMP_PATH = SAMPLE_PATH + "tmp/";
     final public static String SAMPLE_USER_PATH = SAMPLE_PATH + "user/";
+
+    final public static String USER_DIR = ROOT_DIR + "user/";
+    final public static String USER_DATA_DIR = USER_DIR + "data/";
+    final public static String USER_AUDIO_DIR = USER_DIR + "audio/";
+    final public static String FILE_COUNTER = USER_DIR + ".filecount";
+
+    final public static int WS_RECORDING_PORT = 8901;
+    final public static int WS_PLAYBACK_PORT = 8902;
+    final public static int WS_WAVEFORM_PORT = 8903;
 
     final public static int ESC_KEY = 10000;
     final public static int WIDTH = App.inst.width;
     final public static int HEIGHT = App.inst.height;
+    final public static int SAMPLE_RATE = 48000; // don't change
 
     final public static char UI_BUTTON_1 = 'a';
     final public static char UI_BUTTON_2 = 's';
