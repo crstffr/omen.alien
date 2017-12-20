@@ -1,8 +1,7 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
-import omen.alien.audio.Player;
-import omen.alien.audio.Recorder;
+import omen.alien.audio.*;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
 import omen.alien.component.*;
@@ -139,7 +138,9 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void toggleRecord() {
-        if (is("recording") || is("waiting")) {
+        if (is("waiting")) {
+            // do nothing.
+        } else if (is("recording")){
             save();
         } else {
             startNewRecording();

@@ -3,6 +3,7 @@ import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.audio.AudioDriver;
 import omen.alien.clients.RecordingClient;
+import omen.alien.clients.WaveformClient;
 import omen.alien.component.*;
 import omen.alien.component.layer.StageLayer;
 import omen.alien.layout.record.RecordLayout;
@@ -51,10 +52,13 @@ public class OmenAlien extends PApplet {
         App.recordingClient = new RecordingClient();
         App.recordingClient.connect();
 
+        App.waveformClient = new WaveformClient();
+        App.waveformClient.connect();
+
         fps = new FPS();
         scopeLayout = new ScopeLayout();
         recordLayout = new RecordLayout();
-        
+
         layouts.put("scope", scopeLayout);
         layouts.put("record", recordLayout);
 

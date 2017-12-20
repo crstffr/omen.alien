@@ -15,7 +15,7 @@ public class RecordStateRecordingLayout extends RecordStateLayout {
         buttonRow.addButton(new Button(Const.UI_BUTTON_1, "SAVE", () -> parent.save()));
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
-        buttonRow.addButton(new Button(Const.UI_BUTTON_4, "RESET", () -> parent.reset()));
+        buttonRow.addButton(new Button(Const.UI_BUTTON_4, "DISCARD", () -> parent.reset()));
     }
 
 }

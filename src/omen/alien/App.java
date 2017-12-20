@@ -1,13 +1,12 @@
 package omen.alien;
 
 import ddf.minim.*;
-import ddf.minim.spi.AudioOut;
 import omen.alien.audio.AudioDriver;
-import omen.alien.clients.RecordingClient;
-import omen.alien.util.FileCounter;
 import processing.core.*;
+import omen.alien.clients.*;
 import omen.alien.component.*;
 import omen.alien.component.layer.*;
+import omen.alien.util.FileCounter;
 
 public class App {
 
@@ -26,6 +25,7 @@ public class App {
 
     // Daemon Clients
     public static RecordingClient recordingClient;
+    public static WaveformClient waveformClient;
 
 
 }

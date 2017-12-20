@@ -1,16 +1,14 @@
 package omen.alien.clients;
 
-import com.google.gson.Gson;
+import omen.alien.App;
 import omen.alien.Const;
-import omen.alien.interf.WsMessage;
+import java.util.ArrayList;
+import com.google.gson.Gson;
 import processing.data.JSONObject;
+import omen.alien.interf.WsMessage;
 import com.neovisionaries.ws.client.*;
 
-import java.util.ArrayList;
 
-/**
- * Created by crstffr on 12/10/17.
- */
 public class RecordingClient {
 
     WebSocket ws;
@@ -44,7 +42,7 @@ public class RecordingClient {
                             recordingStopped();
                             break;
                         case "saved":
-                            int millis = Math.round(msg.duration * 1000);
+                            App.waveformClient.generateDat(msg.id);
                             recordingSaved();
                             break;
                     }
@@ -71,7 +69,7 @@ public class RecordingClient {
         opts.put("sampleRate", sampleRate);
         JSONObject json = new JSONObject();
         json.put("type", "record");
-        json.put("record", opts);
+        json.put("opts", opts);
         this.ws.sendText(json.format(0).toString().replace("\n", ""));
     }
 
@@ -86,7 +84,7 @@ public class RecordingClient {
         opts.put("filename", filename);
         JSONObject json = new JSONObject();
         json.put("type", "save");
-        json.put("save", opts);
+        json.put("opts", opts);
         this.ws.sendText(json.format(0).toString().replace("\n", ""));
     }
 

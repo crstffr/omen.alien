@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 
-/**
- * Created by crstffr on 11/1/17.
- */
 public class Recorder {
 
     RecordingClient client = App.recordingClient;
