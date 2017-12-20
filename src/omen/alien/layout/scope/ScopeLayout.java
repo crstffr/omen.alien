@@ -5,9 +5,6 @@ import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.*;
 
-/**
- * Created by crstffr on 10/28/17.
- */
 public class ScopeLayout extends MajorLayout {
 
     Waveform waveform;
@@ -22,14 +19,14 @@ public class ScopeLayout extends MajorLayout {
 
         setupButtons();
 
+        waveform.attachToInput(input);
+
         onEnable(() -> {
-            waveform.attachToInput(input);
             waveform.startCapture().show();
         });
 
         onDisable(() -> {
-            waveform.stopCapture().hide();
-            waveform.detachInput().clear();
+            waveform.stopCapture().clear().hide();
         });
 
         onClear(() -> {

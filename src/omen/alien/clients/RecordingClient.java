@@ -42,8 +42,11 @@ public class RecordingClient {
                             recordingStopped();
                             break;
                         case "saved":
-                            App.waveformClient.generateDat(msg.id);
-                            recordingSaved();
+                            App.waveformClient.generateDat(msg.id, () -> {
+                                App.waveformClient.generatePng(msg.id, 1, () -> {
+                                    recordingSaved();
+                                });
+                            });
                             break;
                     }
                 }

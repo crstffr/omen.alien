@@ -1,9 +1,7 @@
 package omen.alien.interf;
 
-/**
- * Created by crstffr on 12/13/17.
- */
 public class WsMessage {
+    public Integer zoom;
     public String type;
     public String path;
     public String msg;

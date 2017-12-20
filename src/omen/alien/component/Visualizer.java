@@ -4,9 +4,6 @@ import ddf.minim.AudioInput;
 import ddf.minim.AudioListener;
 import omen.alien.component.layer.Layer;
 
-/**
- * Created by crstffr on 10/22/17.
- */
 public class Visualizer implements AudioListener {
 
     public int color;

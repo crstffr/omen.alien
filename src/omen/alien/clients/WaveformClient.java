@@ -15,27 +15,10 @@ public class WaveformClient {
 
     public WaveformClient() {
 
-        WaveformClient _this = this;
-
         String address = "ws://localhost:" + Const.WS_WAVEFORM_PORT;
 
         try {
-
             this.ws = new WebSocketFactory().createSocket(address);
-
-            this.ws.addListener(new WebSocketAdapter() {
-                public void onTextMessage(WebSocket ws, String payload) {
-                    WsMessage msg = g.fromJson(payload, WsMessage.class);
-                    System.out.println(payload);
-
-                    switch (msg.type) {
-                        case "datGenerated":
-                            System.out.println("now what?");
-                            break;
-                    }
-                }
-            });
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -50,13 +33,47 @@ public class WaveformClient {
         }
     }
 
-    public void generateDat(String id) {
+    public void generateDat(String id, Runnable cb) {
+
         JSONObject opts = new JSONObject();
         opts.put("id", id);
         JSONObject json = new JSONObject();
         json.put("type", "generateDat");
         json.put("opts", opts);
-        this.ws.sendText(json.format(0).toString().replace("\n", ""));
+
+        this.ws.sendText(json.format(0).replace("\n", ""));
+
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("datGenerated") && msg.id.equals(id)) {
+                    ws.removeListener(this);
+                    cb.run();
+                }
+            }
+        });
+    }
+
+    public void generatePng(String id, Integer zoom, Runnable cb) {
+
+        JSONObject opts = new JSONObject();
+        opts.put("id", id);
+        opts.put("zoom", zoom);
+        JSONObject json = new JSONObject();
+        json.put("type", "generatePng");
+        json.put("opts", opts);
+
+        this.ws.sendText(json.format(0).replace("\n", ""));
+
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("pngGenerated") && msg.id.equals(id) && msg.zoom.equals(zoom)) {
+                    ws.removeListener(this);
+                    cb.run();
+                }
+            }
+        });
     }
 
 }

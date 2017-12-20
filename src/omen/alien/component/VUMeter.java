@@ -7,9 +7,6 @@ import omen.alien.component.layer.Layer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Created by crstffr on 11/1/17.
- */
 public class VUMeter extends Visualizer {
 
     Timer timer;

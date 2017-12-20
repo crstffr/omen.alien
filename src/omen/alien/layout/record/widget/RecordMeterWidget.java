@@ -31,14 +31,17 @@ public class RecordMeterWidget extends RecordWidget {
         meterR = new VUMeter(2, x, y + meterH + p, w, meterH);
         input = App.audio.input;
 
+        meterL.attachToInput(input);
+        meterR.attachToInput(input);
+
         onEnable(() -> {
-            meterL.attachToInput(input).startCapture().show();
-            meterR.attachToInput(input).startCapture().show();
+            meterL.startCapture().show();
+            meterR.startCapture().show();
         });
 
         onDisable(() -> {
-            meterL.stopCapture().detachInput().hide();
-            meterR.stopCapture().detachInput().hide();
+            meterL.stopCapture().hide();
+            meterR.stopCapture().hide();
         });
 
         onReset(() -> {
