@@ -50,6 +50,7 @@ public class Layer {
         canvas.beginDraw();
         canvas.clear();
         canvas.noStroke();
+        canvas.noTint();
         canvas.noFill();
     }
 

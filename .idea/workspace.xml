@@ -7,16 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e752a8c-6cb9-4ef9-9031-0329ce15fcb4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/omen/alien/audio/Recorder.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordAmpliformWidget.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/OmenAlien.jar" afterPath="$PROJECT_DIR$/dist/OmenAlien.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java" afterPath="$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java" afterPath="$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/VUMeter.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/VUMeter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/Visualizer.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/Visualizer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java" afterPath="$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordMeterWidget.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordMeterWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/scope/ScopeLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/scope/ScopeLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/layer/Layer.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/layer/Layer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,28 +40,18 @@
       <file leaf-file-name="RecordLayout.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+            <state relative-caret-position="267">
+              <caret line="123" column="37" lean-forward="true" selection-start-line="123" selection-start-column="37" selection-end-line="123" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveformClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java">
+      <file leaf-file-name="RecordFileWidget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordFileWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="47" column="69" lean-forward="true" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebSocket.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/nv-websocket-client-2.3-sources.jar!/com/neovisionaries/ws/client/WebSocket.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="2014" column="50" lean-forward="true" selection-start-line="2014" selection-start-column="50" selection-end-line="2014" selection-end-column="50" />
+            <state relative-caret-position="326">
+              <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -70,18 +60,18 @@
       <file leaf-file-name="RecordingClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+            <state relative-caret-position="517">
+              <caret line="92" column="38" lean-forward="true" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScopeLayout.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/scope/ScopeLayout.java">
+      <file leaf-file-name="WaveformClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+            <state relative-caret-position="476">
+              <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -90,18 +80,18 @@
       <file leaf-file-name="Waveform.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Waveform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+            <state relative-caret-position="266">
+              <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Visualizer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Visualizer.java">
+      <file leaf-file-name="RecordWaveformWidget.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="532">
+              <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -118,19 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>// recorder</find>
-      <find>// recorder.</find>
-      <find>destro</find>
-      <find>m</find>
-      <find>moni</find>
-      <find>monit</find>
-      <find>monito</find>
-      <find>monitor</find>
-      <find>ea</find>
-      <find>ema</find>
-      <find>em</find>
-      <find>e</find>
-      <find>en</find>
       <find>enabl</find>
       <find>enable</find>
       <find>ampliformWidget.</find>
@@ -139,7 +116,6 @@
       <find>filepath</find>
       <find>downsample</find>
       <find>recorder =</find>
-      <find>recorder.save</find>
       <find>pause</find>
       <find>new Recorder</find>
       <find>recorder =</find>
@@ -147,7 +123,21 @@
       <find>setRecord</find>
       <find>addList</find>
       <find>removeList</find>
+      <find>parent</find>
+      <find>recorder.save</find>
       <find>_this</find>
+      <find>recorder.</find>
+      <find>App.</find>
+      <find>a</find>
+      <find>array</find>
+      <find>arrayLi</find>
+      <find>arrayL</find>
+      <find>array</find>
+      <find>arrayh</find>
+      <find>arrayha</find>
+      <find>arrayhas</find>
+      <find>waveformWidt</find>
+      <find>waveformWid</find>
     </findStrings>
     <replaceStrings>
       <replace>project.iml</replace>
@@ -182,7 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Tui.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/FPS.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Frame.java" />
         <option value="$PROJECT_DIR$/dist/vars/fileCount.idx" />
@@ -195,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/omen/alien/component/Recorder.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Waveform.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Ampliform.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordAmpliformWidget.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateReadyLayout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/files/Waveform.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/files/Recording.java" />
@@ -209,30 +197,32 @@
         <option value="$PROJECT_DIR$/src/omen/alien/audio/Player.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordFileWidget.java" />
         <option value="$PROJECT_DIR$/dist/user/.filecount" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/audio/AudioDriver.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/interf/WebsocketMessage.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/util/TimeCounter.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordTimerWidget.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavedLayout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/Const.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateRecordingLayout.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/App.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/audio/Recorder.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/audio/Waveform.java" />
         <option value="$PROJECT_DIR$/src/OmenAlien.java" />
         <option value="$PROJECT_DIR$/src/OmenAlien.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java" />
-        <option value="$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/Visualizer.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/component/VUMeter.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordMeterWidget.java" />
         <option value="$PROJECT_DIR$/src/omen/alien/layout/scope/ScopeLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavedLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/audio/Recorder.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordAmpliformWidget.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/component/layer/Layer.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" />
+        <option value="$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java" />
       </list>
     </option>
   </component>
@@ -425,6 +415,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -460,6 +476,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="record" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen.alien.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="omen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alien" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="record" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -643,7 +693,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.31445992" />
-    <property name="SearchEverywhereHistoryKey" value="Coun&#9;FILE&#9;file:///Users/crstffr/dev/omen.alien.java/src/omen/alien/util/Counter.java" />
+    <property name="SearchEverywhereHistoryKey" value="WsMe&#9;FILE&#9;file:///Users/crstffr/dev/omen.alien.java/src/omen/alien/interf/WsMessage.java&#10;Coun&#9;FILE&#9;file:///Users/crstffr/dev/omen.alien.java/src/omen/alien/util/Counter.java" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
@@ -925,11 +975,11 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34288356" sideWeight="0.5018431" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11285847" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11285847" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32428116" sideWeight="0.49815693" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24174654" sideWeight="0.49815693" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21352503" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2284345" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21565495" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1058,14 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordFileWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-376">
-          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStatePausedLayout.java" />
     <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateLayout.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1091,30 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/component/ButtonRow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1131,50 +1149,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavedLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/MajorLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordTimerWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/audio/Waveform.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1187,58 +1165,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/audio/Recorder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/nv-websocket-client-2.3-sources.jar!/com/neovisionaries/ws/client/WebSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="2014" column="50" lean-forward="true" selection-start-line="2014" selection-start-column="50" selection-end-line="2014" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/core.jar!/processing/data/JSONObject.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="114" column="49" lean-forward="false" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="47" column="69" lean-forward="true" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Visualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1259,58 +1189,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/RecordWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/component/layer/StageLayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/layer/ChildLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/layer/Layer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="55" column="25" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordAmpliformWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Waveform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1323,10 +1205,178 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Visualizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="962">
+          <caret line="72" column="30" lean-forward="true" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/nv-websocket-client-2.3-sources.jar!/com/neovisionaries/ws/client/WebSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="2013" column="5" lean-forward="true" selection-start-line="2013" selection-start-column="5" selection-end-line="2013" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateWaitingLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/scope/ScopeLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        <state relative-caret-position="171">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavingLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="64" lean-forward="true" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/state/RecordStateSavedLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/audio/Recorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/RecordingClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="92" column="38" lean-forward="true" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/interf/WsMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/clients/WaveformClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordFileWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/layer/ChildLayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="62" lean-forward="true" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/RecordWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Waveform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/MajorLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="123" column="37" lean-forward="true" selection-start-line="123" selection-start-column="37" selection-end-line="123" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/Layout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1143">
+          <caret line="75" column="38" lean-forward="true" selection-start-line="75" selection-start-column="38" selection-end-line="75" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OmenAlien.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="89" column="51" lean-forward="true" selection-start-line="89" selection-start-column="51" selection-end-line="89" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/component/layer/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordTimerWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/omen/alien/layout/record/widget/RecordWaveformWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding />
         </state>
       </provider>

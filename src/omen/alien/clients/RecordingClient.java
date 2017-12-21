@@ -12,50 +12,25 @@ import com.neovisionaries.ws.client.*;
 public class RecordingClient {
 
     WebSocket ws;
-
     Gson g = new Gson();
 
-    ArrayList<Runnable> onStartHandlers = new ArrayList<>();
-    ArrayList<Runnable> onStopHandlers = new ArrayList<>();
-    ArrayList<Runnable> onSaveHandlers = new ArrayList<>();
+    public boolean busy;
+    WsMessage savedResult;
 
     public RecordingClient() {
-
-        RecordingClient _this = this;
 
         String address = "ws://localhost:" + Const.WS_RECORDING_PORT;
 
         try {
-
             this.ws = new WebSocketFactory().createSocket(address);
-
-            this.ws.addListener(new WebSocketAdapter() {
-                public void onTextMessage(WebSocket ws, String payload) {
-                    WsMessage msg = g.fromJson(payload, WsMessage.class);
-                    System.out.println(payload);
-
-                    switch (msg.type) {
-                        case "started":
-                            recordingStarted();
-                            break;
-                        case "stopped":
-                            recordingStopped();
-                            break;
-                        case "saved":
-                            App.waveformClient.generateDat(msg.id, () -> {
-                                App.waveformClient.generatePng(msg.id, 1, () -> {
-                                    recordingSaved();
-                                });
-                            });
-                            break;
-                    }
-                }
-            });
-
         } catch (Exception e) {
             System.out.println(e);
         }
 
+    }
+
+    public WsMessage getResult() {
+        return savedResult;
     }
 
     public void connect() {
@@ -66,60 +41,76 @@ public class RecordingClient {
         }
     }
 
-    public void record(Integer channels, Integer sampleRate) {
+    public void record(Integer channels, Integer sampleRate, Runnable cb) {
         JSONObject opts = new JSONObject();
         opts.put("channels", channels);
         opts.put("sampleRate", sampleRate);
         JSONObject json = new JSONObject();
         json.put("type", "record");
         json.put("opts", opts);
-        this.ws.sendText(json.format(0).toString().replace("\n", ""));
+
+        busy = true;
+        this.ws.sendText(json.format(0).replace("\n", ""));
+
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("started")) {
+                    ws.removeListener(this);
+                    cb.run();
+                }
+            }
+        });
     }
 
     public void stop() {
         JSONObject json = new JSONObject();
         json.put("type", "stop");
-        this.ws.sendText(json.format(0).toString().replace("\n", ""));
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("stopped")) {
+                    ws.removeListener(this);
+                    busy = false;
+                }
+            }
+        });
     }
 
-    public void save(String filename) {
+    public void save(String filename, Runnable cb) {
         JSONObject opts = new JSONObject();
         opts.put("filename", filename);
         JSONObject json = new JSONObject();
         json.put("type", "save");
         json.put("opts", opts);
-        this.ws.sendText(json.format(0).toString().replace("\n", ""));
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("saved")) {
+                    ws.removeListener(this);
+                    savedResult = msg;
+                    busy = false;
+                    cb.run();
+                }
+            }
+        });
     }
 
     public void discard() {
         JSONObject json = new JSONObject();
         json.put("type", "discard");
-        this.ws.sendText(json.format(0).toString().replace("\n", ""));
-    }
-
-
-    public void recordingStarted() {
-        for (Runnable fn : onStartHandlers) fn.run();
-    }
-
-    public void recordingStopped() {
-        for (Runnable fn : onStopHandlers) fn.run();
-    }
-
-    public void recordingSaved() {
-        for (Runnable fn : onSaveHandlers) fn.run();
-    }
-
-    public void onRecordingStarted(Runnable fn) {
-        onStartHandlers.add(fn);
-    }
-
-    public void onRecordingStopped(Runnable fn) {
-        onStopHandlers.add(fn);
-    }
-
-    public void onRecordingSaved(Runnable fn) {
-        onSaveHandlers.add(fn);
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("discarded")) {
+                    ws.removeListener(this);
+                    busy = false;
+                }
+            }
+        });
     }
 
 }

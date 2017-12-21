@@ -1,7 +1,9 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
-import omen.alien.audio.*;
+import omen.alien.clients.RecordingClient;
+import omen.alien.clients.WaveformClient;
+import omen.alien.interf.WsMessage;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
 import omen.alien.component.*;
@@ -17,20 +19,35 @@ public class RecordLayout extends MajorLayout {
 
     HashMap<String, Layout> states;
     ArrayList<RecordWidget> widgets;
+    RecordingClient recordingClient;
+    WaveformClient waveformClient;
 
-    public Player player;
-    public Recorder recorder = new Recorder();
+    // Widgets
 
     RecordFileWidget fileWidget;
     RecordMeterWidget meterWidget;
     RecordTimerWidget timerWidget;
     RecordHeaderWidget headerWidget;
+    RecordWaveformWidget waveformWidget;
+
+    // Layouts
+
+    RecordStateReadyLayout readyLayout;
+    RecordStateSavedLayout savedLayout;
+    RecordStateRenameLayout renameLayout;
+    RecordStateSavingLayout savingLayout;
+    RecordStateWaitingLayout waitingLayout;
+    RecordStatePlayingLayout playingLayout;
+    RecordStateRecordingLayout recordingLayout;
 
     public RecordLayout() {
         super();
         color = Const.RED;
         states = new HashMap<>();
         widgets = new ArrayList<>();
+
+        recordingClient = App.recordingClient;
+        waveformClient = App.waveformClient;
 
         setupWidgets();
         setupStateLayouts();
@@ -48,8 +65,8 @@ public class RecordLayout extends MajorLayout {
             stateObj.disable();
             timerWidget.reset();
             fileWidget.destroy();
-            if (recorder != null) {
-                recorder.discard();
+            if (recordingClient.busy) {
+                recordingClient.discard();
             }
             for (RecordWidget widget : widgets) {
                 widget.disable().clear();
@@ -61,44 +78,42 @@ public class RecordLayout extends MajorLayout {
             timerWidget.run();
             for (RecordWidget widget : widgets) widget.draw();
         });
-
-        recorder.onStart(() -> {
-            recordStarted();
-        });
-
-        recorder.onStop(() -> {
-            recordStopped();
-        });
-
-        recorder.onSave(() -> {
-            recordSaved();
-        });
     }
 
     void setupWidgets() {
+        waveformWidget = new RecordWaveformWidget(this);
         headerWidget = new RecordHeaderWidget(this);
         timerWidget = new RecordTimerWidget(this);
         meterWidget = new RecordMeterWidget(this);
         fileWidget = new RecordFileWidget(this);
 
+        widgets.add(waveformWidget);
         widgets.add(fileWidget);
         widgets.add(timerWidget);
         widgets.add(meterWidget);
         widgets.add(headerWidget);
 
         headerWidget.setColor(Const.RED).show();
-        fileWidget.setColor(Const.WHITE).hide();
-        timerWidget.setColor(Const.WHITE).hide();
+        fileWidget.setColor(Const.WHITE);
+        timerWidget.setColor(Const.WHITE);
     }
 
     void setupStateLayouts() {
-        states.put("ready", new RecordStateReadyLayout(this));
-        states.put("saved", new RecordStateSavedLayout(this));
-        states.put("rename", new RecordStateRenameLayout(this));
-        states.put("saving", new RecordStateSavingLayout(this));
-        states.put("waiting", new RecordStateWaitingLayout(this));
-        states.put("playing", new RecordStatePlayingLayout(this));
-        states.put("recording", new RecordStateRecordingLayout(this));
+        readyLayout = new RecordStateReadyLayout(this);
+        savedLayout = new RecordStateSavedLayout(this);
+        renameLayout = new RecordStateRenameLayout(this);
+        savingLayout = new RecordStateSavingLayout(this);
+        waitingLayout = new RecordStateWaitingLayout(this);
+        playingLayout = new RecordStatePlayingLayout(this);
+        recordingLayout = new RecordStateRecordingLayout(this);
+
+        states.put("ready", readyLayout);
+        states.put("saved", savedLayout);
+        states.put("rename", renameLayout);
+        states.put("saving", savingLayout);
+        states.put("waiting", waitingLayout);
+        states.put("playing", playingLayout);
+        states.put("recording", recordingLayout);
     }
 
     public void keyPressed(char key) {
@@ -131,6 +146,7 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void startNewRecording() {
+        waveformWidget.reset().hide();
         fileWidget.reset().hide();
         meterWidget.reset().show();
         timerWidget.reset().hide();
@@ -140,7 +156,7 @@ public class RecordLayout extends MajorLayout {
     public void toggleRecord() {
         if (is("waiting")) {
             // do nothing.
-        } else if (is("recording")){
+        } else if (is("recording")) {
             save();
         } else {
             startNewRecording();
@@ -149,36 +165,41 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void record() {
-        recorder.start();
         setState("waiting");
+        recordingClient.record(2, 44100, () -> {
+            timerWidget.show();
+            timerWidget.start();
+            meterWidget.holdClip();
+            setState("recording");
+        });
     }
 
     public void save() {
-        recorder.save(fileWidget.text);
         meterWidget.hide();
+        timerWidget.stop();
         timerWidget.hide();
         setState("saving");
-    }
-
-    public void recordStarted() {
-        timerWidget.show();
-        timerWidget.start();
-        meterWidget.holdClip();
-        setState("recording");
-    }
-
-    public void recordStopped() {
-        timerWidget.stop();
-    }
-
-    public void recordSaved() {
-        fileWidget.save();
-        fileWidget.show();
-        setState("saved");
+        recordingClient.save(fileWidget.text, () -> {
+            WsMessage recording = recordingClient.getResult();
+            waveformClient.generateDat(recording.id, () -> {
+                Integer zoomLevel = 1;
+                waveformClient.generatePng(recording.id, zoomLevel, () -> {
+                    WsMessage pngResult = waveformClient.pngResults.get(recording.id);
+                    if (pngResult != null) {
+                        waveformWidget.load(pngResult.path);
+                        waveformWidget.show();
+                    }
+                    fileWidget.save();
+                    fileWidget.show();
+                    setState("saved");
+                });
+            });
+        });
     }
 
     public void reset() {
-        recorder.discard();
+        recordingClient.discard();
+        waveformWidget.clear();
         fileWidget.destroy();
         startNewRecording();
     }
