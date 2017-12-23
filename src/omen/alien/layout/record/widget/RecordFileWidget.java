@@ -11,7 +11,7 @@ public class RecordFileWidget extends RecordWidget {
     int h = 26;
     int w = App.stage.w;
     int x = App.stage.centerX(w);
-    int y = App.stage.centerY(h) - 50;
+    int y = App.stage.centerY(h);
 
     String tmpName = "";
     public UserInput input = new UserInput();
@@ -46,6 +46,9 @@ public class RecordFileWidget extends RecordWidget {
         });
 
         input.onEnter(() -> {
+            if (text.isEmpty()) {
+                setText(getFilename());
+            }
             input.stopCapture();
             parent.renameDone();
         });

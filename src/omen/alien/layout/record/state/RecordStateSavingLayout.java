@@ -8,8 +8,14 @@ public class RecordStateSavingLayout extends RecordStateLayout {
 
     public RecordStateSavingLayout(RecordLayout _parent) {
         super(_parent);
-        onDisable(() -> parent.setHeader(""));
-        onEnable(() -> parent.setHeader("SAVING"));
+        onDisable(() -> {
+            parent.setHeader("");
+            parent.setMessage("");
+        });
+        onEnable(() -> {
+            parent.setHeader("");
+            parent.setMessage("SAVING");
+        });
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank

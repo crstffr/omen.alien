@@ -6,8 +6,8 @@ import omen.alien.component.layer.StageLayer;
 
 public class Waveform extends Visualizer {
 
-    public int trigger = 2;
-    float weight = (float)2;
+    public int channel = 1;
+    float weight = (float)1;
     public boolean locked = false;
     public boolean falling = false;
 
@@ -15,29 +15,21 @@ public class Waveform extends Visualizer {
         super(new StageLayer(Const.RENDERER3D));
     }
 
-    public boolean toggleLock() {
+    public void toggleLock() {
         locked = !locked;
-        return locked;
     }
 
-    public boolean toggleFalling() {
+    public void toggleFalling() {
         falling = !falling;
-        return falling;
     }
 
-    public void decreaseTrigger() {
-        if (trigger > 2) {
-            trigger = trigger - 2;
-        }
+    public void toggleChannel() {
+        channel = (channel == 1) ? 2 : 1;
     }
 
-    public void increaseTrigger() {
-        if (trigger < 64) {
-            trigger = trigger + 2;
-        }
-    }
+    public void draw() {
 
-    public synchronized void draw() {
+        float[] set;
 
         if (showing) {
 
@@ -45,14 +37,9 @@ public class Waveform extends Visualizer {
                 return;
             }
 
-            float[] set;
-            if (attachedTo.left.level() < attachedTo.right.level()) {
-                set = right;
-            } else {
-                set = left;
-            }
-
             layer.init();
+
+            set = (channel == 1) ? left : right;
 
             // Sample values
             float currSamp;
@@ -72,7 +59,7 @@ public class Waveform extends Visualizer {
             for (int i = 0; i < set.length - 1 && i < layer.w + zc; i++) {
 
                 currSamp = set[i];
-                nextSamp = set[i + trigger];
+                nextSamp = set[i + 2];
 
                 if (falling) {
                     // Falling Trigger

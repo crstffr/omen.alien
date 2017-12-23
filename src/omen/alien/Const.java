@@ -11,7 +11,7 @@ public class Const implements PConstants {
 
     final public static String RENDERER2D = JAVA2D;
     final public static String RENDERER3D = JAVA2D;
-    final public static String FONT_FILE = "AnonymousPro-Bold-48.vlw";
+    final public static String FONT_FILE = "AnonymousPro-Bold-110.vlw";
     final public static String ROOT_DIR = System.getProperty("user.dir") + "/";
 
     final public static String VARS_PATH = ROOT_DIR + "vars/";
@@ -27,6 +27,7 @@ public class Const implements PConstants {
     final public static int WS_RECORDING_PORT = 8901;
     final public static int WS_PLAYBACK_PORT = 8902;
     final public static int WS_WAVEFORM_PORT = 8903;
+    final public static int WS_GPIO_PORT = 8904;
 
     final public static int ESC_KEY = 10000;
     final public static int WIDTH = App.inst.width;

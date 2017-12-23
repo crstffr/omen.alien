@@ -59,7 +59,7 @@ public class VUMeter extends Visualizer {
         clipHold = false;
     }
 
-    public synchronized void draw() {
+    public void draw() {
         if (showing) {
 
             layer.init();

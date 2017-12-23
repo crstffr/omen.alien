@@ -8,8 +8,14 @@ public class RecordStateWaitingLayout extends RecordStateLayout {
 
     public RecordStateWaitingLayout(RecordLayout _parent) {
         super(_parent);
-        onDisable(() -> parent.setHeader(""));
-        onEnable(() -> parent.setHeader("WAIT"));
+        onDisable(() -> {
+            parent.setHeader("");
+            parent.setMessage("");
+        });
+        onEnable(() -> {
+            parent.setHeader("");
+            parent.setMessage("GET READY");
+        });
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank
         buttonRow.addButton(); // blank

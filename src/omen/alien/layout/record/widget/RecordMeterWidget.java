@@ -1,26 +1,21 @@
 package omen.alien.layout.record.widget;
 
-import ddf.minim.AudioInput;
 import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.VUMeter;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.record.RecordWidget;
 
-/**
- * Created by crstffr on 11/1/17.
- */
 public class RecordMeterWidget extends RecordWidget {
 
     int p = 15;
     int h = 80;
     int w = (Const.WIDTH / 4) * 3;
     int x = App.stage.centerX(w);
-    int y = App.stage.centerY(h) + 100;
+    int y = App.stage.centerY(h) + 25;
 
     VUMeter meterL;
     VUMeter meterR;
-    AudioInput input;
 
     public RecordMeterWidget(RecordLayout _parent) {
         parent = _parent;
@@ -29,17 +24,17 @@ public class RecordMeterWidget extends RecordWidget {
         int meterH = (h / 2) - p;
         meterL = new VUMeter(1, x, y, w, meterH);
         meterR = new VUMeter(2, x, y + meterH + p, w, meterH);
-        input = App.audio.input;
-
-        meterL.attachToInput(input);
-        meterR.attachToInput(input);
 
         onEnable(() -> {
+            meterL.attachToInput(App.audio.getInput());
+            meterR.attachToInput(App.audio.getInput());
             meterL.startCapture().show();
             meterR.startCapture().show();
         });
 
         onDisable(() -> {
+            meterL.detachInput();
+            meterR.detachInput();
             meterL.stopCapture().hide();
             meterR.stopCapture().hide();
         });

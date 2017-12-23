@@ -28,6 +28,7 @@ public class RecordLayout extends MajorLayout {
     RecordMeterWidget meterWidget;
     RecordTimerWidget timerWidget;
     RecordHeaderWidget headerWidget;
+    RecordMessageWidget messageWidget;
     RecordWaveformWidget waveformWidget;
 
     // Layouts
@@ -82,18 +83,21 @@ public class RecordLayout extends MajorLayout {
 
     void setupWidgets() {
         waveformWidget = new RecordWaveformWidget(this);
+        messageWidget = new RecordMessageWidget(this);
         headerWidget = new RecordHeaderWidget(this);
         timerWidget = new RecordTimerWidget(this);
         meterWidget = new RecordMeterWidget(this);
         fileWidget = new RecordFileWidget(this);
 
         widgets.add(waveformWidget);
+        widgets.add(messageWidget);
         widgets.add(fileWidget);
         widgets.add(timerWidget);
         widgets.add(meterWidget);
         widgets.add(headerWidget);
 
         headerWidget.setColor(Const.RED).show();
+        messageWidget.setColor(Const.RED);
         fileWidget.setColor(Const.WHITE);
         timerWidget.setColor(Const.WHITE);
     }
@@ -145,11 +149,17 @@ public class RecordLayout extends MajorLayout {
         headerWidget.setText(_text);
     }
 
+    public void setMessage(String _text) {
+        messageWidget.setText(_text);
+    }
+
     public void startNewRecording() {
         waveformWidget.reset().hide();
         fileWidget.reset().hide();
         meterWidget.reset().show();
         timerWidget.reset().hide();
+        messageWidget.reset().hide();
+        meterWidget.start();
         setState("ready");
     }
 
@@ -165,16 +175,26 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void record() {
+        messageWidget.show();
+        headerWidget.hide();
+        timerWidget.hide();
+        meterWidget.hide();
         setState("waiting");
         recordingClient.record(2, 44100, () -> {
             timerWidget.show();
             timerWidget.start();
+            headerWidget.show();
             meterWidget.holdClip();
+            meterWidget.show();
+            messageWidget.hide();
             setState("recording");
         });
     }
 
     public void save() {
+        messageWidget.show();
+        headerWidget.hide();
+        meterWidget.stop();
         meterWidget.hide();
         timerWidget.stop();
         timerWidget.hide();
@@ -189,6 +209,8 @@ public class RecordLayout extends MajorLayout {
                         waveformWidget.load(pngResult.path);
                         waveformWidget.show();
                     }
+                    messageWidget.hide();
+                    headerWidget.show();
                     fileWidget.save();
                     fileWidget.show();
                     setState("saved");

@@ -27,14 +27,25 @@ public class AudioDriver {
             minim.setOutputMixer(mixer);
         }
 
-        input = minim.getLineIn(2, 2048, 44100, 16);
+        connectInput();
 
+    }
+
+    public AudioInput getInput() {
+        return input;
+    }
+
+    public void connectInput() {
+        if (input != null) {
+            input.close();
+        }
+        input = minim.getLineIn(2, 2048, 44100, 16);
     }
 
     Mixer getMixer() {
         Mixer result = null;
         Mixer.Info[] info = AudioSystem.getMixerInfo();
-        for(int i = 0; i < info.length; i++) {
+        for (int i = 0; i < info.length; i++) {
             String details = info[i].toString();
             //System.out.println(details);
             if (details.substring(0, 4).equals("jack")) {

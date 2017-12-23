@@ -13,7 +13,7 @@ public class RecordTimerWidget extends RecordWidget {
     int h = 26;
     int w = 320;
     int x = App.stage.centerX(w);
-    int y = App.stage.centerY(h);
+    int y = App.stage.centerY(h) + 115;
 
     public RecordTimerWidget(RecordLayout _parent) {
 

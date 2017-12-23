@@ -80,6 +80,6 @@ public class Visualizer implements AudioListener {
         return this;
     }
 
-    public synchronized void draw() {}
+    public void draw() {}
 
 }
