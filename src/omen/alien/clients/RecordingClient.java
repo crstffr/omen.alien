@@ -57,6 +57,7 @@ public class RecordingClient {
                 WsMessage msg = g.fromJson(payload, WsMessage.class);
                 if (msg.type.equals("started")) {
                     ws.removeListener(this);
+                    busy = false;
                     cb.run();
                 }
             }

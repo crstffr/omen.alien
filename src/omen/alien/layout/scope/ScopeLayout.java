@@ -17,6 +17,7 @@ public class ScopeLayout extends MajorLayout {
         setupButtons();
 
         onEnable(() -> {
+            App.audio.connectInput();
             waveform.attachToInput(App.audio.getInput());
             waveform.startCapture().show();
         });
@@ -37,11 +38,13 @@ public class ScopeLayout extends MajorLayout {
     }
 
     void setupButtons() {
+
         buttonRow.addButton(new Button(Const.UI_BUTTON_1, () -> {
             return waveform.locked ? "LOCKED" : "UNLOCKED";
         }, () -> {
             waveform.toggleLock();
         }));
+
         buttonRow.addButton(new Button(Const.UI_BUTTON_2, () -> {
             return waveform.locked ? (waveform.falling ? "RISE" : "FALL") : "-";
         }, () -> {

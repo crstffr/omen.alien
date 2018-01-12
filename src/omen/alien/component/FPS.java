@@ -4,9 +4,6 @@ import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.component.layer.Layer;
 
-/**
- * Created by crstffr on 10/28/17.
- */
 public class FPS {
 
     Layer layer;

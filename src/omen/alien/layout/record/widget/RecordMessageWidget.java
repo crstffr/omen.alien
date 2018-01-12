@@ -2,11 +2,11 @@ package omen.alien.layout.record.widget;
 
 import omen.alien.App;
 import omen.alien.Const;
+import omen.alien.component.Widget;
 import omen.alien.component.layer.Layer;
 import omen.alien.layout.record.RecordLayout;
-import omen.alien.layout.record.RecordWidget;
 
-public class RecordMessageWidget extends RecordWidget {
+public class RecordMessageWidget extends Widget {
 
     int h = 100;
     int w = App.stage.w;

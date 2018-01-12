@@ -33,8 +33,10 @@ public class Layout {
      * @return Layout
      */
     public Layout enable() {
-        isEnabled = true;
-        enabled();
+        if (!isEnabled) {
+            isEnabled = true;
+            enabled();
+        }
         return this;
     }
 
@@ -51,8 +53,10 @@ public class Layout {
      * @return Layout
      */
     public Layout disable() {
-        isEnabled = false;
-        disabled();
+        if (isEnabled) {
+            isEnabled = false;
+            disabled();
+        }
         return this;
     }
 

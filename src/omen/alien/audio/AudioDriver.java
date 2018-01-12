@@ -8,9 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Mixer;
 import java.util.HashMap;
 
-/**
- * Created by crstffr on 11/12/17.
- */
+
 public class AudioDriver {
 
     public Minim minim;
@@ -19,7 +17,6 @@ public class AudioDriver {
     public AudioDriver(Object _this) {
 
         minim = new Minim(_this);
-
         Mixer mixer = getMixer();
 
         if (mixer != null) {

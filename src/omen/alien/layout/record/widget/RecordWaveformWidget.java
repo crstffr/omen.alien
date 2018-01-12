@@ -2,13 +2,13 @@ package omen.alien.layout.record.widget;
 
 import omen.alien.App;
 import omen.alien.Const;
+import processing.core.PImage;
+import processing.core.PApplet;
+import omen.alien.component.Widget;
 import omen.alien.component.layer.Layer;
 import omen.alien.layout.record.RecordLayout;
-import omen.alien.layout.record.RecordWidget;
-import processing.core.PApplet;
-import processing.core.PImage;
 
-public class RecordWaveformWidget extends RecordWidget {
+public class RecordWaveformWidget extends Widget {
 
     Layer tmpLayer;
 
@@ -44,7 +44,7 @@ public class RecordWaveformWidget extends RecordWidget {
         img.filter(PApplet.THRESHOLD, val.floatValue());
 
         tmpLayer.init();
-        tmpLayer.canvas.tint(255, 32);
+        tmpLayer.canvas.tint(255, 64);
         tmpLayer.canvas.image(img, x, y);
         tmpLayer.canvas.endDraw();
     }

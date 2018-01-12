@@ -1,11 +1,14 @@
 import ddf.minim.Minim;
 import omen.alien.App;
 import omen.alien.Const;
+import omen.alien.Router;
 import omen.alien.audio.AudioDriver;
+import omen.alien.clients.DatabaseClient;
 import omen.alien.clients.RecordingClient;
 import omen.alien.clients.WaveformClient;
 import omen.alien.component.*;
 import omen.alien.component.layer.StageLayer;
+import omen.alien.layout.editor.EditorLayout;
 import omen.alien.layout.record.RecordLayout;
 import omen.alien.layout.scope.ScopeLayout;
 import omen.alien.util.FileCounter;
@@ -16,10 +19,6 @@ import java.util.LinkedHashMap;
 public class OmenAlien extends PApplet {
 
     FPS fps;
-    ScopeLayout scopeLayout;
-    RecordLayout recordLayout;
-
-    LinkedHashMap<String, Layout> layouts;
 
     public static void main(String args[]) {
         PApplet.main("OmenAlien");
@@ -42,8 +41,7 @@ public class OmenAlien extends PApplet {
         frameRate(100);
         background(Const.BACKGROUND);
 
-        layouts = new LinkedHashMap<>();
-
+        App.router = new Router();
         App.audio = new AudioDriver(this);
         App.font = loadFont(Const.FONT_FILE);
         App.stage = new StageLayer(Const.RENDERER2D);
@@ -55,35 +53,17 @@ public class OmenAlien extends PApplet {
         App.waveformClient = new WaveformClient();
         App.waveformClient.connect();
 
+        App.databaseClient = new DatabaseClient();
+        App.databaseClient.connect();
+
         fps = new FPS();
-        scopeLayout = new ScopeLayout();
-        recordLayout = new RecordLayout();
 
-        layouts.put("scope", scopeLayout);
-        layouts.put("record", recordLayout);
+        App.router.registerLayout("scope", new ScopeLayout());
+        App.router.registerLayout("record", new RecordLayout());
+        App.router.registerLayout("editor", new EditorLayout());
 
-        //switchLayout("scope");
-        switchLayout("record");
+        App.router.switchLayout("record");
 
-    }
-
-    Layout currentLayout() {
-        return layouts.get(App.layout);
-    }
-
-    public void switchLayout(String layout) {
-        if (App.layout.equals(layout)) {
-            return;
-        }
-        for (String key : layouts.keySet()) {
-            if (key.equals(layout)) {
-                App.layout = layout;
-            } else {
-                layouts.get(key).disable();
-            }
-        }
-        App.audio.connectInput();
-        currentLayout().enable();
     }
 
     @Override
@@ -105,24 +85,26 @@ public class OmenAlien extends PApplet {
 
         switch (key) {
             case '1':
-                switchLayout("scope");
+                App.router.switchLayout("scope");
                 break;
             case '2':
-                switchLayout("record");
+                App.router.switchLayout("record");
+                break;
+            case '3':
+                App.router.switchLayout("editor");
                 break;
             case 'w':
-                switchLayout("record");
-                recordLayout.toggleRecord();
+                ((RecordLayout) App.router.switchLayout("record")).toggleRecord();
                 break;
         }
 
-        currentLayout().keyPressed(key);
+        App.router.getCurrentLayout().keyPressed(key);
 
     }
 
     public void draw() {
         background(Const.BACKGROUND);
-        currentLayout().draw();
+        App.router.getCurrentLayout().draw();
         fps.draw();
     }
 

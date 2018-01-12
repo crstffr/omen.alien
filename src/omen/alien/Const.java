@@ -28,6 +28,7 @@ public class Const implements PConstants {
     final public static int WS_PLAYBACK_PORT = 8902;
     final public static int WS_WAVEFORM_PORT = 8903;
     final public static int WS_GPIO_PORT = 8904;
+    final public static int WS_DATA_PORT = 8905;
 
     final public static int ESC_KEY = 10000;
     final public static int WIDTH = App.inst.width;

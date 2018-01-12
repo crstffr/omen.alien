@@ -1,27 +1,19 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
-import omen.alien.clients.RecordingClient;
-import omen.alien.clients.WaveformClient;
 import omen.alien.interf.WsMessage;
+import omen.alien.layout.editor.EditorLayout;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
 import omen.alien.component.*;
 
-import java.util.HashMap;
 import java.util.ArrayList;
 
 public class RecordLayout extends MajorLayout {
 
-    Layout stateObj;
-    String stateStr;
+    String sampleId;
     boolean saving;
-
-    HashMap<String, Layout> states;
-    ArrayList<RecordWidget> widgets;
-    RecordingClient recordingClient;
-    WaveformClient waveformClient;
-
+    
     // Widgets
 
     RecordFileWidget fileWidget;
@@ -31,53 +23,28 @@ public class RecordLayout extends MajorLayout {
     RecordMessageWidget messageWidget;
     RecordWaveformWidget waveformWidget;
 
-    // Layouts
-
-    RecordStateReadyLayout readyLayout;
-    RecordStateSavedLayout savedLayout;
-    RecordStateRenameLayout renameLayout;
-    RecordStateSavingLayout savingLayout;
-    RecordStateWaitingLayout waitingLayout;
-    RecordStatePlayingLayout playingLayout;
-    RecordStateRecordingLayout recordingLayout;
-
     public RecordLayout() {
         super();
         color = Const.RED;
-        states = new HashMap<>();
-        widgets = new ArrayList<>();
-
-        recordingClient = App.recordingClient;
-        waveformClient = App.waveformClient;
 
         setupWidgets();
-        setupStateLayouts();
+        setupStates();
         startNewRecording();
 
         onEnable(() -> {
-            stateObj.enable();
-            for (RecordWidget widget : widgets) {
-                widget.enable();
-            }
             startNewRecording();
         });
 
         onDisable(() -> {
-            stateObj.disable();
             timerWidget.reset();
             fileWidget.destroy();
-            if (recordingClient.busy) {
-                recordingClient.discard();
-            }
-            for (RecordWidget widget : widgets) {
-                widget.disable().clear();
+            if (App.recordingClient.busy) {
+                App.recordingClient.discard();
             }
         });
 
         onDraw(() -> {
-            stateObj.draw();
             timerWidget.run();
-            for (RecordWidget widget : widgets) widget.draw();
         });
     }
 
@@ -89,12 +56,12 @@ public class RecordLayout extends MajorLayout {
         meterWidget = new RecordMeterWidget(this);
         fileWidget = new RecordFileWidget(this);
 
-        widgets.add(waveformWidget);
-        widgets.add(messageWidget);
-        widgets.add(fileWidget);
-        widgets.add(timerWidget);
-        widgets.add(meterWidget);
-        widgets.add(headerWidget);
+        widgets.put("waveform", waveformWidget);
+        widgets.put("message", messageWidget);
+        widgets.put("file", fileWidget);
+        widgets.put("timer", timerWidget);
+        widgets.put("meter", meterWidget);
+        widgets.put("header", headerWidget);
 
         headerWidget.setColor(Const.RED).show();
         messageWidget.setColor(Const.RED);
@@ -102,47 +69,15 @@ public class RecordLayout extends MajorLayout {
         timerWidget.setColor(Const.WHITE);
     }
 
-    void setupStateLayouts() {
-        readyLayout = new RecordStateReadyLayout(this);
-        savedLayout = new RecordStateSavedLayout(this);
-        renameLayout = new RecordStateRenameLayout(this);
-        savingLayout = new RecordStateSavingLayout(this);
-        waitingLayout = new RecordStateWaitingLayout(this);
-        playingLayout = new RecordStatePlayingLayout(this);
-        recordingLayout = new RecordStateRecordingLayout(this);
-
-        states.put("ready", readyLayout);
-        states.put("saved", savedLayout);
-        states.put("rename", renameLayout);
-        states.put("saving", savingLayout);
-        states.put("waiting", waitingLayout);
-        states.put("playing", playingLayout);
-        states.put("recording", recordingLayout);
-    }
-
-    public void keyPressed(char key) {
-        stateObj.keyPressed(key);
-    }
-
-    boolean is(String what) {
-        return stateStr.equals(what);
-    }
-
-    Layout getState() {
-        return states.get(stateStr);
-    }
-
-    void setState(String _state) {
-        stateStr = _state;
-        stateObj = getState();
-        headerWidget.clear();
-        for (int i = 0; i < states.size(); i++) {
-            Layout s = states.get(i);
-            if (s != null && !s.equals(_state)) {
-                s.disable();
-            }
-        }
-        stateObj.enable();
+    void setupStates() {
+        states.put("ready", new RecordStateReady(this));
+        states.put("saved", new RecordStateSaved(this));
+        states.put("rename", new RecordStateRename(this));
+        states.put("saving", new RecordStateSaving(this));
+        states.put("waiting", new RecordStateWaiting(this));
+        states.put("playing", new RecordStatePlaying(this));
+        states.put("recording", new RecordStateRecording(this));
+        setState("ready");
     }
 
     public void setHeader(String _text) {
@@ -160,17 +95,16 @@ public class RecordLayout extends MajorLayout {
         timerWidget.reset().hide();
         messageWidget.reset().hide();
         meterWidget.start();
+        sampleId = null;
         setState("ready");
     }
 
     public void toggleRecord() {
-        if (is("waiting")) {
-            // do nothing.
-        } else if (is("recording")) {
-            save();
-        } else {
+        if (!stateIs("waiting")) {
             startNewRecording();
             record();
+        } else if (stateIs("recording")) {
+            save();
         }
     }
 
@@ -180,7 +114,7 @@ public class RecordLayout extends MajorLayout {
         timerWidget.hide();
         meterWidget.hide();
         setState("waiting");
-        recordingClient.record(2, 44100, () -> {
+        App.recordingClient.record(2, 44100, () -> {
             timerWidget.show();
             timerWidget.start();
             headerWidget.show();
@@ -199,12 +133,13 @@ public class RecordLayout extends MajorLayout {
         timerWidget.stop();
         timerWidget.hide();
         setState("saving");
-        recordingClient.save(fileWidget.text, () -> {
-            WsMessage recording = recordingClient.getResult();
-            waveformClient.generateDat(recording.id, () -> {
+        App.recordingClient.save(fileWidget.text, () -> {
+            WsMessage recording = App.recordingClient.getResult();
+            sampleId = recording.id;
+            App.waveformClient.generateDat(sampleId, () -> {
                 Integer zoomLevel = 1;
-                waveformClient.generatePng(recording.id, zoomLevel, () -> {
-                    WsMessage pngResult = waveformClient.pngResults.get(recording.id);
+                App.waveformClient.generatePng(sampleId, zoomLevel, () -> {
+                    WsMessage pngResult = App.waveformClient.pngResults.get(sampleId);
                     if (pngResult != null) {
                         waveformWidget.load(pngResult.path);
                         waveformWidget.show();
@@ -220,7 +155,7 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void reset() {
-        recordingClient.discard();
+        App.recordingClient.discard();
         waveformWidget.clear();
         fileWidget.destroy();
         startNewRecording();
@@ -232,10 +167,13 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void renameDone() {
+        App.databaseClient.renameSample(sampleId, fileWidget.text, () -> {});
         setState("saved");
     }
 
-    public void open() {}
+    public void edit() {
+        ((EditorLayout) App.router.switchLayout("editor")).loadSample(sampleId);
+    }
 
     public void play() {}
 

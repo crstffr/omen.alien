@@ -11,6 +11,7 @@ public class VUMeter extends Visualizer {
 
     Timer timer;
     int channel;
+    int clipCount = 0;
     float curLevel = 0;
     float maxLevel = 0;
     public boolean clipped;
@@ -55,6 +56,7 @@ public class VUMeter extends Visualizer {
     public void reset() {
         maxLevel = 0;
         curLevel = 0;
+        clipCount = 0;
         clipped = false;
         clipHold = false;
     }
@@ -101,6 +103,7 @@ public class VUMeter extends Visualizer {
     }
 
     void triggerClip() {
+        clipCount++;
         clipped = true;
         if (!clipHold) {
             if (timer != null) {

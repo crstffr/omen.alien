@@ -2,11 +2,11 @@ package omen.alien.layout.record.widget;
 
 import omen.alien.App;
 import omen.alien.Const;
+import omen.alien.component.Widget;
 import omen.alien.component.UserInput;
 import omen.alien.layout.record.RecordLayout;
-import omen.alien.layout.record.RecordWidget;
 
-public class RecordFileWidget extends RecordWidget {
+public class RecordFileWidget extends Widget {
 
     int h = 26;
     int w = App.stage.w;
@@ -50,13 +50,13 @@ public class RecordFileWidget extends RecordWidget {
                 setText(getFilename());
             }
             input.stopCapture();
-            parent.renameDone();
+            ((RecordLayout) parent).renameDone();
         });
 
         input.onEscape(() -> {
             setText(getFilename());
             input.stopCapture();
-            parent.renameDone();
+            ((RecordLayout) parent).renameDone();
             tmpName = "";
         });
 

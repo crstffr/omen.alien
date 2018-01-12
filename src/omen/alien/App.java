@@ -19,13 +19,14 @@ public class App {
     public static StageLayer stage;
 
     // State
-    public static String layout = "";
+    public static Router router;
     public static UserInput userInput;
     public static FileCounter fileCounter;
 
     // Daemon Clients
     public static RecordingClient recordingClient;
     public static WaveformClient waveformClient;
+    public static DatabaseClient databaseClient;
 
 
 }

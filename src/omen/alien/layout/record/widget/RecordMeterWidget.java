@@ -2,11 +2,11 @@ package omen.alien.layout.record.widget;
 
 import omen.alien.App;
 import omen.alien.Const;
+import omen.alien.component.Widget;
 import omen.alien.component.VUMeter;
 import omen.alien.layout.record.RecordLayout;
-import omen.alien.layout.record.RecordWidget;
 
-public class RecordMeterWidget extends RecordWidget {
+public class RecordMeterWidget extends Widget {
 
     int p = 15;
     int h = 80;
@@ -26,6 +26,7 @@ public class RecordMeterWidget extends RecordWidget {
         meterR = new VUMeter(2, x, y + meterH + p, w, meterH);
 
         onEnable(() -> {
+            App.audio.connectInput();
             meterL.attachToInput(App.audio.getInput());
             meterR.attachToInput(App.audio.getInput());
             meterL.startCapture().show();
