@@ -1,11 +1,9 @@
 package omen.alien.clients;
 
-import omen.alien.App;
 import omen.alien.Const;
-import java.util.ArrayList;
 import com.google.gson.Gson;
 import processing.data.JSONObject;
-import omen.alien.interf.WsMessage;
+import omen.alien.definition.WsMessage;
 import com.neovisionaries.ws.client.*;
 
 

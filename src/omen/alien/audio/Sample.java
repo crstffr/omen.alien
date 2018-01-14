@@ -1,6 +1,8 @@
 package omen.alien.audio;
 
-public class Sample {
+import omen.alien.object.File;
+
+public class Sample extends File {
 
     String id;
 

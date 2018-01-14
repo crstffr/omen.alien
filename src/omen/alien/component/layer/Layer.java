@@ -4,9 +4,6 @@ import omen.alien.App;
 import omen.alien.Const;
 import processing.core.PGraphics;
 
-/**
- * Created by crstffr on 10/28/17.
- */
 public class Layer {
 
     public PGraphics canvas;

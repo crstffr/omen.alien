@@ -1,13 +1,11 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
-import omen.alien.interf.WsMessage;
+import omen.alien.definition.WsMessage;
 import omen.alien.layout.editor.EditorLayout;
 import omen.alien.layout.record.state.*;
 import omen.alien.layout.record.widget.*;
 import omen.alien.component.*;
-
-import java.util.ArrayList;
 
 public class RecordLayout extends MajorLayout {
 
@@ -100,11 +98,11 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void toggleRecord() {
-        if (!stateIs("waiting")) {
+        if (stateIs("recording")) {
+            save();
+        } else if (!stateIs("waiting")) {
             startNewRecording();
             record();
-        } else if (stateIs("recording")) {
-            save();
         }
     }
 

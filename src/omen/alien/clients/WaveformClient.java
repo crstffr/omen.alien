@@ -1,13 +1,11 @@
 package omen.alien.clients;
 
 import com.google.gson.Gson;
-import com.jogamp.common.util.ArrayHashMap;
 import omen.alien.Const;
-import omen.alien.interf.WsMessage;
+import omen.alien.definition.WsMessage;
 import processing.data.JSONObject;
 import com.neovisionaries.ws.client.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WaveformClient {

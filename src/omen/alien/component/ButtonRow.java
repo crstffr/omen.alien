@@ -1,9 +1,8 @@
 package omen.alien.component;
 
+import java.util.*;
 import omen.alien.*;
 import omen.alien.component.layer.Layer;
-
-import java.util.*;
 
 public class ButtonRow {
 

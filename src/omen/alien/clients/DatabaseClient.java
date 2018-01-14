@@ -1,12 +1,12 @@
 package omen.alien.clients;
 
+import omen.alien.Const;
 import com.google.gson.Gson;
+import processing.data.JSONObject;
+import omen.alien.definition.WsMessage;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketFactory;
-import omen.alien.Const;
-import omen.alien.interf.WsMessage;
-import processing.data.JSONObject;
 
 public class DatabaseClient {
 
@@ -17,15 +17,12 @@ public class DatabaseClient {
     WsMessage savedResult;
 
     public DatabaseClient() {
-
         String address = "ws://localhost:" + Const.WS_DATA_PORT;
-
         try {
             this.ws = new WebSocketFactory().createSocket(address);
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     public void connect() {
@@ -36,18 +33,37 @@ public class DatabaseClient {
         }
     }
 
+    public WsMessage getResult() {
+        return savedResult;
+    }
+
+    public void fetchAllSamples(Runnable cb) {
+        busy = true;
+        JSONObject json = new JSONObject();
+        json.put("type", "fetchAllSamples");
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("allSamples")) {
+                    ws.removeListener(this);
+                    savedResult = msg;
+                    busy = false;
+                    cb.run();
+                }
+            }
+        });
+    }
+
     public void renameSample(String id, String name, Runnable cb) {
+        busy = true;
         JSONObject opts = new JSONObject();
         opts.put("id", id);
         opts.put("name", name);
-
         JSONObject json = new JSONObject();
         json.put("type", "renameSample");
         json.put("opts", opts);
-
-        busy = true;
         this.ws.sendText(json.format(0).replace("\n", ""));
-
         this.ws.addListener(new WebSocketAdapter() {
             public void onTextMessage(WebSocket ws, String payload) {
                 WsMessage msg = g.fromJson(payload, WsMessage.class);

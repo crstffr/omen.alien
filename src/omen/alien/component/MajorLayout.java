@@ -4,14 +4,15 @@ import omen.alien.Const;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MajorLayout extends Layout {
 
     Layout currentStateObj;
     String currentStateStr;
 
-    public HashMap<String, Layout> states = new HashMap<>();
-    public HashMap<String, Widget> widgets = new HashMap<>();
+    public LinkedHashMap<String, Layout> states = new LinkedHashMap<>();
+    public LinkedHashMap<String, Widget> widgets = new LinkedHashMap<>();
 
     public int color = Const.WHITE;
     public ButtonRow buttonRow = new ButtonRow();
