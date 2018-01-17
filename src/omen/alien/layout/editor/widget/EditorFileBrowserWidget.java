@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class EditorFileBrowserWidget extends Widget {
 
-    FileBrowser fileBrowser;
+    public FileBrowser fileBrowser;
 
     public int x = App.stage.x;
     public int y = App.stage.y + 5;
@@ -30,41 +30,6 @@ public class EditorFileBrowserWidget extends Widget {
             fileBrowser.setColor(color);
         });
 
-        onClear(() -> {
-            fileBrowser.clear();
-        });
-
-        onDraw(() -> {
-            fileBrowser.draw();
-        });
-
-    }
-
-    public void scrollUp() {
-        fileBrowser.scrollUp();
-    }
-
-    public void scrollDown() {
-        fileBrowser.scrollDown();
-    }
-
-    public void selectPrev() {
-        fileBrowser.selectPrev();
-    }
-
-    public void selectNext() {
-        fileBrowser.selectNext();
-    }
-
-    public void sortBy(String field, Boolean asc) {
-        fileBrowser.sortBy(field, asc);
-    }
-
-    public void populate(ArrayList<SampleCollectionItem> items) {
-        items.forEach((SampleCollectionItem item) -> {
-            fileBrowser.addItem(item);
-        });
-        fileBrowser.sortBy("DATE", false);
     }
 
 }

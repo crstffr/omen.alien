@@ -21,19 +21,19 @@ public class MajorLayout extends Layout {
 
         onEnable(() -> {
             buttonRow.setColor(color);
-            if (currentStateObj != null) { currentStateObj.enable(); }
             widgets.forEach((String key, Widget widget) -> widget.enable());
+            if (currentStateObj != null) { currentStateObj.enable(); }
         });
 
         onDisable(() -> {
-            if (currentStateObj != null) { currentStateObj.disable(); }
             widgets.forEach((String key, Widget widget) -> widget.disable());
+            if (currentStateObj != null) { currentStateObj.disable(); }
         });
 
         onDraw(() -> {
             buttonRow.draw();
-            if (currentStateObj != null) { currentStateObj.draw(); }
             widgets.forEach((String key, Widget widget) -> widget.draw());
+            if (currentStateObj != null) { currentStateObj.draw(); }
         });
 
         onClear(() -> {

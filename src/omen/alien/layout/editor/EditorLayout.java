@@ -2,93 +2,50 @@ package omen.alien.layout.editor;
 
 import omen.alien.App;
 import omen.alien.Const;
-import omen.alien.component.Widget;
 import omen.alien.component.MajorLayout;
-import omen.alien.definition.WsMessage;
-import omen.alien.layout.editor.state.EditorStateBrowser;
-import omen.alien.layout.editor.state.EditorStateLoaded;
-import omen.alien.layout.editor.state.EditorStateLoading;
-import omen.alien.layout.editor.widget.*;
+import omen.alien.definition.SampleCollectionItem;
+import omen.alien.layout.editor.state.*;
 
 public class EditorLayout extends MajorLayout {
-
-    EditorMessageWidget messageWidget;
-    EditorFileBrowserWidget fileBrowserWidget;
 
     public EditorLayout() {
 
         super();
         color = Const.YELLOW;
 
-        setupWidgets();
         setupStates();
 
         onEnable(() -> {
             setState("browser");
-            loadFileBrowser();
-        });
-
-        onDisable(() -> {
-            clearFileBrowser();
-        });
-
-        onDraw(() -> {
-
         });
 
     }
 
     void setupStates() {
         states.put("browser", new EditorStateBrowser(this));
-        states.put("loaded", new EditorStateLoaded(this));
         states.put("loading", new EditorStateLoading(this));
+        states.put("loaded", new EditorStateLoaded(this));
+        states.put("delete", new EditorStateDelete(this));
+        states.put("empty", new EditorStateBrowserEmpty(this));
         setState("browser");
     }
 
-    void setupWidgets() {
-        messageWidget = new EditorMessageWidget(this);
-        fileBrowserWidget = new EditorFileBrowserWidget(this);
+    public void refreshBrowser() {
+        ((EditorStateBrowser) states.get("browser")).refresh();
+    }
 
-        widgets.put("message", messageWidget);
-        widgets.put("fileBrowser", fileBrowserWidget);
+    public void confirmDeleteSample(SampleCollectionItem item) {
+        setState("delete");
+        ((EditorStateDelete) states.get("delete")).openConfirmDialog(item);
+    }
 
-        widgets.forEach((String key, Widget widget) -> {
-            widget.setColor(color).show();
+    public void actuallyDeleteSample(SampleCollectionItem item) {
+        App.databaseClient.deleteSample(item.id, () -> {
+            ((EditorStateBrowser) states.get("browser")).removeSelectedItem();
         });
     }
 
-    public void loadFileBrowser() {
-        App.databaseClient.fetchAllSamples(() -> {
-            WsMessage msg = App.databaseClient.getResult();
-            fileBrowserWidget.populate(msg.sampleCollection);
-        });
-    }
-
-    public void fileBrowserScrollUp() {
-        fileBrowserWidget.scrollUp();
-    }
-
-    public void fileBrowserScrollDown() {
-        fileBrowserWidget.scrollDown();
-    }
-
-    public void fileBrowserSelectPrev() {
-        fileBrowserWidget.selectPrev();
-    }
-
-    public void fileBrowserSelectNext() {
-        fileBrowserWidget.selectNext();
-    }
-
-    public void fileBrowserSortBy(String field, Boolean asc) {
-        fileBrowserWidget.sortBy(field, asc);
-    }
-
-    public void clearFileBrowser() {
-        fileBrowserWidget.clear();
-    }
-
-    public void loadSample(String _id) {
+    public void loadSampleById(String id) {
         setState("loading");
     }
 

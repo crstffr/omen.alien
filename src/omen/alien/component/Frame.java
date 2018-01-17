@@ -6,9 +6,6 @@ import processing.core.PGraphics;
 
 import java.util.ArrayList;
 
-/**
- * Created by crstffr on 10/27/17.
- */
 public class Frame {
 
     PGraphics frame;

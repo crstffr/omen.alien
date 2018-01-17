@@ -9,7 +9,8 @@ public class EditorStateLoading extends EditorState {
     public EditorStateLoading(EditorLayout _parent) {
         super(_parent);
 
-        msgWidget = (EditorMessageWidget) parent.widgets.get("message");
+        msgWidget = new EditorMessageWidget(this);
+        msgWidget.setColor(parent.color);
 
         onDisable(() -> {
             msgWidget.setText("").hide();
@@ -17,6 +18,10 @@ public class EditorStateLoading extends EditorState {
 
         onEnable(() -> {
             msgWidget.setText("LOADING").show();
+        });
+
+        onDraw(() -> {
+            msgWidget.draw();
         });
 
         buttonRow.addButton(); // blank

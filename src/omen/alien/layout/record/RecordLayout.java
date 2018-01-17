@@ -146,6 +146,7 @@ public class RecordLayout extends MajorLayout {
                     fileWidget.save();
                     fileWidget.show();
                     setState("saved");
+                    refreshBrowser();
                 });
             });
         });
@@ -166,10 +167,15 @@ public class RecordLayout extends MajorLayout {
     public void renameDone() {
         App.databaseClient.renameSample(sampleId, fileWidget.text, () -> {});
         setState("saved");
+        refreshBrowser();
     }
 
     public void edit() {
-        ((EditorLayout) App.router.switchLayout("editor")).loadSample(sampleId);
+        ((EditorLayout) App.router.switchLayout("editor")).loadSampleById(sampleId);
+    }
+
+    public void refreshBrowser() {
+        ((EditorLayout) App.router.getLayout("editor")).refreshBrowser();
     }
 
     public void play() {}

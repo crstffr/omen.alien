@@ -13,6 +13,7 @@ public class EditorMessageWidget extends Widget {
     int x = App.stage.centerX(w);
     int y = App.stage.centerY(h);
 
+    int fontSize = 110;
     Layer tmpLayer;
 
     public EditorMessageWidget(MajorLayout _parent) {
@@ -38,11 +39,15 @@ public class EditorMessageWidget extends Widget {
         });
     }
 
+    public void setSize(int size) {
+        fontSize = size;
+    }
+
     void redrawMessage() {
         if (text.length() > 0) {
             tmpLayer.init();
             tmpLayer.canvas.fill(color);
-            tmpLayer.canvas.textFont(App.font, 110);
+            tmpLayer.canvas.textFont(App.font, fontSize);
             tmpLayer.canvas.textAlign(Const.CENTER, Const.CENTER);
             tmpLayer.canvas.text(text, tmpLayer.mid_x, tmpLayer.mid_y);
             tmpLayer.canvas.endDraw();

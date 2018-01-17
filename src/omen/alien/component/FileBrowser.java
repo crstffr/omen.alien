@@ -1,13 +1,8 @@
 package omen.alien.component;
 
-import omen.alien.App;
 import omen.alien.Const;
-import omen.alien.component.layer.ChildLayer;
 import omen.alien.component.layer.Layer;
-import omen.alien.component.layer.StageLayer;
 import omen.alien.definition.SampleCollectionItem;
-import omen.alien.object.File;
-import processing.core.PApplet;
 
 import java.util.*;
 
@@ -33,15 +28,16 @@ public class FileBrowser {
         }
     }
 
-    public void markReady() {
-        renderRows();
-        if (items.size() > 0) {
-            selectItem(0);
-        }
-    }
-
     public void addItem(SampleCollectionItem item) {
         items.add(item);
+    }
+
+    public SampleCollectionItem getSelectedItem() {
+        return items.get(selected);
+    }
+
+    public Integer getItemCount() {
+        return items.size();
     }
 
     public void scrollUp() {
@@ -86,37 +82,55 @@ public class FileBrowser {
         selected = index;
     }
 
+    public void selectDefaultItem() {
+        if (items.size() > 0) {
+            selectItem(0);
+        }
+    }
+
     public void unselectItem() {
         items.get(selected).selected = false;
         selected = 0;
     }
 
-    public void clear() {
-        clearItems();
+    public synchronized void removeSelectedItem() {
+        ready = false;
+        items.remove(selected);
+        if (items.size() > 0) {
+            if (selected > items.size() - 1) {
+                selected = items.size() - 1;
+            }
+            items.get(selected).selected = true;
+            clearRows();
+            renderRows();
+        } else {
+            clearAll();
+        }
+    }
+
+    public void clearAll() {
+        ready = false;
         clearRows();
+        items.clear();
         selected = 0;
         offset = 0;
     }
 
     public void resetRows() {
+        ready = false;
         unselectItem();
         clearRows();
         offset = 0;
     }
 
-    public void clearRows() {
+    public synchronized void clearRows() {
         rows.forEach((FileBrowserRow row) -> {
             row.clear();
         });
         rows.clear();
-        ready = false;
     }
 
-    public void clearItems() {
-        items.clear();
-    }
-
-    public void renderRows() {
+    public synchronized void renderRows() {
         for (int i = offset; i < offset + maxnum; i++) {
             if (i < items.size()) {
                 SampleCollectionItem item = items.get(i);
@@ -129,37 +143,40 @@ public class FileBrowser {
     }
 
     public void sortBy(String field, Boolean asc) {
-        resetRows();
-        switch (field) {
-            case "ALPHA":
-                Collections.sort(items, new Comparator<SampleCollectionItem>() {
-                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
-                        return asc ? a.name.compareTo(b.name)
-                                   : b.name.compareTo(a.name);
-                    }
-                });
-                break;
-            case "DATE":
-                Collections.sort(items, new Comparator<SampleCollectionItem>() {
-                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
-                        return asc ? a.created.compareTo(b.created)
-                                : b.created.compareTo(a.created);
-                    }
-                });
-                break;
-            case "LENGTH":
-                Collections.sort(items, new Comparator<SampleCollectionItem>() {
-                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
-                        return asc ? a.length.compareTo(b.length)
-                                   : b.length.compareTo(a.length);
-                    }
-                });
-                break;
+        if (items.size() > 0) {
+            resetRows();
+            switch (field) {
+                case "ALPHA":
+                    Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                        public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                            return asc ? a.name.compareTo(b.name)
+                                    : b.name.compareTo(a.name);
+                        }
+                    });
+                    break;
+                case "DATE":
+                    Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                        public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                            return asc ? a.created.compareTo(b.created)
+                                    : b.created.compareTo(a.created);
+                        }
+                    });
+                    break;
+                case "LENGTH":
+                    Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                        public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                            return asc ? a.length.compareTo(b.length)
+                                    : b.length.compareTo(a.length);
+                        }
+                    });
+                    break;
+            }
+            renderRows();
+            selectDefaultItem();
         }
-        markReady();
     }
 
-    public void draw() {
+    public synchronized void draw() {
         if (ready) {
             rows.forEach((FileBrowserRow row) -> {
                 row.draw();

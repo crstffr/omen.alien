@@ -77,4 +77,25 @@ public class DatabaseClient {
         });
     }
 
+    public void deleteSample(String id, Runnable cb) {
+        busy = true;
+        JSONObject opts = new JSONObject();
+        opts.put("id", id);
+        JSONObject json = new JSONObject();
+        json.put("type", "deleteSample");
+        json.put("opts", opts);
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("sampleDeleted")) {
+                    ws.removeListener(this);
+                    savedResult = msg;
+                    busy = false;
+                    cb.run();
+                }
+            }
+        });
+    }
+
 }

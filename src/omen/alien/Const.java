@@ -50,6 +50,7 @@ public class Const implements PConstants {
     final public static int MIDGRAY = 0xFF484848;
     final public static int TRANSRED_DARK = 0xAAD20000;
     final public static int TRANSPARENT = 0x00FFFFFF;
+    final public static int DIALOG_BACKGROUND = 0xAA000000;
     final public static int BACKGROUND = BLACK;
     final public static int PRIMARY = GREEN;
 
@@ -84,10 +85,9 @@ public class Const implements PConstants {
     final public static int STAGE_VIEW_W = BODY_W;
     final public static int STAGE_VIEW_H = BODY_H - BUTTON_VIEW_H - 1;
 
-    final public static int RECORD_BOX_X = STAGE_VIEW_W / 4;
-    final public static int RECORD_BOX_Y = (STAGE_VIEW_H / 4) - 20;
-    final public static int RECORD_BOX_W = STAGE_VIEW_W / 2;
-    final public static int RECORD_BOX_H = STAGE_VIEW_H / 2;
-    final public static int RECORD_BOX_R = 10; // corner radius
+    final public static int CONFIRM_DIALOG_W = (int) Math.round((float) STAGE_VIEW_W * 0.6);
+    final public static int CONFIRM_DIALOG_H = (int) Math.round((float) STAGE_VIEW_H * 0.6);;
+    final public static int CONFIRM_DIALOG_X = (int) (STAGE_VIEW_W / 2) - (CONFIRM_DIALOG_W / 2);
+    final public static int CONFIRM_DIALOG_Y = (int) (STAGE_VIEW_H / 2) - (CONFIRM_DIALOG_H / 2);
 
 }
