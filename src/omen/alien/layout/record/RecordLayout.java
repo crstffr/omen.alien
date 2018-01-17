@@ -75,7 +75,6 @@ public class RecordLayout extends MajorLayout {
         states.put("waiting", new RecordStateWaiting(this));
         states.put("playing", new RecordStatePlaying(this));
         states.put("recording", new RecordStateRecording(this));
-        setState("ready");
     }
 
     public void setHeader(String _text) {

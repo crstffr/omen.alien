@@ -25,8 +25,9 @@ public class Layout {
      * Meant to be overridden by extending class.
      *
      * @param key what key was pressed
+     * @param keyCode what key was pressed
      */
-    public void keyPressed(char key) {}
+    public void keyPressed(char key, int keyCode) {}
 
     /**
      *

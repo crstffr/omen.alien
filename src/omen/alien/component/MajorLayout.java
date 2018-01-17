@@ -63,10 +63,10 @@ public class MajorLayout extends Layout {
         currentStateObj.enable();
     }
 
-    public void keyPressed(char key) {
+    public void keyPressed(char key, int keyCode) {
         if (isEnabled) {
             if (currentStateObj != null) {
-                currentStateObj.keyPressed(key);
+                currentStateObj.keyPressed(key, keyCode);
             } else {
                 for (int i = 0; i < Const.UI_BUTTONS.length; i++) {
                     if (Const.UI_BUTTONS[i] == key) {

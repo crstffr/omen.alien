@@ -5,13 +5,15 @@ import omen.alien.Const;
 import omen.alien.component.Widget;
 import omen.alien.component.MajorLayout;
 import omen.alien.definition.WsMessage;
-import omen.alien.definition.SampleCollectionItem;
-import omen.alien.layout.editor.state.EditorStateEmpty;
+import omen.alien.layout.editor.state.EditorStateBrowser;
 import omen.alien.layout.editor.state.EditorStateLoaded;
 import omen.alien.layout.editor.state.EditorStateLoading;
 import omen.alien.layout.editor.widget.*;
 
 public class EditorLayout extends MajorLayout {
+
+    EditorMessageWidget messageWidget;
+    EditorFileBrowserWidget fileBrowserWidget;
 
     public EditorLayout() {
 
@@ -22,7 +24,7 @@ public class EditorLayout extends MajorLayout {
         setupStates();
 
         onEnable(() -> {
-            setState("empty");
+            setState("browser");
             loadFileBrowser();
         });
 
@@ -37,15 +39,19 @@ public class EditorLayout extends MajorLayout {
     }
 
     void setupStates() {
-        states.put("empty", new EditorStateEmpty(this));
+        states.put("browser", new EditorStateBrowser(this));
         states.put("loaded", new EditorStateLoaded(this));
         states.put("loading", new EditorStateLoading(this));
-        setState("empty");
+        setState("browser");
     }
 
     void setupWidgets() {
-        widgets.put("message", new EditorMessageWidget(this));
-        widgets.put("fileBrowser", new EditorFileBrowserWidget(this));
+        messageWidget = new EditorMessageWidget(this);
+        fileBrowserWidget = new EditorFileBrowserWidget(this);
+
+        widgets.put("message", messageWidget);
+        widgets.put("fileBrowser", fileBrowserWidget);
+
         widgets.forEach((String key, Widget widget) -> {
             widget.setColor(color).show();
         });
@@ -54,12 +60,28 @@ public class EditorLayout extends MajorLayout {
     public void loadFileBrowser() {
         App.databaseClient.fetchAllSamples(() -> {
             WsMessage msg = App.databaseClient.getResult();
-            ((EditorFileBrowserWidget) widgets.get("fileBrowser")).populate(msg.sampleCollection);
+            fileBrowserWidget.populate(msg.sampleCollection);
         });
     }
 
+    public void fileBrowserScrollUp() {
+        fileBrowserWidget.scrollUp();
+    }
+
+    public void fileBrowserScrollDown() {
+        fileBrowserWidget.scrollDown();
+    }
+
+    public void fileBrowserSelectPrev() {
+        fileBrowserWidget.selectPrev();
+    }
+
+    public void fileBrowserSelectNext() {
+        fileBrowserWidget.selectNext();
+    }
+
     public void clearFileBrowser() {
-        ((EditorFileBrowserWidget) widgets.get("fileBrowser")).clear();
+        fileBrowserWidget.clear();
     }
 
     public void loadSample(String _id) {

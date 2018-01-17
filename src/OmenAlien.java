@@ -84,6 +84,9 @@ public class OmenAlien extends PApplet {
         }
 
         switch (key) {
+            case '`':
+                fps.toggle();
+                break;
             case '1':
                 App.router.switchLayout("scope");
                 break;
@@ -98,7 +101,7 @@ public class OmenAlien extends PApplet {
                 break;
         }
 
-        App.router.getCurrentLayout().keyPressed(key);
+        App.router.getCurrentLayout().keyPressed(key, keyCode);
 
     }
 

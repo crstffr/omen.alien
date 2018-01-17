@@ -8,13 +8,14 @@ import omen.alien.definition.SampleCollectionItem;
 import omen.alien.object.File;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class FileBrowserRow {
 
     int x;
     int y;
     int w;
-    int h = 20;
+    int h = 21;
     int color = 255;
 
     SampleCollectionItem item;
@@ -27,7 +28,7 @@ public class FileBrowserRow {
     public FileBrowserRow(Layer _parent, int _n, SampleCollectionItem _item) {
         x = _parent.x;
         w = _parent.w;
-        y = h * _n;
+        y = _parent.y + (h * _n);
 
         item = _item;
 
@@ -52,22 +53,28 @@ public class FileBrowserRow {
         layerLength.clear();
     }
 
+    public void select() {
+
+    }
+
     public void draw() {
         //layerRow.init();
         layerName.init();
         layerLength.init();
 
-        layerName.canvas.fill(color);
+        int rowColor = (item.selected) ? 255 : color;
+
+        layerName.canvas.fill(rowColor);
         layerName.canvas.textFont(App.font, 18);
         layerName.canvas.textAlign(Const.LEFT, Const.CENTER);
         layerName.canvas.text(item.name, 10, layerName.mid_y);
 
-        String length = BigDecimal.valueOf(item.length).setScale(2, 1).toString() + "S";
+        String length = BigDecimal.valueOf(item.length).setScale(2, 4).toString() + "S";
 
-        layerLength.canvas.fill(color);
+        layerLength.canvas.fill(rowColor);
         layerLength.canvas.textFont(App.font, 18);
-        layerLength.canvas.textAlign(Const.LEFT, Const.CENTER);
-        layerLength.canvas.text(length, 0, layerLength.mid_y);
+        layerLength.canvas.textAlign(Const.RIGHT, Const.CENTER);
+        layerLength.canvas.text(length, layerLength.w, layerLength.mid_y);
 
         layerName.draw();
         layerLength.draw();
