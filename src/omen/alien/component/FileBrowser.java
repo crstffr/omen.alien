@@ -91,6 +91,8 @@ public class FileBrowser {
     public void clear() {
         clearItems();
         clearRows();
+        selected = 0;
+        offset = 0;
     }
 
     public void clearRows() {

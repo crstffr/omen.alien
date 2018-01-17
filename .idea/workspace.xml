@@ -7,19 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e752a8c-6cb9-4ef9-9031-0329ce15fcb4" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/omen/alien/layout/editor/state/EditorStateEmpty.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/editor/state/EditorStateBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/OmenAlien.jar" afterPath="$PROJECT_DIR$/dist/OmenAlien.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/OmenAlien.java" afterPath="$PROJECT_DIR$/src/OmenAlien.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/FPS.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/FPS.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/FileBrowser.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/FileBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/FileBrowserRow.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/FileBrowserRow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/Layout.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/Layout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/component/MajorLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/component/MajorLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/definition/SampleCollectionItem.java" afterPath="$PROJECT_DIR$/src/omen/alien/definition/SampleCollectionItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/editor/EditorLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/editor/EditorLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/editor/widget/EditorFileBrowserWidget.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/editor/widget/EditorFileBrowserWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" afterPath="$PROJECT_DIR$/src/omen/alien/layout/record/RecordLayout.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +45,8 @@
       <file leaf-file-name="FileBrowser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/omen/alien/component/FileBrowser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="78" column="27" lean-forward="false" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+            <state relative-caret-position="680">
+              <caret line="94" column="19" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1574,8 +1562,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/omen/alien/component/FileBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="78" column="27" lean-forward="false" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+        <state relative-caret-position="680">
+          <caret line="94" column="19" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
           <folding />
         </state>
       </provider>
