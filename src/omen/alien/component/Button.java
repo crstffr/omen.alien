@@ -4,8 +4,8 @@ import java.util.concurrent.Callable;
 
 public class Button {
 
-    char key;
     String label;
+    public char key;
     Callable<String> labelFn;
     Runnable action;
 

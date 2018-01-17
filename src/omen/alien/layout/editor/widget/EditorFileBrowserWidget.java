@@ -56,11 +56,15 @@ public class EditorFileBrowserWidget extends Widget {
         fileBrowser.selectNext();
     }
 
+    public void sortBy(String field, Boolean asc) {
+        fileBrowser.sortBy(field, asc);
+    }
+
     public void populate(ArrayList<SampleCollectionItem> items) {
         items.forEach((SampleCollectionItem item) -> {
             fileBrowser.addItem(item);
         });
-        fileBrowser.markReady();
+        fileBrowser.sortBy("DATE", false);
     }
 
 }

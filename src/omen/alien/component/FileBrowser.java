@@ -9,9 +9,7 @@ import omen.alien.definition.SampleCollectionItem;
 import omen.alien.object.File;
 import processing.core.PApplet;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 public class FileBrowser {
 
@@ -88,10 +86,21 @@ public class FileBrowser {
         selected = index;
     }
 
+    public void unselectItem() {
+        items.get(selected).selected = false;
+        selected = 0;
+    }
+
     public void clear() {
         clearItems();
         clearRows();
         selected = 0;
+        offset = 0;
+    }
+
+    public void resetRows() {
+        unselectItem();
+        clearRows();
         offset = 0;
     }
 
@@ -117,6 +126,37 @@ public class FileBrowser {
             }
         }
         ready = true;
+    }
+
+    public void sortBy(String field, Boolean asc) {
+        resetRows();
+        switch (field) {
+            case "ALPHA":
+                Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                        return asc ? a.name.compareTo(b.name)
+                                   : b.name.compareTo(a.name);
+                    }
+                });
+                break;
+            case "DATE":
+                Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                        return asc ? a.created.compareTo(b.created)
+                                : b.created.compareTo(a.created);
+                    }
+                });
+                break;
+            case "LENGTH":
+                Collections.sort(items, new Comparator<SampleCollectionItem>() {
+                    public int compare(SampleCollectionItem a, SampleCollectionItem b) {
+                        return asc ? a.length.compareTo(b.length)
+                                   : b.length.compareTo(a.length);
+                    }
+                });
+                break;
+        }
+        markReady();
     }
 
     public void draw() {

@@ -80,6 +80,10 @@ public class EditorLayout extends MajorLayout {
         fileBrowserWidget.selectNext();
     }
 
+    public void fileBrowserSortBy(String field, Boolean asc) {
+        fileBrowserWidget.sortBy(field, asc);
+    }
+
     public void clearFileBrowser() {
         fileBrowserWidget.clear();
     }

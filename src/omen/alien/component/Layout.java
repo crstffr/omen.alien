@@ -29,10 +29,6 @@ public class Layout {
      */
     public void keyPressed(char key, int keyCode) {}
 
-    /**
-     *
-     * @return Layout
-     */
     public Layout enable() {
         if (!isEnabled) {
             isEnabled = true;
@@ -49,10 +45,6 @@ public class Layout {
         onEnableHandlers.add(fn);
     }
 
-    /**
-     *
-     * @return Layout
-     */
     public Layout disable() {
         if (isEnabled) {
             isEnabled = false;
@@ -69,10 +61,6 @@ public class Layout {
         onDisableHandlers.add(fn);
     }
 
-    /**
-     *
-     * @return
-     */
     public Layout clear() {
         for (Runnable fn : onDrawHandlers) fn.run();
         return this;
@@ -82,10 +70,6 @@ public class Layout {
         onClearHandlers.add(fn);
     }
 
-    /**
-     *
-     * @param fn
-     */
     public void onDraw(Runnable fn) {
         onDrawHandlers.add(fn);
     }

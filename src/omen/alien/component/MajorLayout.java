@@ -63,18 +63,23 @@ public class MajorLayout extends Layout {
         currentStateObj.enable();
     }
 
+    public void customKeyHandler(char key, int keyCode) {
+        // meant to be provided by consumer
+    }
+
     public void keyPressed(char key, int keyCode) {
         if (isEnabled) {
             if (currentStateObj != null) {
                 currentStateObj.keyPressed(key, keyCode);
-            } else {
-                for (int i = 0; i < Const.UI_BUTTONS.length; i++) {
-                    if (Const.UI_BUTTONS[i] == key) {
-                        buttonRow.buttons.get(i).trigger();
-                        break;
-                    }
-                }
             }
+            if (buttonRow.buttons.size() == Const.UI_BUTTONS.length) {
+                buttonRow.buttons.forEach((Button button) -> {
+                    if (button.key == key) {
+                        button.trigger();
+                    }
+                });
+            }
+            customKeyHandler(key, keyCode);
         }
     }
 

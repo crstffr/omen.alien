@@ -5,10 +5,11 @@ import omen.alien.Const;
 import omen.alien.component.layer.ChildLayer;
 import omen.alien.component.layer.Layer;
 import omen.alien.definition.SampleCollectionItem;
-import omen.alien.object.File;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FileBrowserRow {
 
@@ -34,10 +35,8 @@ public class FileBrowserRow {
 
         layerRow = new Layer(x, y, w, h, Const.RENDERER2D);
         layerName = new ChildLayer(layerRow, 0, 0, 400, h);
-        layerDate = new ChildLayer(layerRow, 400, 0, 200, h);
-        layerLength = new ChildLayer(layerRow, 600, 0, 200, h);
-
-        System.out.println(x + " " + y);
+        layerDate = new ChildLayer(layerRow, 500, 0, 200, h);
+        layerLength = new ChildLayer(layerRow, 700, 0, 100, h);
     }
 
     public void setColor(int _color) {
@@ -60,14 +59,23 @@ public class FileBrowserRow {
     public void draw() {
         //layerRow.init();
         layerName.init();
+        layerDate.init();
         layerLength.init();
 
-        int rowColor = (item.selected) ? 255 : color;
+        int rowColor = (item.selected != null && item.selected) ? Const.WHITE : color;
 
         layerName.canvas.fill(rowColor);
         layerName.canvas.textFont(App.font, 18);
         layerName.canvas.textAlign(Const.LEFT, Const.CENTER);
         layerName.canvas.text(item.name, 10, layerName.mid_y);
+
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String date = df.format(new Date(item.created));
+
+        layerDate.canvas.fill(rowColor);
+        layerDate.canvas.textFont(App.font, 18);
+        layerDate.canvas.textAlign(Const.LEFT, Const.CENTER);
+        layerDate.canvas.text(date, 0, layerDate.mid_y);
 
         String length = BigDecimal.valueOf(item.length).setScale(2, 4).toString() + "S";
 
@@ -77,6 +85,7 @@ public class FileBrowserRow {
         layerLength.canvas.text(length, layerLength.w, layerLength.mid_y);
 
         layerName.draw();
+        layerDate.draw();
         layerLength.draw();
 
     }

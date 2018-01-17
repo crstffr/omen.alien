@@ -1,13 +1,20 @@
 package omen.alien.definition;
 
-import java.util.Optional;
+import com.google.gson.annotations.Expose;
 
 public class SampleCollectionItem {
+    @Expose
+    public String id;
+    @Expose
+    public String name;
+    @Expose
+    public Float length;
+    @Expose
+    public Boolean selected;
+    @Expose
+    public Long created;
 
-    public String id = "";
-    public String name = "";
-    public Integer created = 0;
-    public Float length = (float) 0;
-    public boolean selected = false;
-
+    public String getName() {
+        return name;
+    }
 }
