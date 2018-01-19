@@ -3,7 +3,9 @@ import omen.alien.App;
 import omen.alien.Const;
 import omen.alien.Router;
 import omen.alien.audio.AudioDriver;
+import omen.alien.audio.SamplePlayer;
 import omen.alien.clients.DatabaseClient;
+import omen.alien.clients.PlaybackClient;
 import omen.alien.clients.RecordingClient;
 import omen.alien.clients.WaveformClient;
 import omen.alien.component.*;
@@ -46,6 +48,7 @@ public class OmenAlien extends PApplet {
         App.font = loadFont(Const.FONT_FILE);
         App.stage = new StageLayer(Const.RENDERER2D);
         App.fileCounter = new FileCounter();
+        App.player = new SamplePlayer();
 
         App.recordingClient = new RecordingClient();
         App.recordingClient.connect();

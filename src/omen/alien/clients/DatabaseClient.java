@@ -37,6 +37,27 @@ public class DatabaseClient {
         return savedResult;
     }
 
+    public void getSampleData(String id, Runnable cb) {
+        busy = true;
+        JSONObject opts = new JSONObject();
+        opts.put("id", id);
+        JSONObject json = new JSONObject();
+        json.put("type", "getSampleData");
+        json.put("opts", opts);
+        this.ws.sendText(json.format(0).replace("\n", ""));
+        this.ws.addListener(new WebSocketAdapter() {
+            public void onTextMessage(WebSocket ws, String payload) {
+                WsMessage msg = g.fromJson(payload, WsMessage.class);
+                if (msg.type.equals("sampleData") && msg.id.equals(id)) {
+                    ws.removeListener(this);
+                    savedResult = msg;
+                    busy = false;
+                    cb.run();
+                }
+            }
+        });
+    }
+
     public void fetchAllSamples(Runnable cb) {
         busy = true;
         JSONObject json = new JSONObject();

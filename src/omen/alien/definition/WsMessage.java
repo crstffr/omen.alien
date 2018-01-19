@@ -3,6 +3,7 @@ package omen.alien.definition;
 import java.util.ArrayList;
 
 public class WsMessage {
+
     public String error;
     public Integer zoom;
     public String type;
@@ -10,5 +11,6 @@ public class WsMessage {
     public String msg;
     public String id;
 
+    public SampleData sampleData;
     public ArrayList<SampleCollectionItem> sampleCollection;
 }

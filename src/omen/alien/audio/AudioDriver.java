@@ -13,6 +13,7 @@ public class AudioDriver {
 
     public Minim minim;
     public AudioInput input;
+    public AudioOutput output;
 
     public AudioDriver(Object _this) {
 
@@ -24,19 +25,40 @@ public class AudioDriver {
             minim.setOutputMixer(mixer);
         }
 
-        connectInput();
-
     }
 
     public AudioInput getInput() {
+        return (input == null) ? connectInput() : input;
+    }
+
+    public AudioInput connectInput() {
+        disconnectInput();
+        input = minim.getLineIn(2, 2048, 44100, 16);
         return input;
     }
 
-    public void connectInput() {
+    public void disconnectInput() {
         if (input != null) {
             input.close();
+            input = null;
         }
-        input = minim.getLineIn(2, 2048, 44100, 16);
+    }
+
+    public AudioOutput getOutput() {
+        return (output == null) ? connectOutput() : output;
+    }
+
+    public AudioOutput connectOutput() {
+        disconnectOutput();
+        output = minim.getLineOut(2, 512, 44100, 16);
+        return output;
+    }
+
+    public void disconnectOutput() {
+        if (output != null) {
+            output.close();
+            output = null;
+        }
     }
 
     Mixer getMixer() {
@@ -44,9 +66,7 @@ public class AudioDriver {
         Mixer.Info[] info = AudioSystem.getMixerInfo();
         for (int i = 0; i < info.length; i++) {
             String details = info[i].toString();
-            //System.out.println(details);
             if (details.substring(0, 4).equals("jack")) {
-                //System.out.println("Found mixer: #" + i);
                 result = AudioSystem.getMixer(info[i]);
             }
         }

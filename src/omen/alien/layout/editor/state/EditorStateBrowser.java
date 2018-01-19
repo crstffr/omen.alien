@@ -74,7 +74,6 @@ public class EditorStateBrowser extends EditorState {
 
     public void removeSelectedItem() {
         browser.removeSelectedItem();
-        System.out.println(browser.getItemCount());
         if (browser.getItemCount() == 0) {
             parent.setState("empty");
         }

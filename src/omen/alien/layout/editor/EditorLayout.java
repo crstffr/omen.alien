@@ -39,9 +39,10 @@ public class EditorLayout extends MajorLayout {
         ((EditorStateDelete) states.get("delete")).openConfirmDialog(item);
     }
 
-    public void actuallyDeleteSample(SampleCollectionItem item) {
+    public void actuallyDeleteSample(SampleCollectionItem item, Runnable cb) {
         App.databaseClient.deleteSample(item.id, () -> {
             ((EditorStateBrowser) states.get("browser")).removeSelectedItem();
+            cb.run();
         });
     }
 

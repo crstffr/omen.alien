@@ -17,7 +17,6 @@ public class ScopeLayout extends MajorLayout {
         setupButtons();
 
         onEnable(() -> {
-            App.audio.connectInput();
             waveform.attachToInput(App.audio.getInput());
             waveform.startCapture().show();
         });

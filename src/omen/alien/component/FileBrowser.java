@@ -94,7 +94,6 @@ public class FileBrowser {
     }
 
     public synchronized void removeSelectedItem() {
-        ready = false;
         items.remove(selected);
         if (items.size() > 0) {
             if (selected > items.size() - 1) {
@@ -109,7 +108,6 @@ public class FileBrowser {
     }
 
     public void clearAll() {
-        ready = false;
         clearRows();
         items.clear();
         selected = 0;
@@ -117,7 +115,6 @@ public class FileBrowser {
     }
 
     public void resetRows() {
-        ready = false;
         unselectItem();
         clearRows();
         offset = 0;
@@ -139,7 +136,6 @@ public class FileBrowser {
                 rows.add(row);
             }
         }
-        ready = true;
     }
 
     public void sortBy(String field, Boolean asc) {
@@ -177,11 +173,9 @@ public class FileBrowser {
     }
 
     public synchronized void draw() {
-        if (ready) {
-            rows.forEach((FileBrowserRow row) -> {
-                row.draw();
-            });
-        }
+        rows.forEach((FileBrowserRow row) -> {
+            row.draw();
+        });
     }
 
 }

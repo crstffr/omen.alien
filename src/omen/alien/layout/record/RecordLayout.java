@@ -1,6 +1,7 @@
 package omen.alien.layout.record;
 
 import omen.alien.*;
+import omen.alien.audio.Sample;
 import omen.alien.definition.WsMessage;
 import omen.alien.layout.editor.EditorLayout;
 import omen.alien.layout.record.state.*;
@@ -9,7 +10,7 @@ import omen.alien.component.*;
 
 public class RecordLayout extends MajorLayout {
 
-    String sampleId;
+    Sample sample;
     boolean saving;
     
     // Widgets
@@ -92,7 +93,7 @@ public class RecordLayout extends MajorLayout {
         timerWidget.reset().hide();
         messageWidget.reset().hide();
         meterWidget.start();
-        sampleId = null;
+        sample = null;
         setState("ready");
     }
 
@@ -131,12 +132,16 @@ public class RecordLayout extends MajorLayout {
         timerWidget.hide();
         setState("saving");
         App.recordingClient.save(fileWidget.text, () -> {
+
             WsMessage recording = App.recordingClient.getResult();
-            sampleId = recording.id;
-            App.waveformClient.generateDat(sampleId, () -> {
+
+            sample = new Sample(recording.id);
+            App.player.registerSample("preview", sample);
+
+            App.waveformClient.generateDat(sample.id, () -> {
                 Integer zoomLevel = 1;
-                App.waveformClient.generatePng(sampleId, zoomLevel, () -> {
-                    WsMessage pngResult = App.waveformClient.pngResults.get(sampleId);
+                App.waveformClient.generatePng(sample.id, zoomLevel, () -> {
+                    WsMessage pngResult = App.waveformClient.pngResults.get(sample.id);
                     if (pngResult != null) {
                         waveformWidget.load(pngResult.path);
                         waveformWidget.show();
@@ -165,22 +170,27 @@ public class RecordLayout extends MajorLayout {
     }
 
     public void renameDone() {
-        App.databaseClient.renameSample(sampleId, fileWidget.text, () -> {});
+        App.databaseClient.renameSample(sample.id, fileWidget.text, () -> {});
         setState("saved");
         refreshBrowser();
     }
 
     public void edit() {
-        ((EditorLayout) App.router.switchLayout("editor")).loadSampleById(sampleId);
+        ((EditorLayout) App.router.switchLayout("editor")).loadSampleById(sample.id);
     }
 
     public void refreshBrowser() {
         ((EditorLayout) App.router.getLayout("editor")).refreshBrowser();
     }
 
-    public void play() {}
+    public void play() {
+        System.out.println("Play preview...");
+        App.player.play("preview");
+    }
 
-    public void stopPlaying() {}
+    public void stopPlaying() {
+
+    }
 
     public void monitor() {}
 

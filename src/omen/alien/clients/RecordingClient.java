@@ -16,9 +16,7 @@ public class RecordingClient {
     WsMessage savedResult;
 
     public RecordingClient() {
-
         String address = "ws://localhost:" + Const.WS_RECORDING_PORT;
-
         try {
             this.ws = new WebSocketFactory().createSocket(address);
         } catch (Exception e) {
@@ -40,16 +38,14 @@ public class RecordingClient {
     }
 
     public void record(Integer channels, Integer sampleRate, Runnable cb) {
+        busy = true;
         JSONObject opts = new JSONObject();
         opts.put("channels", channels);
         opts.put("sampleRate", sampleRate);
         JSONObject json = new JSONObject();
         json.put("type", "record");
         json.put("opts", opts);
-
-        busy = true;
         this.ws.sendText(json.format(0).replace("\n", ""));
-
         this.ws.addListener(new WebSocketAdapter() {
             public void onTextMessage(WebSocket ws, String payload) {
                 WsMessage msg = g.fromJson(payload, WsMessage.class);

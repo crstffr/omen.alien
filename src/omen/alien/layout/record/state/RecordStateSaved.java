@@ -12,8 +12,16 @@ public class RecordStateSaved extends RecordState {
         onEnable(() -> parent.setHeader("SAVED"));
         buttonRow.addButton(new Button(Const.UI_BUTTON_1, "NEW", () -> parent.startNewRecording()));
         buttonRow.addButton(new Button(Const.UI_BUTTON_2, "RENAME", () -> parent.rename()));
-        buttonRow.addButton(new Button(Const.UI_BUTTON_2, "PREVIEW", () -> parent.play()));
+        buttonRow.addButton(new Button(Const.UI_BUTTON_3, "PREVIEW", () -> parent.play()));
         buttonRow.addButton(new Button(Const.UI_BUTTON_4, "EDIT", () -> parent.edit()));
+    }
+
+    public void customKeyHandler(char key, int code) {
+        switch(code) {
+            case 32: // spacebar
+                parent.play();
+                break;
+        }
     }
 
 }

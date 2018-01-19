@@ -36,9 +36,10 @@ public class EditorStateDelete extends EditorState {
         });
 
         confirmWidget.confirmDialog.onConfirm(() -> {
-            parent.actuallyDeleteSample(item);
-            parent.setState("browser");
-            item = null;
+            parent.actuallyDeleteSample(item, () -> {
+                parent.setState("browser");
+                item = null;
+            });
         });
 
         buttonRow.addButton(new Button(Const.UI_BUTTON_1, "CONFIRM", () -> {

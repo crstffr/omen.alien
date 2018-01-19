@@ -13,8 +13,4 @@ public class SampleCollectionItem {
     public Boolean selected;
     @Expose
     public Long created;
-
-    public String getName() {
-        return name;
-    }
 }
